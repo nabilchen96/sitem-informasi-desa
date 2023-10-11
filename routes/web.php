@@ -60,6 +60,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/update-user', 'App\Http\Controllers\UserController@update');
     Route::post('/delete-user', 'App\Http\Controllers\UserController@delete');
 
+    //DOSEN
+    Route::get('/dosen', 'App\Http\Controllers\DosenController@index');
+    Route::get('/data-dosen', 'App\Http\Controllers\DosenController@data');
+    Route::post('/store-dosen', 'App\Http\Controllers\DosenController@store');
+    Route::post('/update-dosen', 'App\Http\Controllers\DosenController@update');
+    Route::post('/delete-dosen', 'App\Http\Controllers\DosenController@delete');
+
     //TAHUN
 
     //JADWAL

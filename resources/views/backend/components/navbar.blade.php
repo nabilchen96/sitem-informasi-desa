@@ -22,10 +22,13 @@
                         <a class="nav-link" href="#">Tahun</a>
                     </li>
                     <li class="nav-item"> 
+                        <a class="nav-link" href="{{ url('kegiatan') }}">Kegiatan</a>
+                    </li>
+                    <li class="nav-item"> 
                         <a class="nav-link" href="{{ url('jadwal') }}">Jadwal</a>
                     </li>
                     <li class="nav-item"> 
-                        <a class="nav-link" href="#">Dosen</a>
+                        <a class="nav-link" href="{{ url('dosen') }}">Dosen</a>
                     </li>
                 </ul>
             </div>
@@ -59,10 +62,10 @@
                         <a class="nav-link" href="#">RAB</a>
                     </li>
                     <li class="nav-item"> 
-                        <a class="nav-link" href="#">Kontrak</a>
+                        <a class="nav-link" href="#">Surat Izin</a>
                     </li>
                     <li class="nav-item"> 
-                        <a class="nav-link" href="#">Surat Izin</a>
+                        <a class="nav-link" href="#">Kontrak</a>
                     </li>
                     <li class="nav-item"> 
                         <a class="nav-link" href="#">Sem. Antara</a>
