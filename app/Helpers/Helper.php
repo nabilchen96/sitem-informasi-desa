@@ -20,4 +20,13 @@ function kirimEmailUpdate($isian, $email, $status_verifikasi)
     return response()->json($kirim);
 }
 
-?>
+function getJadwalAktif()
+{
+    $data = DB::table('jadwals')
+    ->leftJoin('kegiatans','kegiatans.id','jadwals.kegiatan_id')
+    ->select('jadwals.*','kegiatans.nama_kegiatan','kegiatans.tahun')
+    ->where('jadwals.status','1')
+    ->first();
+
+    return $data;
+}

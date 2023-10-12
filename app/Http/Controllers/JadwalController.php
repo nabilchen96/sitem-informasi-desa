@@ -35,6 +35,7 @@ class JadwalController extends Controller
             'tanggal_awal'     => 'required',
             'tanggal_akhir'    => 'required',
             'tahapan'          => 'required',
+            'tahap_ke'          => 'required',
         ]);
 
         if($validator->fails()){
@@ -45,11 +46,12 @@ class JadwalController extends Controller
         }else{
             $data = Jadwal::create([
                 'nama_jadwal'       => $request->nama_jadwal,
-                'kegiatan_id'   => $request->kegiatan_id,
-                'tanggal_awal'   => $request->tanggal_awal,
-                'tanggal_akhir'   => $request->tanggal_akhir,
-                'status'              => $request->status,
-                'tahapan'               => $request->tahapan,
+                'kegiatan_id'       => $request->kegiatan_id,
+                'tanggal_awal'      => $request->tanggal_awal,
+                'tanggal_akhir'     => $request->tanggal_akhir,
+                'status'            => $request->status,
+                'tahapan'           => $request->tahapan,
+                'tahap_ke'          => $request->tahap_ke,
             ]);
 
             $data = [
@@ -70,6 +72,7 @@ class JadwalController extends Controller
             'tanggal_awal'     => 'required',
             'tanggal_akhir'    => 'required',
             'tahapan'          => 'required',
+            'tahap_ke'          => 'required',
         ]);
 
         if($validator->fails()){
@@ -87,6 +90,7 @@ class JadwalController extends Controller
                 'tanggal_akhir'   => $request->tanggal_akhir,
                 'status'              => $request->status,
                 'tahapan'               => $request->tahapan,
+                'tahap_ke'          => $request->tahap_ke,
             ]);
 
             $data = [

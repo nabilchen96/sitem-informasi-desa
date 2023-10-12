@@ -47,6 +47,7 @@
                                     <th>Tanggal</th>
                                     <th>Tahapan</th>
                                     <th>Status</th>
+                                    <th>Tahap Ke</th>
                                     <th width="5%"></th>
                                     <th width="5%"></th>
                                 </tr>
@@ -101,6 +102,22 @@
                                 <option value="Penyelesaian">Penyelesaian</option>
                             </select>
                             <span class="text-danger error" style="font-size: 12px;" id="tahapan_alert"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="tahap_ke">Tahapan</label>
+                            <select name="tahap_ke" class="form-control" id="tahap_ke" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                            <span class="text-danger error" style="font-size: 12px;" id="tahap_ke_alert"></span>
                         </div>
                         <div class="form-group">
                             <label for="status">Status</label>
@@ -163,6 +180,9 @@
                         }
                     },
                     {
+                        data: "tahap_ke"
+                    },
+                    {
                         render: function(data, type, row, meta) {
                             return `<a data-toggle="modal" data-target="#modal"
                                     data-bs-id=` + (row.id) + ` href="javascript:void(0)">
@@ -203,6 +223,7 @@
                 modal.find('#tanggal_awal').val(cokData[0].tanggal_awal)
                 modal.find('#tanggal_akhir').val(cokData[0].tanggal_akhir)
                 modal.find('#tahapan').val(cokData[0].tahapan)
+                modal.find('#tahap_ke').val(cokData[0].tahap_ke)
                 modal.find('#status').val(cokData[0].status)
             }
         })
