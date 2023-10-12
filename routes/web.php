@@ -69,7 +69,19 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/delete-dosen', 'App\Http\Controllers\DosenController@delete');
 
     //TAHUN
+    Route::get('/tahun', 'App\Http\Controllers\TahunController@index');
+    Route::get('/data-tahun', 'App\Http\Controllers\TahunController@data');
+    Route::post('/store-tahun', 'App\Http\Controllers\TahunController@store');
+    Route::post('/update-tahun', 'App\Http\Controllers\TahunController@update');
+    Route::post('/delete-tahun', 'App\Http\Controllers\TahunController@delete');
 
+    //KEGIATAN
+    Route::get('/kegiatan', 'App\Http\Controllers\KegiatanController@index');
+    Route::get('/data-kegiatan', 'App\Http\Controllers\KegiatanController@data');
+    Route::post('/store-kegiatan', 'App\Http\Controllers\KegiatanController@store');
+    Route::post('/update-kegiatan', 'App\Http\Controllers\KegiatanController@update');
+    Route::post('/delete-kegiatan', 'App\Http\Controllers\KegiatanController@delete');
+    
     //JADWAL
     Route::get('/jadwal', function(){
         return view('backend.jadwal.index');

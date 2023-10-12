@@ -23,7 +23,7 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-12 col-xl-8 mb-xl-0">
-                    <h3 class="font-weight-bold text-white">Data Dosen</h3>
+                    <h3 class="font-weight-bold text-white">Data Tahun Akademik</h3>
                 </div>
             </div>
         </div>
@@ -42,11 +42,8 @@
                             <thead class="bg-dark text-white">
                                 <tr>
                                     <th width="5%">No</th>
-                                    <th>NIP</th>
-                                    <th>Nama</th>
-                                    <th>Jenis Kelamin</th>
-                                    <th>Email</th>
-                                    <th>Token Akses</th>
+                                    <th>Nama Tahun</th>
+                                    <th>Status</th>
                                     <th width="5%"></th>
                                     <th width="5%"></th>
                                 </tr>
@@ -63,41 +60,15 @@
             <div class="modal-content">
                 <form id="form">
                     <div class="modal-header p-3">
-                        <h5 class="modal-title m-2" id="exampleModalLabel">Dosen Form</h5>
+                        <h5 class="modal-title m-2" id="exampleModalLabel">Tahun Akademik</h5>
                     </div>
                     <div class="modal-body">
                         <input type="hidden" name="id" id="id">
                         <div class="form-group">
-                            <label for="nip">NIP</label>
-                            <input name="nip" id="nip" type="text" placeholder="NIP"
+                            <label for="nama_tahun">Nama Tahun</label>
+                            <input name="nama_tahun" id="nama_tahun" type="text" placeholder="Nama Tahun"
                                 class="form-control form-control-sm" aria-describedby="emailHelp" required>
-                            <span class="text-danger error" style="font-size: 12px;" id="nip_alert"></span>
-                        </div>
-                        <div class="form-group">
-                            <label for="nama_dosen">Nama Lengkap</label>
-                            <input name="nama_dosen" id="nama_dosen" type="text" placeholder="Nama Lengkap"
-                                class="form-control form-control-sm" aria-describedby="emailHelp" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input name="email" id="email" type="email" placeholder="email"
-                                class="form-control form-control-sm" aria-describedby="emailHelp" required>
-                            <span class="text-danger error" style="font-size: 12px;" id="email_alert"></span>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Jenis Kelamin</label>
-                            <select name="jenis_kelamin" class="form-control" id="jenis_kelamin" required>
-                                <option value="Laki-laki">Laki-laki</option>
-                                <option value="Perempuan">Perempuan</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="no_wa">No. WA (Aktif)</label>
-                            <input name="no_wa" id="no_wa" type="text" placeholder="62899328812"
-                                class="form-control form-control-sm" aria-describedby="no_waHelp" required>
-                            <span class="text-danger error" style="font-size: 12px;" id="no_wa_alert"></span>
+                            <span class="text-danger error" style="font-size: 12px;" id="nama_tahun_alert"></span>
                         </div>
 
                         <div class="form-group">
@@ -126,7 +97,7 @@
         function getData() {
             $("#myTable").DataTable({
                 "ordering": false,
-                ajax: '/data-dosen',
+                ajax: '/data-tahun',
                 processing: true,
                 'language': {
                     'loadingRecords': '&nbsp;',
@@ -138,25 +109,16 @@
                         }
                     },
                     {
-                        data: "nip"
-                    },
-                    {
-                        data: "nama_dosen"
+                        data: "nama_tahun"
                     },
                     {
                         render: function(data, type, row, meta) {
-                            if (row.jenis_kelamin == "Laki-laki") {
-                                return `<span class="badge badge-success">${row.jenis_kelamin}</span>`
-                            } else if (row.jenis_kelamin == "Perempuan") {
-                                return `<span class="badge badge-danger">Laboran</span>`
+                            if (row.is_active == "0") {
+                                return `<span class="badge badge-danger">Non Aktif</span>`
+                            } else if (row.is_active == "1") {
+                                return `<span class="badge badge-success">Aktif</span>`
                             }
                         }
-                    },
-                    {
-                        data: "email"
-                    },
-                    {
-                        data: "token_akses"
                     },
                     
                     {
@@ -195,12 +157,7 @@
             if (recipient) {
                 var modal = $(this)
                 modal.find('#id').val(cokData[0].id)
-                modal.find('#nip').val(cokData[0].nip)
-                modal.find('#email').val(cokData[0].email)
-                modal.find('#nama_dosen').val(cokData[0].nama_dosen)
-                modal.find('#jenis_kelamin').val(cokData[0].jenis_kelamin)
-                modal.find('#token_akses').val(cokData[0].token_akses)
-                modal.find('#no_wa').val(cokData[0].no_wa)
+                modal.find('#nama_tahun').val(cokData[0].nama_tahun)
                 modal.find('#is_active').val(cokData[0].is_active)
             }
         })
@@ -215,7 +172,7 @@
 
             axios({
                     method: 'post',
-                    url: formData.get('id') == '' ? '/store-dosen' : '/update-dosen',
+                    url: formData.get('id') == '' ? '/store-tahun' : '/update-tahun',
                     data: formData,
                 })
                 .then(function(res) {
@@ -236,10 +193,8 @@
 
                     } else {
                         //error validation
-                        document.getElementById('nip_alert').innerHTML = res.data.respon.nip ?? ''
-                        document.getElementById('nama_dosen_alert').innerHTML = res.data.respon.nama_dosen ?? ''
-                        document.getElementById('email_alert').innerHTML = res.data.respon.email ?? ''
-                        document.getElementById('no_wa_alert').innerHTML = res.data.respon.no_wa ?? ''
+                        document.getElementById('nama_tahun_alert').innerHTML = res.data.respon.nama_tahun ?? ''
+                        document.getElementById('is_active_alert').innerHTML = res.data.respon.is_active ?? ''
                     }
 
                     document.getElementById("tombol_kirim").disabled = false;

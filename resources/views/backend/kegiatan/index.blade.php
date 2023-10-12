@@ -23,7 +23,7 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-12 col-xl-8 mb-xl-0">
-                    <h3 class="font-weight-bold text-white">Data Dosen</h3>
+                    <h3 class="font-weight-bold text-white">Data Kegiatan</h3>
                 </div>
             </div>
         </div>
@@ -42,11 +42,11 @@
                             <thead class="bg-dark text-white">
                                 <tr>
                                     <th width="5%">No</th>
-                                    <th>NIP</th>
-                                    <th>Nama</th>
-                                    <th>Jenis Kelamin</th>
-                                    <th>Email</th>
-                                    <th>Token Akses</th>
+                                    <th>Nama Kegiatan</th>
+                                    <th>Tahun Akademik</th>
+                                    <th>Tahun</th>
+                                    <th>Jenis Kegiatan</th>
+                                    <th>Status</th>
                                     <th width="5%"></th>
                                     <th width="5%"></th>
                                 </tr>
@@ -68,41 +68,37 @@
                     <div class="modal-body">
                         <input type="hidden" name="id" id="id">
                         <div class="form-group">
-                            <label for="nip">NIP</label>
-                            <input name="nip" id="nip" type="text" placeholder="NIP"
+                            <label for="nama_kegiatan">Nama Kegiatan</label>
+                            <input name="nama_kegiatan" id="nama_kegiatan" type="text" placeholder="Nama Kegiatan"
                                 class="form-control form-control-sm" aria-describedby="emailHelp" required>
-                            <span class="text-danger error" style="font-size: 12px;" id="nip_alert"></span>
+                            <span class="text-danger error" style="font-size: 12px;" id="nama_kegiatan_alert"></span>
                         </div>
                         <div class="form-group">
-                            <label for="nama_dosen">Nama Lengkap</label>
-                            <input name="nama_dosen" id="nama_dosen" type="text" placeholder="Nama Lengkap"
-                                class="form-control form-control-sm" aria-describedby="emailHelp" required>
+                            <label for="tahun">Tahun</label>
+                            <input name="tahun" id="tahun" type="number" placeholder="Tahun"
+                                class="form-control form-control-sm" aria-describedby="tahunHelp" required>
+                            <span class="text-danger error" style="font-size: 12px;" id="tahun_alert"></span>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input name="email" id="email" type="email" placeholder="email"
-                                class="form-control form-control-sm" aria-describedby="emailHelp" required>
-                            <span class="text-danger error" style="font-size: 12px;" id="email_alert"></span>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Jenis Kelamin</label>
-                            <select name="jenis_kelamin" class="form-control" id="jenis_kelamin" required>
-                                <option value="Laki-laki">Laki-laki</option>
-                                <option value="Perempuan">Perempuan</option>
+                            <label for="tahun_akademik_id">Tahun Akademik</label>
+                            <select name="tahun_akademik_id" class="form-control" id="tahun_akademik_id" required>
+                                @foreach ($tahun_akademik as $tk)
+                                    <option value="{{ $tk->id }}">{{ $tk->nama_tahun }}</option>
+                                @endforeach
                             </select>
                         </div>
                         
                         <div class="form-group">
-                            <label for="no_wa">No. WA (Aktif)</label>
-                            <input name="no_wa" id="no_wa" type="text" placeholder="62899328812"
-                                class="form-control form-control-sm" aria-describedby="no_waHelp" required>
-                            <span class="text-danger error" style="font-size: 12px;" id="no_wa_alert"></span>
+                            <label for="exampleInputPassword1">Jenis Kegiatan</label>
+                            <select name="jenis_kegiatan" class="form-control" id="jenis_kegiatan" required>
+                                <option value="Hibah Penelitian">Hibah Penelitian</option>
+                                <option value="Pengabdian Masyarakat">Pengabdian Masyarakat</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="is_active">Aktif</label>
-                            <select name="is_active" class="form-control" id="is_active" required>
+                            <label for="status">Status</label>
+                            <select name="status" class="form-control" id="status" required>
                                 <option value="1">Aktif</option>
                                 <option value="0">Tidak Aktif</option>
                             </select>
@@ -126,7 +122,7 @@
         function getData() {
             $("#myTable").DataTable({
                 "ordering": false,
-                ajax: '/data-dosen',
+                ajax: '/data-kegiatan',
                 processing: true,
                 'language': {
                     'loadingRecords': '&nbsp;',
@@ -138,25 +134,25 @@
                         }
                     },
                     {
-                        data: "nip"
+                        data: "nama_kegiatan"
                     },
                     {
-                        data: "nama_dosen"
+                        data: "nama_tahun"
+                    },
+                    {
+                        data: "tahun"
+                    },
+                    {
+                        data: "jenis_kegiatan"
                     },
                     {
                         render: function(data, type, row, meta) {
-                            if (row.jenis_kelamin == "Laki-laki") {
-                                return `<span class="badge badge-success">${row.jenis_kelamin}</span>`
-                            } else if (row.jenis_kelamin == "Perempuan") {
-                                return `<span class="badge badge-danger">Laboran</span>`
+                            if (row.status == "0") {
+                                return `<span class="badge badge-danger">Non Aktif</span>`
+                            } else if (row.status == "1") {
+                                return `<span class="badge badge-success">Aktif</span>`
                             }
                         }
-                    },
-                    {
-                        data: "email"
-                    },
-                    {
-                        data: "token_akses"
                     },
                     
                     {
@@ -195,13 +191,11 @@
             if (recipient) {
                 var modal = $(this)
                 modal.find('#id').val(cokData[0].id)
-                modal.find('#nip').val(cokData[0].nip)
-                modal.find('#email').val(cokData[0].email)
-                modal.find('#nama_dosen').val(cokData[0].nama_dosen)
-                modal.find('#jenis_kelamin').val(cokData[0].jenis_kelamin)
-                modal.find('#token_akses').val(cokData[0].token_akses)
-                modal.find('#no_wa').val(cokData[0].no_wa)
-                modal.find('#is_active').val(cokData[0].is_active)
+                modal.find('#tahun_akademik_id').val(cokData[0].tahun_akademik_id)
+                modal.find('#nama_kegiatan').val(cokData[0].nama_kegiatan)
+                modal.find('#tahun').val(cokData[0].tahun)
+                modal.find('#status').val(cokData[0].status)
+                modal.find('#jenis_kegiatan').val(cokData[0].jenis_kegiatan)
             }
         })
 
@@ -215,7 +209,7 @@
 
             axios({
                     method: 'post',
-                    url: formData.get('id') == '' ? '/store-dosen' : '/update-dosen',
+                    url: formData.get('id') == '' ? '/store-kegiatan' : '/update-kegiatan',
                     data: formData,
                 })
                 .then(function(res) {
@@ -237,7 +231,7 @@
                     } else {
                         //error validation
                         document.getElementById('nip_alert').innerHTML = res.data.respon.nip ?? ''
-                        document.getElementById('nama_dosen_alert').innerHTML = res.data.respon.nama_dosen ?? ''
+                        document.getElementById('nama_kegiatan_alert').innerHTML = res.data.respon.nama_kegiatan ?? ''
                         document.getElementById('email_alert').innerHTML = res.data.respon.email ?? ''
                         document.getElementById('no_wa_alert').innerHTML = res.data.respon.no_wa ?? ''
                     }

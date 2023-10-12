@@ -2,39 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dosen;
+use App\Models\TahunAkademik;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
+use DB;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 
-class DosenController extends Controller
+class TahunController extends Controller
 {
     public function index(){
-        return view('backend.dosen.index');
+        return view('backend.tahun.index');
     }
 
     public function data(){
         
-        $dosen = DB::table('dosens');
+        $tahun = DB::table('tahun_akademiks');
 
-        $dosen = $dosen->get();
+        $tahun = $tahun->get();
 
         
-        return response()->json(['data' => $dosen]);
+        return response()->json(['data' => $tahun]);
     }
 
     public function store(Request $request){
 
-
         $validator = Validator::make($request->all(), [
-            'email'      => 'unique:dosens',
-            'nama_dosen' => 'required',
-            'nip'        => 'required',
-            'jenis_kelamin' => 'required',
-            'no_wa' => 'required',
+            'nama_tahun'      => 'unique:tahun_akademiks',
+            'is_active' => 'required',
         ]);
 
         if($validator->fails()){
@@ -43,14 +36,9 @@ class DosenController extends Controller
                 'respon'        => $validator->errors()
             ];
         }else{
-            $data = Dosen::create([
-                'nip'            => $request->nip,
-                'nama_dosen'     => $request->nama_dosen,
-                'email'          => $request->email,
-                'jenis_kelamin'  => $request->jenis_kelamin,
-                'no_wa'          => $request->no_wa,
+            $data = TahunAkademik::create([
+                'nama_tahun'     => $request->nama_tahun,
                 'is_active'      => $request->is_active,
-                'token_akses'    => 'SIPP-' . Str::random(5),
             ]);
 
             $data = [
@@ -66,10 +54,8 @@ class DosenController extends Controller
 
         $validator = Validator::make($request->all(), [
             'id'    => 'required',
-            'nama_dosen' => 'required',
-            'nip'        => 'required',
-            'jenis_kelamin' => 'required',
-            'no_wa' => 'required',
+            'nama_tahun' => 'required',
+            'is_active' => 'required',
         ]);
 
         if($validator->fails()){
@@ -79,13 +65,9 @@ class DosenController extends Controller
             ];
         }else{
 
-            $dosen = Dosen::find($request->id);
-            $data = $dosen->update([
-                'nip'            => $request->nip,
-                'nama_dosen'     => $request->nama_dosen,
-                'email'          => $request->email,
-                'jenis_kelamin'  => $request->jenis_kelamin,
-                'no_wa'          => $request->no_wa,
+            $tahun = TahunAkademik::find($request->id);
+            $data = $tahun->update([
+                'nama_tahun'     => $request->nama_tahun,
                 'is_active'      => $request->is_active,
             ]);
 
@@ -100,7 +82,7 @@ class DosenController extends Controller
 
     public function delete(Request $request){
 
-        $data = Dosen::find($request->id)->delete();
+        $data = TahunAkademik::find($request->id)->delete();
 
         $data = [
             'responCode'    => 1,

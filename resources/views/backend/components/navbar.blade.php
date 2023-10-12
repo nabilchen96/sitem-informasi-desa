@@ -19,7 +19,7 @@
                         <a class="nav-link" href="{{ url('user') }}">User</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Tahun</a>
+                        <a class="nav-link" href="{{ url('tahun') }}">Tahun</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('kegiatan') }}">Kegiatan</a>
