@@ -34,16 +34,26 @@
                     </div>
                     <br><br>
                     <ul data-aos="fade-up" data-aos-duration="1500" class="timeline">
-                        <li style="background: red;" data-year="We Are Here!" data-text="1. Pengajuan Judul"></li>
-                        <li data-year="" data-text="2. Pengumuman Hasil Seleksi"></li>
-                        <li data-year="" data-text="3. Proposal"></li>
-                        <li data-year="" data-text="4. Seminar Proposal"></li>
-                        <li data-year="" data-text="5. RAB"></li>
-                        <li data-year="" data-text="6. Surat Izin Penelitian"></li>
-                        <li data-year="" data-text="7. Seminar Antara"></li>
-                        <li data-year="" data-text="8. Luaran Penelitian"></li>
-                        <li data-year="" data-text="9. Seminar Hasil"></li>
-                        <li data-year="" data-text="10. Survey Kepuasan Layanan"></li>
+                        <li @if (@getJadwalAktif()->tahap_ke == 1) style="background: red;" data-year="We Are Here!" @endif
+                            data-text="1. Pengajuan Judul"></li>
+                        <li @if (@getJadwalAktif()->tahap_ke == 2) style="background: red;" data-year="We Are Here!" @endif
+                            data-year="" data-text="2. Pengumuman Hasil Seleksi"></li>
+                        <li @if (@getJadwalAktif()->tahap_ke == 3) style="background: red;" data-year="We Are Here!" @endif
+                            data-year="" data-text="3. Proposal"></li>
+                        <li @if (@getJadwalAktif()->tahap_ke == 4) style="background: red;" data-year="We Are Here!" @endif
+                            data-year="" data-text="4. Seminar Proposal"></li>
+                        <li @if (@getJadwalAktif()->tahap_ke == 5) style="background: red;" data-year="We Are Here!" @endif
+                            data-year="" data-text="5. RAB"></li>
+                        <li @if (@getJadwalAktif()->tahap_ke == 6) style="background: red;" data-year="We Are Here!" @endif
+                            data-year="" data-text="6. Surat Izin Penelitian"></li>
+                        <li @if (@getJadwalAktif()->tahap_ke == 7) style="background: red;" data-year="We Are Here!" @endif
+                            data-year="" data-text="7. Seminar Antara"></li>
+                        <li @if (@getJadwalAktif()->tahap_ke == 8) style="background: red;" data-year="We Are Here!" @endif
+                            data-year="" data-text="8. Luaran Penelitian"></li>
+                        <li @if (@getJadwalAktif()->tahap_ke == 9) style="background: red;" data-year="We Are Here!" @endif
+                            data-year="" data-text="9. Seminar Hasil"></li>
+                        <li @if (@getJadwalAktif()->tahap_ke == 10) style="background: red;" data-year="We Are Here!" @endif
+                            data-year="" data-text="10. Survey Kepuasan Layanan"></li>
                     </ul>
                     <br><br>
                 </section>
