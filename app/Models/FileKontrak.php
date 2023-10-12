@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UsulanProposal extends Model
+class FileKontrak extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
+    
 }
