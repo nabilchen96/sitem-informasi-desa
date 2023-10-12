@@ -23,7 +23,7 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-12 col-xl-8 mb-xl-0">
-                    <h3 class="font-weight-bold text-white">Data Pengajuan Jadwal</h3>
+                    <h3 class="font-weight-bold text-white">Data Jadwal</h3>
                 </div>
             </div>
         </div>
@@ -32,88 +32,268 @@
         <div class="col-12 mt-4">
             <div class="card w-100">
                 <div class="card-body">
-                    <button type="button" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#modal">
-                        Tambah
-                    </button>
+                    {{-- @if (Auth::user()->role == 'Admin')                         --}}
+                        <button type="button" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#modal">
+                            Tambah
+                        </button>
+                    {{-- @endif --}}
                     <div class="table-responsive">
                         <table id="myTable" class="table table-striped" style="width: 100%;">
-                            <thead class="bg-dark text-white">
+                            <thead class="bg-info text-white">
                                 <tr>
                                     <th width="5%">No</th>
+                                    <th>Nama Kegiatan</th>
                                     <th>Jadwal</th>
-                                    <th>Tahap</th>
                                     <th>Tanggal</th>
+                                    <th>Tahapan</th>
+                                    <th>Status</th>
                                     <th width="5%"></th>
                                     <th width="5%"></th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Pengajuan Judul</td>
-                                    <td>Tahap Pengajuan</td>
-                                    <td>
-                                        10-09-2023 s/d 20-09-2023
-                                    </td>
-                                    <td>
-                                        <a href="javascript:void(0)">
-                                            <i style="font-size: 1.5rem;" class="text-success bi bi-grid"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="javascript:void(0)">
-                                            <i style="font-size: 1.5rem;" class="text-danger bi bi-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Pengumuman Seleksi Judul</td>
-                                    <td>Tahap Pengajuan</td>
-                                    <td>
-                                        21-09-2023 s/d 22-09-2023
-                                    </td>
-                                    <td>
-                                        <a href="javascript:void(0)">
-                                            <i style="font-size: 1.5rem;" class="text-success bi bi-grid"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="javascript:void(0)">
-                                            <i style="font-size: 1.5rem;" class="text-danger bi bi-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Pengumpulan Proposal</td>
-                                    <td>Tahap Pengajuan</td>
-                                    <td>
-                                        23-09-2023 s/d 30-09-2023
-                                    </td>
-                                    <td>
-                                        <a href="javascript:void(0)">
-                                            <i style="font-size: 1.5rem;" class="text-success bi bi-grid"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="javascript:void(0)">
-                                            <i style="font-size: 1.5rem;" class="text-danger bi bi-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="form">
+                    <div class="modal-header p-3">
+                        <h5 class="modal-title m-2" id="exampleModalLabel">Jadwal Form</h5>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="id" id="id">
+                        <div class="form-group">
+                            <label for="kegiatan_id">Kegiatan</label>
+                            <select name="kegiatan_id" class="form-control" id="kegiatan_id" required>
+                                @foreach ($kegiatans as $kg)
+                                    <option value="{{ $kg->id }}">{{ $kg->nama_kegiatan }} | {{ $kg->tahun }} </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="nama_jadwal">Nama Jadwal</label>
+                            <input name="nama_jadwal" id="nama_jadwal" type="text" placeholder="Nama Jadwal"
+                                class="form-control form-control-sm" aria-describedby="emailHelp" required>
+                            <span class="text-danger error" style="font-size: 12px;" id="nama_jadwal_alert"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="tanggal_awal">Tgl Mulai</label>
+                            <input name="tanggal_awal" id="tanggal_awal" type="date" placeholder="Tahun"
+                                class="form-control form-control-sm" aria-describedby="tanggal_awalHelp" required>
+                            <span class="text-danger error" style="font-size: 12px;" id="tanggal_awal_alert"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="tanggal_akhir">Tgl Selesai</label>
+                            <input name="tanggal_akhir" id="tanggal_akhir" type="date" placeholder="Tahun"
+                                class="form-control form-control-sm" aria-describedby="tanggal_akhirHelp" required>
+                            <span class="text-danger error" style="font-size: 12px;" id="tanggal_akhir_alert"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="tahapan">Tahapan</label>
+                            <select name="tahapan" class="form-control" id="tahapan" required>
+                                <option value="Pengusulan">Pengusulan</option>
+                                <option value="Pelaksanaan">Pelaksanaan</option>
+                                <option value="Penyelesaian">Penyelesaian</option>
+                            </select>
+                            <span class="text-danger error" style="font-size: 12px;" id="tahapan_alert"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <select name="status" class="form-control" id="status" required>
+                                <option value="1">Aktif</option>
+                                <option value="0">Tidak Aktif</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer p-3">
+                        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+                        <button id="tombol_kirim" class="btn btn-primary btn-sm">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 @push('script')
     <script>
-        $("#myTable").DataTable({
-            "ordering": false,
+        document.addEventListener('DOMContentLoaded', function() {
+            getData()
         })
+
+        function getData() {
+            $("#myTable").DataTable({
+                "ordering": false,
+                ajax: '/data-jadwal',
+                processing: true,
+                'language': {
+                    'loadingRecords': '&nbsp;',
+                    'processing': 'Loading...'
+                },
+                columns: [{
+                        render: function(data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }
+                    },
+                    {
+                        data: "nama_kegiatan"
+                    },
+                    {
+                        data: "nama_jadwal"
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            return `${row.tanggal_awal} s/d ${row.tanggal_akhir}`
+                        }
+                    },
+                    {
+                        data: "tahapan"
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            if (row.status == "0") {
+                                return `<span class="badge badge-danger">Non Aktif</span>`
+                            } else if (row.status == "1") {
+                                return `<span class="badge badge-success">Aktif</span>`
+                            }
+                        }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            return `<a data-toggle="modal" data-target="#modal"
+                                    data-bs-id=` + (row.id) + ` href="javascript:void(0)">
+                                    <i style="font-size: 1.5rem;" class="text-success bi bi-grid"></i>
+                                </a>`
+                        }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            return `<a href="javascript:void(0)" onclick="hapusData(` + (row
+                                .id) + `)">
+                                    <i style="font-size: 1.5rem;" class="text-danger bi bi-trash"></i>
+                                </a>`
+                        }
+                    },
+                ]
+            })
+        }
+
+        $('#modal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var recipient = button.data('bs-id') // Extract info from data-* attributes
+            var cok = $("#myTable").DataTable().rows().data().toArray()
+
+            let cokData = cok.filter((dt) => {
+                return dt.id == recipient;
+            })
+
+            document.getElementById("form").reset();
+            document.getElementById('id').value = ''
+            $('.error').empty();
+
+            if (recipient) {
+                var modal = $(this)
+                modal.find('#id').val(cokData[0].id)
+                modal.find('#kegiatan_id').val(cokData[0].kegiatan_id)
+                modal.find('#nama_jadwal').val(cokData[0].nama_jadwal)
+                modal.find('#tanggal_awal').val(cokData[0].tanggal_awal)
+                modal.find('#tanggal_akhir').val(cokData[0].tanggal_akhir)
+                modal.find('#tahapan').val(cokData[0].tahapan)
+                modal.find('#status').val(cokData[0].status)
+            }
+        })
+
+        form.onsubmit = (e) => {
+
+            let formData = new FormData(form);
+
+            e.preventDefault();
+
+            document.getElementById("tombol_kirim").disabled = true;
+
+            axios({
+                    method: 'post',
+                    url: formData.get('id') == '' ? '/store-jadwal' : '/update-jadwal',
+                    data: formData,
+                })
+                .then(function(res) {
+                    //handle success         
+                    if (res.data.responCode == 1) {
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Sukses',
+                            text: res.data.respon,
+                            timer: 3000,
+                            showConfirmButton: false
+                        })
+
+                        $("#modal").modal("hide");
+                        $('#myTable').DataTable().clear().destroy();
+                        getData()
+
+                    } else {
+                        //error validation
+                        document.getElementById('nama_jadwal_alert').innerHTML = res.data.respon.nama_jadwal ?? ''
+                        document.getElementById('kegiatan_id_alert').innerHTML = res.data.respon.kegiatan_id ?? ''
+                        document.getElementById('tanggal_awal_alert').innerHTML = res.data.respon.tanggal_awal ?? ''
+                        document.getElementById('tanggal_akhir_alert').innerHTML = res.data.respon.tanggal_akhir ?? ''
+                    }
+
+                    document.getElementById("tombol_kirim").disabled = false;
+                })
+                .catch(function(res) {
+                    document.getElementById("tombol_kirim").disabled = false;
+                    //handle error
+                    console.log(res);
+                });
+        }
+
+        hapusData = (id) => {
+            Swal.fire({
+                title: "Yakin hapus data?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'Ya',
+                cancelButtonColor: '#3085d6',
+                cancelButtonText: "Batal"
+
+            }).then((result) => {
+
+                if (result.value) {
+                    axios.post('/delete-jadwal', {
+                            id
+                        })
+                        .then((response) => {
+                            if (response.data.responCode == 1) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Berhasil',
+                                    timer: 2000,
+                                    showConfirmButton: false
+                                })
+
+                                $('#myTable').DataTable().clear().destroy();
+                                getData();
+
+                            } else {
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Gagal...',
+                                    text: response.data.respon,
+                                })
+                            }
+                        }, (error) => {
+                            console.log(error);
+                        });
+                }
+
+            });
+        }
     </script>
 @endpush

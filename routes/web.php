@@ -83,9 +83,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/delete-kegiatan', 'App\Http\Controllers\KegiatanController@delete');
     
     //JADWAL
-    Route::get('/jadwal', function(){
-        return view('backend.jadwal.index');
-    });
+    Route::get('/jadwal', 'App\Http\Controllers\JadwalController@index');
+    Route::get('/data-jadwal', 'App\Http\Controllers\JadwalController@data');
+    Route::post('/store-jadwal', 'App\Http\Controllers\JadwalController@store');
+    Route::post('/update-jadwal', 'App\Http\Controllers\JadwalController@update');
+    Route::post('/delete-jadwal', 'App\Http\Controllers\JadwalController@delete');
 
     //DOSEN
 
