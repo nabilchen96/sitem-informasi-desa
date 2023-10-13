@@ -53,6 +53,14 @@ class JadwalController extends Controller
             @$file->move('file_pengumuman', $nama_file);
 
             $kegiatan = Kegiatan::find($request->kegiatan_id);
+            $cekAktifJadwal = Jadwal::where('status','1')->first();
+
+            if($cekAktifJadwal){
+                Jadwal::where('status','1')->update([
+                    'status' => '0',
+                ]);
+            }
+
             $data = Jadwal::create([
                 'nama_jadwal'        => $request->nama_jadwal,
                 'kegiatan_id'        => $request->kegiatan_id,
@@ -65,6 +73,7 @@ class JadwalController extends Controller
                 'file_upload'        => $request->file_upload ? $nama_file : '',
                 'nama_file'          => $request->nama_file
             ]);
+            
             if ($request->publish_pengumuman) {
                 Pengumuman::create([
                     'judul' => $request->nama_jadwal,
