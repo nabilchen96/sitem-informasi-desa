@@ -43,15 +43,15 @@
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" href="#home" role="tab" data-toggle="tab"
-                                onclick="getData()">Baru <sup><span class="badge badge-warning">1</span></sup></a>
+                                onclick="getData()">Baru <sup><span class="badge badge-warning">{{ $new->count() ?? 0 }}</span></sup></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#buzz" role="tab" data-toggle="tab" onclick="getData2()">Acc
-                                <sup><span class="badge badge-success">2</span></sup></a>
+                                <sup><span class="badge badge-success">{{ $acc->count() ?? 0 }}</span></sup></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#references" role="tab" data-toggle="tab"
-                                onclick="getData3()">Ditolak <sup><span class="badge badge-danger">3</span></sup></a>
+                                onclick="getData3()">Ditolak <sup><span class="badge badge-danger">{{ $tolak->count() ?? 0 }}</span></sup></a>
                         </li>
                     </ul>
 
@@ -208,6 +208,12 @@
                                 <input name="token_akses" id="token_akses" type="text" placeholder="Token Akses"
                                     class="form-control form-control-sm" aria-describedby="emailHelp" required>
                             </div>
+
+                            <div class="form-group">
+                                <label for="keterangan_respon">Ketarangan</label>
+                                <input name="keterangan_respon" id="keterangan_respon" type="text" placeholder="Keterangan"
+                                    class="form-control form-control-sm" aria-describedby="emailHelp">
+                            </div>
                         </div>
                         <div class="modal-footer p-3">
                             <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
@@ -283,6 +289,7 @@
         }
 
         function getData2() {
+            $('#myTable2').DataTable().clear().destroy();
             $("#myTable2").DataTable({
                 "ordering": false,
                 scrollX: true,
@@ -318,18 +325,28 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            return `<a data-toggle="modal" data-target="#modal"
+                            if(row.status == "0"){
+                                return `<a data-toggle="modal" data-target="#modal"
                                     data-bs-id=` + (row.id) + ` href="javascript:void(0)">
                                     <i style="font-size: 1.5rem;" class="text-success bi bi-grid"></i>
                                 </a>`
+                            } else {
+                                return `-`
+                            }
+                            
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            return `<a href="javascript:void(0)" onclick="hapusData(` + (row
+                            if(row.status == "0"){
+                                return `<a href="javascript:void(0)" onclick="hapusData(` + (row
                                 .id) + `)">
                                     <i style="font-size: 1.5rem;" class="text-danger bi bi-trash"></i>
                                 </a>`
+                            } else {
+                                return `-`
+                            }
+                            
                         }
                     },
                 ]
@@ -337,6 +354,7 @@
         }
 
         function getData3() {
+            $('#myTable3').DataTable().clear().destroy();
             $("#myTable3").DataTable({
                 "ordering": false,
                 scrollX: true,
@@ -372,18 +390,28 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            return `<a data-toggle="modal" data-target="#modal"
+                            if(row.status == "0"){
+                                return `<a data-toggle="modal" data-target="#modal"
                                     data-bs-id=` + (row.id) + ` href="javascript:void(0)">
                                     <i style="font-size: 1.5rem;" class="text-success bi bi-grid"></i>
                                 </a>`
+                            } else {
+                                return `-`
+                            }
+                            
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            return `<a href="javascript:void(0)" onclick="hapusData(` + (row
+                            if(row.status == "0"){
+                                return `<a href="javascript:void(0)" onclick="hapusData(` + (row
                                 .id) + `)">
                                     <i style="font-size: 1.5rem;" class="text-danger bi bi-trash"></i>
                                 </a>`
+                            } else {
+                                return `-`
+                            }
+                            
                         }
                     },
                 ]
@@ -442,9 +470,13 @@
                             showConfirmButton: false
                         })
 
-                        $("#modal").modal("hide");
-                        $('#myTable').DataTable().clear().destroy();
-                        getData()
+                        // $("#modal").modal("hide");
+                        // $('#myTable').DataTable().clear().destroy();
+                        // getData()
+
+                        setTimeout(() => {
+                            location.reload(res.data.respon);
+                        }, 1500);
 
                     } else {
                         //error validation

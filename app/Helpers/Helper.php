@@ -133,7 +133,7 @@ function sendWAJadwal($kegiatan, $message, $tgl_awal, $tgl_akhir)
         CURLOPT_POSTFIELDS => array(
             'target' => $noWA,
             'message' => "Informasi Jadwal *$kegiatan*. Tahap : *" .$message. "* dimulai pada *$tglawal* s/d *$tglakhir*. Silahkan cek informasi pada https://sipp.poltekbangplg.ac.id Salam Hormat *- Admin PUSPPM -*",
-            'delay' => '5',
+            'delay' => '3',
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(

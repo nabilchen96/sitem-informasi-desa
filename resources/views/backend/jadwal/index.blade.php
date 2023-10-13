@@ -52,6 +52,7 @@
                                     <th>Tahapan</th>
                                     <th>Status</th>
                                     <th>Tahap Ke</th>
+                                    <th>Publish Pengumuman?</th>
                                     <th width="5%"></th>
                                     <th width="5%"></th>
                                 </tr>
@@ -131,6 +132,24 @@
                                 <option value="0">Tidak Aktif</option>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="publish_pengumuman">Publish Pengumuman?</label>
+                            <select name="publish_pengumuman" class="form-control" id="publish_pengumuman" required>
+                                <option value="1">Ya</option>
+                                <option value="0">Tidak</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>File Pendukung</label>
+                            <input name="file_upload" id="file_upload" type="file" placeholder="Upload File"
+                                class="form-control form-control-sm" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nama_file">Nama File</label>
+                            <input name="nama_file" id="nama_file" type="text" placeholder="Nama File"
+                                class="form-control form-control-sm" aria-describedby="emailHelp" required>
+                            <span class="text-danger error" style="font-size: 12px;" id="nama_file_alert"></span>
+                        </div>
                     </div>
                     <div class="modal-footer p-3">
                         <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
@@ -193,6 +212,16 @@
                     },
                     {
                         render: function(data, type, row, meta) {
+                            if (row.publish_pengumuman == "0") {
+                                return `<span class="badge badge-danger">Tidak</span>`
+                            } else if (row.publish_pengumuman == "1") {
+                                return `<span class="badge badge-success">Ya</span>`
+                            }
+                        }
+                    },
+                    
+                    {
+                        render: function(data, type, row, meta) {
                             return `<a data-toggle="modal" data-target="#modal"
                                     data-bs-id=` + (row.id) + ` href="javascript:void(0)">
                                     <i style="font-size: 1.5rem;" class="text-success bi bi-grid"></i>
@@ -234,6 +263,8 @@
                 modal.find('#tahapan').val(cokData[0].tahapan)
                 modal.find('#tahap_ke').val(cokData[0].tahap_ke)
                 modal.find('#status').val(cokData[0].status)
+                modal.find('#publish_pengumuman').val(cokData[0].publish_pengumuman)
+                modal.find('#nama_file').val(cokData[0].nama_file)
             }
         })
 
