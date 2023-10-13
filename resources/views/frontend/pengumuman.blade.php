@@ -22,9 +22,14 @@
                                     </tr>
                                 </thead>
                                 @foreach ($data as $k => $item)
-                                    <tr class="{{ $k==0 ? 'bg-success text-white' : '' }}">
+                                    <tr class="{{ $k == 0 ? 'bg-success text-white' : '' }}">
                                         <td>
                                             📂 {{ $item->judul }} 📅 {{ date('d-m-Y', strtotime($item->created_at)) }}
+                                            <br>
+                                            @if ($item->file)
+                                                <a href="{{ asset('file_library/' . $item->file) }}">Download File</a>
+                                            @endif
+
                                         </td>
                                     </tr>
                                 @endforeach
