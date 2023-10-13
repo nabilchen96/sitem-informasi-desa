@@ -40,23 +40,87 @@
                     {{-- <button type="button" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#modal">
                         Tambah
                     </button> --}}
-                    <div class="table-responsive">
-                        <table id="myTable" class="table table-striped" style="width: 100%;">
-                            <thead class="bg-info text-white">
-                                <tr>
-                                    <th width="5%">No</th>
-                                    <th>Judul</th>
-                                    <th>Peneliti</th>
-                                    <th>Prodi</th>
-                                    <th>Jenis Penelitian</th>
-                                    <th>Sub Topik Penelitian</th>
-                                    <th>Pelaksanaan Penelitian</th>
-                                    <th width="5%"></th>
-                                    <th width="5%"></th>
-                                </tr>
-                            </thead>
-                        </table>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#home" role="tab" data-toggle="tab"
+                                onclick="getData()">Baru <sup><span
+                                        class="badge badge-warning">1</span></sup></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#buzz" role="tab" data-toggle="tab"
+                                onclick="getData2()">Acc <sup><span
+                                        class="badge badge-success">2</span></sup></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#references" role="tab" data-toggle="tab"
+                                onclick="getData3()">Ditolak <sup><span
+                                        class="badge badge-danger">3</span></sup></a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade show active" id="home">
+                            <div class="table-responsive">
+                                <table id="myTable" class="table table-striped" style="width: 100%;">
+                                    <thead class="bg-info text-white">
+                                        <tr>
+                                            <th width="5%">No</th>
+                                            <th>Judul</th>
+                                            <th>Peneliti</th>
+                                            <th>Prodi</th>
+                                            <th>Jenis Penelitian</th>
+                                            <th>Sub Topik Penelitian</th>
+                                            <th>Pelaksanaan Penelitian</th>
+                                            <th width="5%"></th>
+                                            <th width="5%"></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane fade" id="buzz">
+                            <div class="table-responsive">
+                                <table id="myTable2" class="table table-striped" style="width: 100%;">
+                                    <thead class="bg-info text-white">
+                                        <tr>
+                                            <th width="5%">No</th>
+                                            <th>Judul</th>
+                                            <th>Peneliti</th>
+                                            <th>Prodi</th>
+                                            <th>Jenis Penelitian</th>
+                                            <th>Sub Topik Penelitian</th>
+                                            <th>Pelaksanaan Penelitian</th>
+                                            <th width="5%"></th>
+                                            <th width="5%"></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div role="tabpanel" class="tab-pane fade" id="references">
+                            <div class="table-responsive">
+                                <table id="myTable3" class="table table-striped" style="width: 100%;">
+                                    <thead class="bg-info text-white">
+                                        <tr>
+                                            <th width="5%">No</th>
+                                            <th>Judul</th>
+                                            <th>Peneliti</th>
+                                            <th>Prodi</th>
+                                            <th>Jenis Penelitian</th>
+                                            <th>Sub Topik Penelitian</th>
+                                            <th>Pelaksanaan Penelitian</th>
+                                            <th width="5%"></th>
+                                            <th width="5%"></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -70,11 +134,121 @@
         })
 
         function getData() {
+            $('#myTable').DataTable().clear().destroy();
+
             $("#myTable").DataTable({
                 "ordering": false,
                 scrollX: true,
                 scrollCollapse: true,
                 ajax: '/data-usulan-judul',
+                processing: true,
+                'language': {
+                    'loadingRecords': '&nbsp;',
+                    'processing': 'Loading...'
+                },
+                columns: [{
+                        render: function(data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }
+                    },
+                    {
+                        data: "judul_penelitian"
+                    },
+                    {
+                        data: "nama_ketua"
+                    },
+                    {
+                        data: "program_studi"
+                    },
+                    {
+                        data: "jenis_penelitian"
+                    },
+                    {
+                        data: "sub_topik"
+                    },
+                    {
+                        data: "jenis_pelaksanaan"
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            return `<a data-toggle="modal" data-target="#modal"
+                                    data-bs-id=` + (row.id) + ` href="javascript:void(0)">
+                                    <i style="font-size: 1.5rem;" class="text-success bi bi-grid"></i>
+                                </a>`
+                        }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            return `<a href="javascript:void(0)" onclick="hapusData(` + (row
+                                .id) + `)">
+                                    <i style="font-size: 1.5rem;" class="text-danger bi bi-trash"></i>
+                                </a>`
+                        }
+                    },
+                ]
+            })
+        }
+
+        function getData2() {
+            $("#myTable2").DataTable({
+                "ordering": false,
+                scrollX: true,
+                scrollCollapse: true,
+                ajax: '/data-usulan-judul-acc',
+                processing: true,
+                'language': {
+                    'loadingRecords': '&nbsp;',
+                    'processing': 'Loading...'
+                },
+                columns: [{
+                        render: function(data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }
+                    },
+                    {
+                        data: "judul_penelitian"
+                    },
+                    {
+                        data: "nama_ketua"
+                    },
+                    {
+                        data: "program_studi"
+                    },
+                    {
+                        data: "jenis_penelitian"
+                    },
+                    {
+                        data: "sub_topik"
+                    },
+                    {
+                        data: "jenis_pelaksanaan"
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            return `<a data-toggle="modal" data-target="#modal"
+                                    data-bs-id=` + (row.id) + ` href="javascript:void(0)">
+                                    <i style="font-size: 1.5rem;" class="text-success bi bi-grid"></i>
+                                </a>`
+                        }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            return `<a href="javascript:void(0)" onclick="hapusData(` + (row
+                                .id) + `)">
+                                    <i style="font-size: 1.5rem;" class="text-danger bi bi-trash"></i>
+                                </a>`
+                        }
+                    },
+                ]
+            })
+        }
+
+        function getData3() {
+            $("#myTable3").DataTable({
+                "ordering": false,
+                scrollX: true,
+                scrollCollapse: true,
+                ajax: '/data-usulan-judul-tolak',
                 processing: true,
                 'language': {
                     'loadingRecords': '&nbsp;',

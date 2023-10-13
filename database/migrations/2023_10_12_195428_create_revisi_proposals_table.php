@@ -18,7 +18,7 @@ class CreateRevisiProposalsTable extends Migration
             $table->unsignedBigInteger('jadwal_id'); //FK
             $table->string('file_proposal_revisi')->nullable();
             $table->enum('status',['0','1','2']);
-            $table->unsignedBigInteger('token_akses')->nullable(); //FK
+            $table->string('token_akses')->nullable(); //FK
             $table->date('tgl_upload')->nullable();
             $table->timestamps();
 

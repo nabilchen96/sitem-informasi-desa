@@ -18,7 +18,7 @@ class CreateFileKontraksTable extends Migration
             $table->unsignedBigInteger('jadwal_id'); //FK
             $table->string('file_kontrak')->nullable();
             $table->enum('status',['0','1','2']);
-            $table->unsignedBigInteger('token_akses'); //FK
+            $table->string('token_akses'); //FK
             $table->date('tgl_upload')->nullable();
             $table->timestamps();
 

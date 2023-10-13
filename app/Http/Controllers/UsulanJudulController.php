@@ -16,7 +16,21 @@ class UsulanJudulController extends Controller
 
     public function data(){
         
-        $data = DB::table('usulan_juduls')->get();
+        $data = DB::table('usulan_juduls')->where('status','')->orWhere('status','0')->get();
+
+        return response()->json(['data' => $data]);
+    }
+
+    public function dataAcc(){
+        
+        $data = DB::table('usulan_juduls')->where('status','1')->get();
+
+        return response()->json(['data' => $data]);
+    }
+
+    public function dataTolak(){
+        
+        $data = DB::table('usulan_juduls')->where('status','2')->get();
 
         return response()->json(['data' => $data]);
     }
@@ -45,7 +59,7 @@ class UsulanJudulController extends Controller
                 'program_studi'     => $request->program_studi, 
                 'sub_topik'         => $request->sub_topik, 
                 'token_akses'       => $request->token_akses, 
-                'status'            => 0, 
+                'status'            => '0', 
                 'tanggal_upload'    => date('Y-m-d'), 
             ]);
 
