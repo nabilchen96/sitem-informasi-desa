@@ -1,7 +1,8 @@
 <div class="card">
     <div style="width: 100%;">
+
         <form id="form">
-            <input type="hidden" name="jadwal_id" value="{{ $jadwal->kegiatan_id}}">
+            <input type="hidden" name="jadwal_id" value="{{ $jadwal->id}}">
             <div class="row">
                 <?php
                 

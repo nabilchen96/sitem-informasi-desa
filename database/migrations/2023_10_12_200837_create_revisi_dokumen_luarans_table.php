@@ -19,7 +19,7 @@ class CreateRevisiDokumenLuaransTable extends Migration
             $table->string('file_dokumen_luaran_revisi')->nullable();
             $table->string('file_dokumen_luaran_lama')->nullable();
             $table->enum('status',['0','1','2']);
-            $table->unsignedBigInteger('token_akses')->nullable(); //FK
+            $table->string('token_akses')->nullable(); //FK
             $table->date('tgl_upload')->nullable();
             $table->timestamps();
 

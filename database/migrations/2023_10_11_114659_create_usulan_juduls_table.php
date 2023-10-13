@@ -22,7 +22,7 @@ class CreateUsulanJudulsTable extends Migration
             $table->string('jenis_penelitian')->nullable();
             $table->string('program_studi')->nullable();
             $table->string('sub_topik')->nullable();
-            $table->unsignedBigInteger('token_akses'); //FK
+            $table->string('token_akses'); //FK
             $table->enum('status',['0','1','2']);
             $table->date('tanggal_upload')->nullable();
             $table->timestamps();

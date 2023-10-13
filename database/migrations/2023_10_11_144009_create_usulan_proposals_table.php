@@ -21,7 +21,7 @@ class CreateUsulanProposalsTable extends Migration
             $table->string('link_video')->nullable();
             $table->text('anggota')->nullable();
             $table->enum('status',['0','1','2']);
-            $table->unsignedBigInteger('token_akses'); //FK
+            $table->string('token_akses'); //FK
             $table->date('tanggal_upload')->nullable();
             $table->timestamps();
 

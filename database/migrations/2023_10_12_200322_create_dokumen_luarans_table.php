@@ -18,7 +18,7 @@ class CreateDokumenLuaransTable extends Migration
             $table->unsignedBigInteger('jadwal_id'); //FK
             $table->string('file_laporan_akhir')->nullable();
             $table->enum('status',['0','1','2']);
-            $table->unsignedBigInteger('token_akses')->nullable(); //FK
+            $table->string('token_akses')->nullable(); //FK
             $table->string('file_artikel_loa')->nullable();
             $table->string('file_haki')->nullable();
             $table->string('link_artikel')->nullable();

@@ -97,6 +97,8 @@ Route::group(['middleware' => 'auth'], function () {
     //USULAN JUDUl
     Route::get('/usulan-judul', 'App\Http\Controllers\UsulanJudulController@index');
     Route::get('/data-usulan-judul', 'App\Http\Controllers\UsulanJudulController@data');
+    Route::get('/data-usulan-judul-acc', 'App\Http\Controllers\UsulanJudulController@dataAcc');
+    Route::get('/data-usulan-judul-tolak', 'App\Http\Controllers\UsulanJudulController@dataTolak');
     Route::post('/store-usulan-judul', 'App\Http\Controllers\UsulanJudulController@store');
     Route::post('/update-usulan-judul', 'App\Http\Controllers\UsulanJudulController@update');
     Route::post('/delete-usulan-judul', 'App\Http\Controllers\UsulanJudulController@delete');

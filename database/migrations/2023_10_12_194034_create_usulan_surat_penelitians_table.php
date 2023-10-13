@@ -18,7 +18,7 @@ class CreateUsulanSuratPenelitiansTable extends Migration
             $table->unsignedBigInteger('usulan_proposal_id'); //FK
             $table->string('file_proposal')->nullable();
             $table->enum('status',['0','1','2']);
-            $table->unsignedBigInteger('token_akses')->nullable(); //FK
+            $table->string('token_akses')->nullable(); //FK
             $table->date('tgl_uplaod')->nullable();
             $table->timestamps();
         });
