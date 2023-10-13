@@ -16,6 +16,10 @@
         .table-striped tbody tr:nth-of-type(odd) {
             background-color: #9e9e9e21 !important;
         }
+        th,
+        td {
+            white-space: nowrap !important;
+        }
     </style>
 @endpush
 @section('content')
@@ -23,7 +27,7 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-12 col-xl-8 mb-xl-0">
-                    <h3 class="font-weight-bold text-white">Data Jadwal</h3>
+                    <h3 class="font-weight-bold">Data Jadwal</h3>
                 </div>
             </div>
         </div>
@@ -33,9 +37,9 @@
             <div class="card w-100">
                 <div class="card-body">
                     {{-- @if (Auth::user()->role == 'Admin')                         --}}
-                        <button type="button" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#modal">
-                            Tambah
-                        </button>
+                    <button type="button" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#modal">
+                        Tambah
+                    </button>
                     {{-- @endif --}}
                     <div class="table-responsive">
                         <table id="myTable" class="table table-striped" style="width: 100%;">
@@ -72,7 +76,8 @@
                             <label for="kegiatan_id">Kegiatan</label>
                             <select name="kegiatan_id" class="form-control" id="kegiatan_id" required>
                                 @foreach ($kegiatans as $kg)
-                                    <option value="{{ $kg->id }}">{{ $kg->nama_kegiatan }} | {{ $kg->tahun }} </option>
+                                    <option value="{{ $kg->id }}">{{ $kg->nama_kegiatan }} | {{ $kg->tahun }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -137,6 +142,8 @@
     </div>
 @endsection
 @push('script')
+    <script src="https://cdn.datatables.net/fixedcolumns/4.2.2/js/dataTables.fixedColumns.min.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             getData()
@@ -145,6 +152,8 @@
         function getData() {
             $("#myTable").DataTable({
                 "ordering": false,
+                scrollX: true,
+                scrollCollapse: true,
                 ajax: '/data-jadwal',
                 processing: true,
                 'language': {
@@ -262,7 +271,8 @@
                         document.getElementById('nama_jadwal_alert').innerHTML = res.data.respon.nama_jadwal ?? ''
                         document.getElementById('kegiatan_id_alert').innerHTML = res.data.respon.kegiatan_id ?? ''
                         document.getElementById('tanggal_awal_alert').innerHTML = res.data.respon.tanggal_awal ?? ''
-                        document.getElementById('tanggal_akhir_alert').innerHTML = res.data.respon.tanggal_akhir ?? ''
+                        document.getElementById('tanggal_akhir_alert').innerHTML = res.data.respon.tanggal_akhir ??
+                            ''
                     }
 
                     document.getElementById("tombol_kirim").disabled = false;

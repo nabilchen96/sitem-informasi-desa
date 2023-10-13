@@ -35,9 +35,13 @@ Route::get('/front/library', 'App\Http\Controllers\LibraryController@frontLibrar
 Route::get('/front/pengumuman', 'App\Http\Controllers\PengumumanController@frontPengumuman');
 
 //FORMULIR
-Route::get('/front/aktivitas', function(){
-    return view('frontend.aktivitas');
+Route::get('/front/kegiatan', function(){
+    return view('frontend.kegiatan');
 });
+
+//USUL JUDUL
+Route::post('/store-usul-judul', 'App\Http\Controllers\UsulanJudulController@store');
+
 
 //KEBUTUHAN DOSEN
 Route::get('/front/kebutuhan_dosen', function(){
@@ -90,12 +94,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/update-jadwal', 'App\Http\Controllers\JadwalController@update');
     Route::post('/delete-jadwal', 'App\Http\Controllers\JadwalController@delete');
 
-    //DOSEN
-
-    //JUDUL
-    Route::get('/judul', function(){
-        return view('backend.judul.index');
-    });
+    //USULAN JUDUl
+    Route::get('/usulan-judul', 'App\Http\Controllers\UsulanJudulController@index');
+    Route::get('/data-usulan-judul', 'App\Http\Controllers\UsulanJudulController@data');
+    Route::post('/store-usulan-judul', 'App\Http\Controllers\UsulanJudulController@store');
+    Route::post('/update-usulan-judul', 'App\Http\Controllers\UsulanJudulController@update');
+    Route::post('/delete-usulan-judul', 'App\Http\Controllers\UsulanJudulController@delete');
 
     //PROPOSAL
     Route::get('/proposal', function(){

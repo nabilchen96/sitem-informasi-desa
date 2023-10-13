@@ -42,7 +42,7 @@
             <div class="collapse" id="tahap1">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('judul') }}">Judul</a>
+                        <a class="nav-link" href="{{ url('usulan-judul') }}">Usulan Judul</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('proposal') }}">Proposal</a>
