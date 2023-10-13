@@ -67,6 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/store-dosen', 'App\Http\Controllers\DosenController@store');
     Route::post('/update-dosen', 'App\Http\Controllers\DosenController@update');
     Route::post('/delete-dosen', 'App\Http\Controllers\DosenController@delete');
+    Route::get('/test', 'App\Http\Controllers\DosenController@test');
 
     //TAHUN
     Route::get('/tahun', 'App\Http\Controllers\TahunController@index');

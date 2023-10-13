@@ -12,21 +12,34 @@ use Illuminate\Support\Str;
 
 class DosenController extends Controller
 {
-    public function index(){
+
+    public function test()
+    {
+        $dosens = Dosen::pluck('no_wa');
+
+        $dataString = implode(',', $dosens->toArray() );
+
+        echo $dataString;
+    }
+
+    public function index()
+    {
         return view('backend.dosen.index');
     }
 
-    public function data(){
-        
+    public function data()
+    {
+
         $dosen = DB::table('dosens');
 
         $dosen = $dosen->get();
 
-        
+
         return response()->json(['data' => $dosen]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
 
         $validator = Validator::make($request->all(), [
@@ -37,12 +50,14 @@ class DosenController extends Controller
             'no_wa' => 'required',
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             $data = [
                 'responCode'    => 0,
                 'respon'        => $validator->errors()
             ];
-        }else{
+            
+        } else {
+            $tokenAkses = 'SIPP-' . Str::random(5);
             $data = Dosen::create([
                 'nip'            => $request->nip,
                 'nama_dosen'     => $request->nama_dosen,
@@ -50,19 +65,23 @@ class DosenController extends Controller
                 'jenis_kelamin'  => $request->jenis_kelamin,
                 'no_wa'          => $request->no_wa,
                 'is_active'      => $request->is_active,
-                'token_akses'    => 'SIPP-' . Str::random(5),
+                'token_akses'    => $tokenAkses,
             ]);
+
+            sendWADosen($request->no_wa, $request->nama_dosen, $tokenAkses, $request->jenis_kelamin);
 
             $data = [
                 'responCode'    => 1,
                 'respon'        => 'Data Sukses Ditambah'
             ];
+            
         }
 
         return response()->json($data);
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
 
         $validator = Validator::make($request->all(), [
             'id'    => 'required',
@@ -72,12 +91,12 @@ class DosenController extends Controller
             'no_wa' => 'required',
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             $data = [
                 'responCode'    => 0,
                 'respon'        => $validator->errors()
             ];
-        }else{
+        } else {
 
             $dosen = Dosen::find($request->id);
             $data = $dosen->update([
@@ -98,7 +117,8 @@ class DosenController extends Controller
         return response()->json($data);
     }
 
-    public function delete(Request $request){
+    public function delete(Request $request)
+    {
 
         $data = Dosen::find($request->id)->delete();
 
