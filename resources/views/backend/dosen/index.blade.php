@@ -96,7 +96,7 @@
 
                         <div class="form-group">
                             <label for="no_wa">No. WA (Aktif)</label>
-                            <input name="no_wa" id="no_wa" type="text" placeholder="62899328812"
+                            <input name="no_wa" id="no_wa" type="text" placeholder="0899328812"
                                 class="form-control form-control-sm" aria-describedby="no_waHelp" required>
                             <span class="text-danger error" style="font-size: 12px;" id="no_wa_alert"></span>
                         </div>
