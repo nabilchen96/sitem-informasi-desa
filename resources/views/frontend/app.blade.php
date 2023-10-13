@@ -207,7 +207,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="white-space: nowrap;" href="{{ url('front/aktivitas') }}">
+                            <a class="nav-link" style="white-space: nowrap;" href="{{ url('front/kegiatan') }}">
                                 👷 Kegiatan PusPPM
                             </a>
                         </li>
@@ -323,6 +323,8 @@
         })
     </script>
     <script src="https://unpkg.com/axios@0.27.2/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.7/dist/sweetalert2.all.min.js"></script>
+    @stack('script')
 </body>
 
 </html>
