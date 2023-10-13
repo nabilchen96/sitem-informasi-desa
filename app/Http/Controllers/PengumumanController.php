@@ -33,7 +33,7 @@ class PengumumanController extends Controller
 
         $file = $request->file;
         $nama_file = '1' . date('YmdHis.') . $file->extension();
-        $file->move('file_library', $nama_file);
+        $file->move('file_pengumuman', $nama_file);
 
         if ($validator->fails()) {
 

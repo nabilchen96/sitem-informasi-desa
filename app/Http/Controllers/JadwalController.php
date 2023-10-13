@@ -50,7 +50,7 @@ class JadwalController extends Controller
         } else {
             @$file = $request->file_upload;
             @$nama_file = '1' . date('YmdHis.') . $file->extension();
-            @$file->move('file_library', $nama_file);
+            @$file->move('file_pengumuman', $nama_file);
 
             $kegiatan = Kegiatan::find($request->kegiatan_id);
             $data = Jadwal::create([
