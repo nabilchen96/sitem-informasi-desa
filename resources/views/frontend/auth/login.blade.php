@@ -16,7 +16,7 @@
     <!-- Style -->
     <link rel="stylesheet" href="login-form-02/css/style.css">
 
-    <title>Smart Material Test</title>
+    <title>SIPP</title>
   </head>
   <body>
   
@@ -28,7 +28,7 @@
       <div class="container">
         <div class="row align-items-center justify-content-center">
           <div class="col-md-7">
-            <h3>Login to <br><strong>Smart Material Test</strong></h3>
+            <h3>Login to <br><strong>SIPP</strong></h3>
             <br>
             <form id="formLogin">
               <div class="form-group first">

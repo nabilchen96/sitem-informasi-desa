@@ -97,7 +97,7 @@ function sendWADosen($noWA, $namaDosen, $tokenAkses, $jk)
         CURLOPT_POSTFIELDS => array(
             'target' => $noWA,
             'message' => $pesan,
-            'delay' => '5',
+            'delay' => '2',
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
@@ -182,7 +182,7 @@ function sendUpdateUsulanJudul($noWA, $namaDosen, $judul, $status, $jk)
         CURLOPT_POSTFIELDS => array(
             'target' => $noWA,
             'message' => $pesan,
-            'delay' => '5',
+            'delay' => '2',
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
