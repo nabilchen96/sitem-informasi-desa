@@ -23,7 +23,7 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-12 col-xl-8 mb-xl-0">
-                    <h3 class="font-weight-bold text-white">Data Proposal</h3>
+                    <h3 class="font-weight-bold">Data Proposal</h3>
                 </div>
             </div>
         </div>
@@ -36,8 +36,8 @@
                         Tambah
                     </button>
                     <div class="table-responsive">
-                        <table id="myTable" class="table table-striped table-bordered" style="width: 100%;">
-                            <thead class="bg-dark text-white">
+                        <table id="myTable" class="table table-striped" style="width: 100%;">
+                            <thead class="bg-info text-white">
                                 <tr>
                                     <th width="5%">No</th>
                                     <th>Judul</th>
@@ -47,32 +47,6 @@
                                     <th width="5%"></th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>
-                                        Sistem Informasi Penelitian dan Pengabdian Kepada Masyarakat
-                                    </td>
-                                    <td>
-                                        Dosen 1
-                                    </td>
-                                    <td>
-                                        <a href="javascript:void(0)">
-                                            <i style="font-size: 1.5rem;" class="text-warning bi bi-file-earmark-text"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="javascript:void(0)">
-                                            <i style="font-size: 1.5rem;" class="text-success bi bi-grid"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="javascript:void(0)">
-                                            <i style="font-size: 1.5rem;" class="text-danger bi bi-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
                         </table>
                     </div>
                 </div>

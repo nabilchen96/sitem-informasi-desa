@@ -42,6 +42,8 @@
                 ])
             @elseif(@getJadwalAktif()->tahap_ke == 2)
                 @include('frontend.kegiatan.tahap2')
+            @elseif(@getJadwalAktif()->tahap_ke == 3)
+                @include('frontend.kegiatan.tahap3')
             @endif
         </div>
     </div>
