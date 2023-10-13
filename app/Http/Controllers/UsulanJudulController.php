@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dosen;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\UsulanJudul;
@@ -66,6 +67,40 @@ class UsulanJudulController extends Controller
             $data = [
                 'responCode'    => 1,
                 'respon'        => 'Data Sukses Ditambah'
+            ];
+        }
+
+        return response()->json($data);
+    }
+
+    public function update(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'id'    => 'required',
+            
+        ]);
+
+        if ($validator->fails()) {
+            $data = [
+                'responCode'    => 0,
+                'respon'        => $validator->errors()
+            ];
+        } else {
+
+            $dosen = UsulanJudul::find($request->id);
+            $getDosen = Dosen::where('token_akses',$request->token_akses)->first();
+            
+            $data = $dosen->update([
+                'nip'           => $request->nip,
+                'status'        => $request->status
+            ]);
+
+            sendUpdateUsulanJudul($getDosen->no_wa, $getDosen->nama_dosen, $request->judul_penelitian, $request->status, $getDosen->jenis_kelamin);
+
+            $data = [
+                'responCode'    => 1,
+                'respon'        => 'Data Sukses Disimpan'
             ];
         }
 

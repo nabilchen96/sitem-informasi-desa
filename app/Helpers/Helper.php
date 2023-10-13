@@ -146,3 +146,52 @@ function sendWAJadwal($kegiatan, $message, $tgl_awal, $tgl_akhir)
     curl_close($curl);
     // echo $response;
 }
+
+function sendUpdateUsulanJudul($noWA, $namaDosen, $judul, $status, $jk)
+{
+   
+    if($status == "1") {
+        $ubah = "Disetujui";
+    } else if($status == "0") {
+        $ubah = "Ditolak";
+    }
+
+    if ($jk == 'Laki-laki') {
+        $nick = "Bapak";
+    } else if ($jk == "Perempuan") {
+        $nick = "Ibu";
+    } else {
+        $nick = "";
+    }
+
+    $greet = greetToDosen();
+
+    $pesan = "$greet $nick $namaDosen usulan Anda yang berjudul *$judul* *$ubah*. Silahkan cek informasi pada https://sipp.poltekbangplg.ac.id Salam Hormat *- Admin PUSPPM -*  ";
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.fonnte.com/send',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => array(
+            'target' => $noWA,
+            'message' => $pesan,
+            'delay' => '5',
+            'countryCode' => '62', //optional
+        ),
+        CURLOPT_HTTPHEADER => array(
+            'Authorization: 32IW16nCPnRmoLc5yCm9' //change TOKEN to your actual token
+        ),
+    ));
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+    // echo $response;
+}
