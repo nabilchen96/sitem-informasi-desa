@@ -28,14 +28,15 @@
             </div>
         </div>
     </div>
+   
     <div class="row">
         <div class="col-12 mt-4">
             <div class="card w-100">
                 <div class="card-body">
                     {{-- @if (Auth::user()->role == 'Admin')                         --}}
-                        <button type="button" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#modal">
-                            Tambah
-                        </button>
+                    <button type="button" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#modal">
+                        Tambah
+                    </button>
                     {{-- @endif --}}
                     <div class="table-responsive">
                         <table id="myTable" class="table table-striped" style="width: 100%;">
@@ -84,7 +85,7 @@
                                 class="form-control form-control-sm" aria-describedby="emailHelp" required>
                             <span class="text-danger error" style="font-size: 12px;" id="email_alert"></span>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="exampleInputPassword1">Jenis Kelamin</label>
                             <select name="jenis_kelamin" class="form-control" id="jenis_kelamin" required>
@@ -92,7 +93,7 @@
                                 <option value="Perempuan">Perempuan</option>
                             </select>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="no_wa">No. WA (Aktif)</label>
                             <input name="no_wa" id="no_wa" type="text" placeholder="62899328812"
@@ -148,7 +149,7 @@
                             if (row.jenis_kelamin == "Laki-laki") {
                                 return `<span class="badge badge-success">${row.jenis_kelamin}</span>`
                             } else if (row.jenis_kelamin == "Perempuan") {
-                                return `<span class="badge badge-danger">Laboran</span>`
+                                return `<span class="badge badge-danger">${row.jenis_kelamin}</span>`
                             }
                         }
                     },
@@ -158,7 +159,7 @@
                     {
                         data: "token_akses"
                     },
-                    
+
                     {
                         render: function(data, type, row, meta) {
                             return `<a data-toggle="modal" data-target="#modal"
@@ -264,7 +265,7 @@
             }).then((result) => {
 
                 if (result.value) {
-                    axios.post('/delete-user', {
+                    axios.post('/delete-dosen', {
                             id
                         })
                         .then((response) => {

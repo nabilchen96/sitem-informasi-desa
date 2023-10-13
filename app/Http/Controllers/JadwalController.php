@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jadwal;
+use App\Models\Kegiatan;
 use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\Facades\Validator;
@@ -28,7 +29,6 @@ class JadwalController extends Controller
 
     public function store(Request $request){
 
-
         $validator = Validator::make($request->all(), [
             'nama_jadwal'      => 'required',
             'kegiatan_id'      => 'required',
@@ -44,6 +44,7 @@ class JadwalController extends Controller
                 'respon'        => $validator->errors()
             ];
         }else{
+            $kegiatan = Kegiatan::find($request->kegiatan_id);
             $data = Jadwal::create([
                 'nama_jadwal'       => $request->nama_jadwal,
                 'kegiatan_id'       => $request->kegiatan_id,
@@ -53,6 +54,7 @@ class JadwalController extends Controller
                 'tahapan'           => $request->tahapan,
                 'tahap_ke'          => $request->tahap_ke,
             ]);
+            sendWAJadwal($kegiatan->nama_kegiatan, $request->nama_jadwal,$request->tanggal_awal, $request->tanggal_akhir);
 
             $data = [
                 'responCode'    => 1,
