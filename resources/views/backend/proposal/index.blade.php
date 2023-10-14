@@ -16,6 +16,11 @@
         .table-striped tbody tr:nth-of-type(odd) {
             background-color: #9e9e9e21 !important;
         }
+
+        th,
+        td {
+            white-space: nowrap !important;
+        }
     </style>
 @endpush
 @section('content')
@@ -32,9 +37,9 @@
         <div class="col-12 mt-4">
             <div class="card w-100">
                 <div class="card-body">
-                    <button type="button" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#modal">
+                    {{-- <button type="button" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#modal">
                         Tambah
-                    </button>
+                    </button> --}}
                     <div class="table-responsive">
                         <table id="myTable" class="table table-striped" style="width: 100%;">
                             <thead class="bg-info text-white">
@@ -42,7 +47,8 @@
                                     <th width="5%">No</th>
                                     <th>Judul</th>
                                     <th>Peneliti</th>
-                                    <th width="5%"></th>
+                                    <th>Anggota</th>
+                                    <th>File</th>
                                     <th width="5%"></th>
                                     <th width="5%"></th>
                                 </tr>
@@ -55,9 +61,89 @@
     </div>
 @endsection
 @push('script')
+    <script src="https://cdn.datatables.net/fixedcolumns/4.2.2/js/dataTables.fixedColumns.min.js"></script>
     <script>
-        $("#myTable").DataTable({
-            "ordering": false,
+        document.addEventListener('DOMContentLoaded', function() {
+            getData()
         })
+
+        function getData() {
+            $("#myTable").DataTable({
+                "ordering": false,
+                scrollX: true,
+                scrollCollapse: true,
+                ajax: '/data-usulan-proposal',
+                processing: true,
+                'language': {
+                    'loadingRecords': '&nbsp;',
+                    'processing': 'Loading...'
+                },
+
+                columns: [{
+                        render: function(data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }
+                    },
+                    {
+                        // data: "judul_penelitian"
+                        render: function(data, type, row, meta) {
+                            return `<span style="
+                            width: 205px !important;
+                            white-space: normal;
+                            display: inline-block !important;
+                            ">
+                            ${row.judul_penelitian}
+                            </span>`
+                        }
+                    },
+                    {
+                        data: "nama_ketua"
+                    },
+                    {
+                        // data: "anggota"
+                        render: function(data, type, row, meta) {
+                            return `<span style="
+                            width: 150px !important;
+                            white-space: normal;
+                            display: inline-block !important;
+                            ">${row.anggota}</span>`
+                        }
+                    },
+                    {
+                        // data: "anggota"
+                        render: function(data, type, row, meta) {
+                            return `<a href="/file_proposal_library/${row.file_proposal}">
+                                <i style="font-size: 1rem;" class="bi bi-cloud-arrow-down"></i> File Proposal
+                            </a>
+                            <br>
+                            <a href="/file_proposal_library/${row.file_rab}">
+                                <i style="font-size: 1rem;" class="bi bi-cloud-arrow-down"></i> File RAB
+                            </a>
+                            <br>
+                            <a href="/file_proposal_library/${row.file_rab}">
+                                <i style="font-size: 0.9rem;" class="bi bi-film"></i> Link Video
+                            </a>
+                            `
+                        }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            return `<a data-toggle="modal" data-target="#modal"
+                                data-bs-id=` + (row.id) + ` href="javascript:void(0)">
+                                <i style="font-size: 1.5rem;" class="text-success bi bi-grid"></i>
+                            </a>`
+                        }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            return `<a href="javascript:void(0)" onclick="hapusData(` + (row
+                                .id) + `)">
+                                <i style="font-size: 1.5rem;" class="text-danger bi bi-trash"></i>
+                            </a>`
+                        }
+                    },
+                ]
+            })
+        }
     </script>
 @endpush

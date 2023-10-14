@@ -20,7 +20,7 @@
                     <li @if (@getJadwalAktif()->tahap_ke == 3) style="background: red;" data-year="We Are Here!" @endif
                         data-year="" data-text="3. Proposal"></li>
                     <li @if (@getJadwalAktif()->tahap_ke == 4) style="background: red;" data-year="We Are Here!" @endif
-                        data-year="" data-text="4. Seminar Proposal"></li>
+                        data-year="" data-text="4. {{ @getJadwalAktif()->nama_jadwal }}"></li>
                     <li @if (@getJadwalAktif()->tahap_ke == 5) style="background: red;" data-year="We Are Here!" @endif
                         data-year="" data-text="5. RAB"></li>
                     <li @if (@getJadwalAktif()->tahap_ke == 6) style="background: red;" data-year="We Are Here!" @endif
@@ -41,9 +41,19 @@
                     'jadwal' => @getJadwalAktif(),
                 ])
             @elseif(@getJadwalAktif()->tahap_ke == 2)
+
                 @include('frontend.kegiatan.tahap2')
+
             @elseif(@getJadwalAktif()->tahap_ke == 3)
+
                 @include('frontend.kegiatan.tahap3')
+
+            @elseif(@getJadwalAktif()->tahap_ke == 4 && @getJadwalAktif()->nama_jadwal == 'Revisi Proposal')
+
+                @include('frontend.kegiatan.tahap4_bagian1', [
+                    'jadwal'    => @getJadwalAktif()
+                ])
+
             @endif
         </div>
     </div>

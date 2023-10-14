@@ -45,7 +45,10 @@
                         <a class="nav-link" href="{{ url('usulan-judul') }}">Usulan Judul</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('proposal') }}">Proposal</a>
+                        <a class="nav-link" href="{{ url('usulan-proposal') }}">Usulan Proposal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('revisi-proposal') }}">Revisi Proposal</a>
                     </li>
                 </ul>
             </div>

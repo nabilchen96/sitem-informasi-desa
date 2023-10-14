@@ -42,6 +42,12 @@ Route::get('/front/kegiatan', function(){
 //USUL JUDUL
 Route::post('/store-usul-judul', 'App\Http\Controllers\UsulanJudulController@store');
 
+//USUL PROPOSAL
+Route::post('/store-usul-proposal', 'App\Http\Controllers\UsulanProposalController@store');
+
+//REVISI PROPOSAL
+Route::post('/store-revisi-proposal', 'App\Http\Controllers\RevisiProposalController@store');
+
 
 //KEBUTUHAN DOSEN
 Route::get('/front/kebutuhan_dosen', function(){
@@ -103,10 +109,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/update-usulan-judul', 'App\Http\Controllers\UsulanJudulController@update');
     Route::post('/delete-usulan-judul', 'App\Http\Controllers\UsulanJudulController@delete');
 
-    //PROPOSAL
-    Route::get('/proposal', function(){
-        return view('backend.proposal.index');
-    });
+    //USULAN PROPOSAL
+    Route::get('/usulan-proposal', 'App\Http\Controllers\UsulanProposalController@index');
+    Route::get('/data-usulan-proposal', 'App\Http\Controllers\UsulanProposalController@data');
+
+    //REVISI PROPOSAL
+    Route::get('/revisi-proposal', 'App\Http\Controllers\RevisiProposalController@index');
+    Route::get('/data-revisi-proposal', 'App\Http\Controllers\RevisiProposalController@data');
+    
 
     //REVISI PROPOSAL
 

@@ -9,11 +9,12 @@
                     ->first();
 
                 $judul = DB::table('usulan_juduls')
-                            ->where('token_akses', $data->token_akses)
+                            ->where('token_akses', @$data->token_akses)
                             ->latest()
                             ->first();
+
+                            // dd($judul);
                 ?>
-                <input type="hidden" name="usulan_judul_id" value="">
                 <div class="col-lg-6">
                     <form action="{{ url('front/kegiatan') }}" method="GET">
                         <div class="mb-4">
@@ -40,6 +41,12 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-4">
+                        <label class="form-label">Judul Penelitian <sup class="text-danger">*</sup></label>
+                        <input type="hidden" name="usulan_judul_id" id="usulan_judul_id" value="{{ @$judul->id }}">
+                        <input type="text" name="judul_penelitian" id="judul_penelitian" value="{{ @$judul->judul_penelitian }}"
+                            class="form-control border" placeholder="Judul Penelitian" required readonly>
+                    </div>
+                    <div class="mb-4">
                         <label class="form-label">File Proposal <sup class="text-danger">*</sup></label>
                         <input type="file" name="file_proposal" id="file_proposal" class="form-control border"required>
                     </div>
@@ -47,16 +54,15 @@
                         <label class="form-label">File RAB <sup class="text-danger">*</sup></label>
                         <input type="file" name="file_rab" id="file_rab" class="form-control border"required>
                     </div>
+                </div>
+                <div class="col-lg-6">
                     <div class="mb-4">
                         <label class="form-label">Link Video <sup class="text-danger">*</sup></label>
                         <input type="text" name="link_video" id="link_video" class="form-control border" placeholder="Link Video" required>
                     </div>
-                </div>
-                <div class="col-lg-6">
-
                     <div class="mb-4">
                         <label class="form-label">Anggota <sup class="text-danger">*</sup></label>
-                        <textarea name="anggota" id="anggota" placeholder="Sebutkan Anggota Penelitian, pisahkan dengan koma" class="form-control border" required cols="30" rows="10"></textarea>
+                        <textarea name="anggota" id="anggota" placeholder="Sebutkan Anggota Penelitian, pisahkan dengan koma" class="form-control border" required rows="5"></textarea>
                     </div>
                 </div>
                 <div class="col-lg-12">
@@ -78,9 +84,16 @@
 
             document.getElementById("tombol_kirim").disabled = true;
 
+            Swal.fire({
+                icon: 'info',
+                title: 'Tunggu Sebentar, File anda sedang diupload ...',
+                showConfirmButton: false,
+                allowOutsideClick: false,
+            })
+
             axios({
                     method: 'post',
-                    url: '/store-usul-judul',
+                    url: '/store-usul-proposal',
                     data: formData,
                 })
                 .then(function(res) {
