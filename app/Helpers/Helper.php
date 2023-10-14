@@ -81,7 +81,7 @@ function sendWADosen($noWA, $namaDosen, $tokenAkses, $jk)
         $nick = "";
     }
 
-    $pesan = "$greet $nick $namaDosen, berikut kami sampaikan Token untuk mengakses aplikasi PUSPPM. URL : https://sipp.poltekbangplg.ac.id TOKEN : *$tokenAkses* Salam Hormat *- Admin PUSPPM -*";
+    $pesan = "$greet $nick $namaDosen, berikut kami sampaikan Token untuk mengakses aplikasi PUSPPM. URL : https://sipp.poltekbangplg.ac.id TOKEN : *$tokenAkses*. Harap simpan *TOKEN* tersebut agar bisa mengakses aplikasi SIPP. Salam Hormat *- Admin PUSPPM -*";
 
     $curl = curl_init();
 
