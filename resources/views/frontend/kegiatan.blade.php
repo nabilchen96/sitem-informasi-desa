@@ -21,7 +21,7 @@
                     <li @if (@getJadwalAktif()->tahap_ke == 3) style="background: red;" data-year="We Are Here!" @endif
                         data-year="" data-text="3. Proposal"></li>
                     <li @if (@getJadwalAktif()->tahap_ke == 4) style="background: red;" data-year="We Are Here!" @endif
-                        data-year="" data-text="4. {{ @getJadwalAktif()->nama_jadwal }}"></li>
+                        data-year="" data-text="4. {{ @getJadwalAktif()->tahap_ke == '4 '? @getJadwalAktif()->nama_jadwal : 'Seminar Proposal' }}"></li>
                     <li @if (@getJadwalAktif()->tahap_ke == 5) style="background: red;" data-year="We Are Here!" @endif
                         data-year="" data-text="5. Pembahasan RAB"></li>
                     <li @if (@getJadwalAktif()->tahap_ke == 6) style="background: red;" data-year="We Are Here!" @endif
