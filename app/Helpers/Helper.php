@@ -97,7 +97,7 @@ function sendWADosen($noWA, $namaDosen, $tokenAkses, $jk)
         CURLOPT_POSTFIELDS => array(
             'target' => $noWA,
             'message' => $pesan,
-            'delay' => '2',
+            'delay' => '2', //nilai jgan diubah
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
@@ -133,7 +133,7 @@ function sendWAJadwal($kegiatan, $message, $tgl_awal, $tgl_akhir)
         CURLOPT_POSTFIELDS => array(
             'target' => $noWA,
             'message' => "Informasi Jadwal *$kegiatan*. Tahap : *" .$message. "* dimulai pada *$tglawal* s/d *$tglakhir*. Silahkan cek informasi pada https://sipp.poltekbangplg.ac.id/front/kegiatan Salam Hormat *- Admin PUSPPM -*",
-            'delay' => '3',
+            'delay' => '5', //nilai jgan diubah
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
@@ -182,7 +182,7 @@ function sendUpdateUsulanJudul($noWA, $namaDosen, $judul, $status, $jk)
         CURLOPT_POSTFIELDS => array(
             'target' => $noWA,
             'message' => $pesan,
-            'delay' => '2',
+            'delay' => '2', //nilai jgan diubah
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
