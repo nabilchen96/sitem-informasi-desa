@@ -6,22 +6,25 @@
             </section>
             <div class="row">
                 <div class="col-lg-6">
-                    <img data-aos="fade-right" data-aos-duration="1500" width="100%" style="margin-left: -100px; margin-top: 50px;" src="{{ asset('hero 9.png') }}">
+                    <img data-aos="fade-right" data-aos-duration="1500" width="100%"
+                        style="margin-left: -100px; margin-top: 50px;" src="{{ asset('hero 9.png') }}">
                     <img width="100%" style="margin-right: -100px; margin-top: 50px;" src="{{ asset('hero 10.png') }}">
                 </div>
                 <div class="col-lg-6">
                     <div class="mt-5">
                         <h2>🎺 Kebutuhan Dosen</h2>
-                        
+
                         <h6 class="section-subtitle text-muted mb-4">
-                            Kebutuhan Dosen Terkait Kegiatan Penelitian & Pengabdian Kepada Masyarakat Politeknik Penerbangan Palembang
+                            Kebutuhan Dosen Terkait Kegiatan Penelitian & Pengabdian Kepada Masyarakat Politeknik
+                            Penerbangan Palembang
                         </h6>
 
-                        <div class="d-flex justify-content-center">
-                            <button style="border-radius: 25px; font-size: 12px;" class="btn btn-info mx-1">Publikasi</button>
-                <button style="border-radius: 25px; font-size: 12px;" class="btn btn-info mx-1">Surat Jalan Penelitian</button>
-                <button style="border-radius: 25px; font-size: 12px;" class="btn btn-info mx-1">Pelatihan Penelitian & Pengabdian</button>
-                        </div>
+                        <button style="border-radius: 25px; font-size: 12px;"
+                            class="btn btn-info mx-1">Publikasi</button>
+                        <button style="border-radius: 25px; font-size: 12px;" class="btn btn-info mx-1">Surat Izin
+                            Penelitian</button>
+                        <button style="border-radius: 25px; font-size: 12px;" class="btn btn-info mx-1">Pelatihan
+                            Penelitian & Pengabdian</button>
                     </div>
                     <br>
                     <div class="">

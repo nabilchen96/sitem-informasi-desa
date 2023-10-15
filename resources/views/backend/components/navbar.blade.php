@@ -62,12 +62,6 @@
             <div class="collapse" id="tahap2">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">RAB</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Surat Izin</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="#">Kontrak</a>
                     </li>
                     <li class="nav-item">

@@ -8,7 +8,8 @@
                     <h6 class="section-subtitle text-muted mb-4">
                         Kegiatan Penelitian dan Pengabdian Kepada Masyarakat <br> Politeknik Penerbangan Palembang
                     </h6>
-                    <span class="text-muted">Kunjungi tautan berikut ini <a class="text-info" href="#">History</a> <br> untuk melihat history atau aktivitas penelitian anda</span>
+                    <span class="text-muted">Kunjungi tautan berikut ini <a class="text-info" href="#">History</a> <br>
+                        untuk melihat history atau aktivitas penelitian anda</span>
                 </div>
                 <br><br>
 
@@ -22,7 +23,7 @@
                     <li @if (@getJadwalAktif()->tahap_ke == 4) style="background: red;" data-year="We Are Here!" @endif
                         data-year="" data-text="4. {{ @getJadwalAktif()->nama_jadwal }}"></li>
                     <li @if (@getJadwalAktif()->tahap_ke == 5) style="background: red;" data-year="We Are Here!" @endif
-                        data-year="" data-text="5. RAB"></li>
+                        data-year="" data-text="5. Pembahasan RAB"></li>
                     <li @if (@getJadwalAktif()->tahap_ke == 6) style="background: red;" data-year="We Are Here!" @endif
                         data-year="" data-text="6. Surat Izin Penelitian"></li>
                     <li @if (@getJadwalAktif()->tahap_ke == 7) style="background: red;" data-year="We Are Here!" @endif
@@ -41,19 +42,19 @@
                     'jadwal' => @getJadwalAktif(),
                 ])
             @elseif(@getJadwalAktif()->tahap_ke == 2)
-
                 @include('frontend.kegiatan.tahap2')
-
             @elseif(@getJadwalAktif()->tahap_ke == 3)
-
                 @include('frontend.kegiatan.tahap3')
-
             @elseif(@getJadwalAktif()->tahap_ke == 4 && @getJadwalAktif()->nama_jadwal == 'Revisi Proposal')
-
                 @include('frontend.kegiatan.tahap4_bagian1', [
-                    'jadwal'    => @getJadwalAktif()
+                    'jadwal' => @getJadwalAktif(),
                 ])
-
+            @elseif(@getJadwalAktif()->tahap_ke == 4 && @getJadwalAktif()->nama_jadwal == 'Seminar Proposal')
+                @include('frontend.kegiatan.tahap4_bagian2', [
+                    'jadwal' => @getJadwalAktif(),
+                ])
+            @elseif(@getJadwalAktif()->tahap_ke == 5)
+                @include('frontend.kegiatan.tahap5')
             @endif
         </div>
     </div>
