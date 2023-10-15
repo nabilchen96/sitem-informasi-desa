@@ -19,7 +19,7 @@ class PengumumanController extends Controller
     public function data()
     {
 
-        $pengumuman = DB::table('Pengumumen')->orderBy('created_at', 'DESC')->get();
+        $pengumuman = DB::table('pengumumen')->orderBy('created_at', 'DESC')->get();
 
         return response()->json(['data' => $pengumuman]);
     }
