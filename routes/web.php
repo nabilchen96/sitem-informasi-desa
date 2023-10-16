@@ -111,6 +111,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     //USULAN PROPOSAL
     Route::get('/usulan-proposal', 'App\Http\Controllers\UsulanProposalController@index');
+    Route::get('/penilaian-proposal', 'App\Http\Controllers\UsulanProposalController@index');
     Route::get('/data-usulan-proposal', 'App\Http\Controllers\UsulanProposalController@data');
 
     //REVISI PROPOSAL

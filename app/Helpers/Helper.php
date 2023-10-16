@@ -117,7 +117,7 @@ function sendReviewerAccount($noWA, $namaDosen, $email, $password)
 
     $pesan = "$greet $namaDosen, berikut kami sampaikan Detail Akun Reviewer Anda. 
     URL : https://sipp.poltekbangplg.ac.id/login
-    Email : *$email*. 
+    Email : *$email*
     Password : *$password*
     Harap simpan informasi *AKUN* tersebut agar bisa mengakses aplikasi SIPP. 
     Salam Hormat 
