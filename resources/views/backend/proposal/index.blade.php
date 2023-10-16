@@ -40,21 +40,92 @@
                     {{-- <button type="button" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#modal">
                         Tambah
                     </button> --}}
-                    <div class="table-responsive">
-                        <table id="myTable" class="table table-striped" style="width: 100%;">
-                            <thead class="bg-info text-white">
-                                <tr>
-                                    <th width="5%">No</th>
-                                    <th>Judul</th>
-                                    <th>Peneliti</th>
-                                    <th>Anggota</th>
-                                    <th>File</th>
-                                    <th width="5%"></th>
-                                    <th width="5%"></th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
+                    @if (Auth::user()->role == 'Admin')
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#home" role="tab" data-toggle="tab"
+                                    onclick="getData()">Baru <sup><span class="badge badge-warning"></span></sup></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#buzz" role="tab" data-toggle="tab" onclick="getData2()">Acc
+                                    <sup><span class="badge badge-success"></span></sup></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#references" role="tab" data-toggle="tab"
+                                    onclick="getData3()">Ditolak <sup><span class="badge badge-danger"></span></sup></a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade show active" id="home">
+                                <div class="table-responsive">
+                                    <table id="myTable" class="table table-striped" style="width: 100%;">
+                                        <thead class="bg-info text-white">
+                                            <tr>
+                                                <th width="5%">No</th>
+                                                <th>Judul</th>
+                                                <th>Peneliti</th>
+                                                <th>Anggota</th>
+                                                <th>File</th>
+                                                <th width="5%"></th>
+                                                <th width="5%"></th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="buzz">
+                            <div class="table-responsive">
+                                <table id="myTable2" class="table table-striped" style="width: 100%;">
+                                    <thead class="bg-info text-white">
+                                        <tr>
+                                            <th width="5%">No</th>
+                                            <th>Judul</th>
+                                            <th>Peneliti</th>
+                                            <th>Anggota</th>
+                                            <th>File</th>
+                                            <th width="5%"></th>
+                                            <th width="5%"></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="references">
+                            <div class="table-responsive">
+                                <table id="myTable3" class="table table-striped" style="width: 100%;">
+                                    <thead class="bg-info text-white">
+                                        <tr>
+                                            <th width="5%">No</th>
+                                            <th>Judul</th>
+                                            <th>Peneliti</th>
+                                            <th>Anggota</th>
+                                            <th>File</th>
+                                            <th width="5%"></th>
+                                            <th width="5%"></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    @elseif(Auth::user()->role == 'Reviewer')
+                        <div class="table-responsive">
+                            <table id="myTable" class="table table-striped" style="width: 100%;">
+                                <thead class="bg-info text-white">
+                                    <tr>
+                                        <th width="5%">No</th>
+                                        <th>Judul</th>
+                                        <th>Peneliti</th>
+                                        <th>Anggota</th>
+                                        <th>File</th>
+                                        <th width="5%"></th>
+                                        <th width="5%"></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    @endif
+
                 </div>
             </div>
         </div>

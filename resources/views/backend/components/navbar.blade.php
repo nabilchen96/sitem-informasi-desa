@@ -50,9 +50,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('usulan-proposal') }}">Usulan Proposal</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('revisi-proposal') }}">Revisi Proposal</a>
-                        </li>
                     </ul>
                 </div>
             </li>
@@ -65,6 +62,9 @@
                 </a>
                 <div class="collapse" id="tahap2">
                     <ul class="nav flex-column sub-menu">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('revisi-proposal') }}">Revisi Proposal</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Kontrak</a>
                         </li>
