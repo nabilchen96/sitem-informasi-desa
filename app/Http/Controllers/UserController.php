@@ -31,7 +31,8 @@ class UserController extends Controller
 
         $validator = Validator::make($request->all(), [
             'password'   => 'required|min:8',
-            'email'      => 'unique:users'
+            'email'      => 'unique:users',
+            'no_wa'      => 'unique:users'
         ]);
 
         if($validator->fails()){
@@ -44,8 +45,13 @@ class UserController extends Controller
                 'name'          => $request->name,
                 'role'          => $request->role,
                 'email'         => $request->email,
-                'password'      => Hash::make($request->password)
+                'password'      => Hash::make($request->password),
+                'no_wa'         => $request->no_wa,
             ]);
+
+            if($request->role == "Reviewer") {
+                sendReviewerAccount($request->no_wa, $request->name, $request->email, $request->password);
+            }
 
             $data = [
                 'responCode'    => 1,
@@ -59,7 +65,9 @@ class UserController extends Controller
     public function update(Request $request){
 
         $validator = Validator::make($request->all(), [
-            'id'    => 'required'
+            'id'    => 'required',
+            'name'    => 'required',
+            'email'    => 'required'
         ]);
 
         if($validator->fails()){
@@ -74,8 +82,7 @@ class UserController extends Controller
                 'name'      => $request->name,
                 'role'      => $request->role,
                 'email'     => $request->email,
-                // 'jk'        => $request->jk,
-                // 'no_reg'        => $request->no_reg,
+                'no_wa'     => $request->no_wa,
                 'password'  => $request->password ? Hash::make($request->password) : $user->password
             ]);
 

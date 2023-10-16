@@ -111,6 +111,46 @@ function sendWADosen($noWA, $namaDosen, $tokenAkses, $jk)
     // echo $response;
 }
 
+function sendReviewerAccount($noWA, $namaDosen, $email, $password)
+{
+    $greet = greetToDosen();
+
+    $pesan = "$greet $namaDosen, berikut kami sampaikan Detail Akun Reviewer Anda. 
+    URL : https://sipp.poltekbangplg.ac.id/login
+    Email : *$email*. 
+    Password : *$password*
+    Harap simpan informasi *AKUN* tersebut agar bisa mengakses aplikasi SIPP. 
+    Salam Hormat 
+    *- Admin PUSPPM -*";
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.fonnte.com/send',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => array(
+            'target' => $noWA,
+            'message' => $pesan,
+            'delay' => '2', //nilai jgan diubah
+            'countryCode' => '62', //optional
+        ),
+        CURLOPT_HTTPHEADER => array(
+            'Authorization: 32IW16nCPnRmoLc5yCm9' //change TOKEN to your actual token
+        ),
+    ));
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+    // echo $response;
+}
+
 function sendWAJadwal($kegiatan, $message, $tgl_awal, $tgl_akhir)
 {
 
