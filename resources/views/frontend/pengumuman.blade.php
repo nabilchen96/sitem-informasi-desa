@@ -25,12 +25,14 @@
                                     <tr class="{{ $k == 0 ? 'bg-success text-white' : '' }}">
                                         <td>
                                             📂 {{ $item->judul }} 📅 {{ date('d-m-Y', strtotime($item->created_at)) }}
-                                            <br>
-                                            @if ($item->keterangan)
-                                            {{ $item->keterangan }}
+
+                                            @if ($item->keterangan != '' || $item->keterangan != null)
+                                                <br>
+                                                {{ $item->keterangan }}
                                             @endif
-                                            <br>
+
                                             @if ($item->file)
+                                                <br>
                                                 <a href="{{ asset('file_library/' . $item->file) }}">Download File</a>
                                             @endif
 
