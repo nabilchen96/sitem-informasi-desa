@@ -26,7 +26,9 @@
                                         <td>
                                             📂 {{ $item->judul }} 📅 {{ date('d-m-Y', strtotime($item->created_at)) }}
                                             <br>
+                                            @if ($item->file)
                                             {{ $item->keterangan }}
+                                            @endif
                                             <br>
                                             @if ($item->file)
                                                 <a href="{{ asset('file_library/' . $item->file) }}">Download File</a>
