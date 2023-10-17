@@ -26,7 +26,7 @@
                                         <td>
                                             📂 {{ $item->judul }} 📅 {{ date('d-m-Y', strtotime($item->created_at)) }}
                                             <br>
-                                            @if ($item->file)
+                                            @if ($item->keterangan)
                                             {{ $item->keterangan }}
                                             @endif
                                             <br>
