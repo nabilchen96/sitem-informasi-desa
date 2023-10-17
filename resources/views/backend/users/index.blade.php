@@ -45,6 +45,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Role</th>
+                                    <th>No. WA</th>
                                     <th width="5%"></th>
                                     <th width="5%"></th>
                                 </tr>
@@ -87,9 +88,13 @@
                             <label for="exampleInputPassword1">Role</label>
                             <select name="role" class="form-control" id="role" required>
                                 <option value="Admin">Admin</option>
-                                <option value="Verifikator">Verifikator</option>
-                                <option value="Pengguna">Pengguna</option>
+                                <option value="Reviewer">Reviewer</option>
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="no_wa">Nama Lengkap</label>
+                            <input name="no_wa" id="no_wa" type="text" placeholder="082777120"
+                                class="form-control form-control-sm" aria-describedby="emailHelp" required>
                         </div>
                         
                     </div>
@@ -132,12 +137,13 @@
                         render: function(data, type, row, meta) {
                             if (row.role == "Admin") {
                                 return `<span class="badge badge-success">${row.role}</span>`
-                            } else if (row.role == "Pengguna") {
-                                return `<span class="badge badge-danger">Laboran</span>`
-                            } else if (row.role == "Verifikator") {
-                                return `<span class="badge badge-primary">${row.role}</span>`
-                            } 
+                            } else if (row.role == "Reviewer") {
+                                return `<span class="badge badge-danger">${row.role}</span>`
+                            }
                         }
+                    },
+                    {
+                        data: "no_wa"
                     },
                     
                     {
@@ -179,6 +185,7 @@
                 modal.find('#email').val(cokData[0].email)
                 modal.find('#name').val(cokData[0].name)
                 modal.find('#role').val(cokData[0].role)
+                modal.find('#no_wa').val(cokData[0].no_wa)
             }
         })
 
@@ -215,6 +222,7 @@
                         //error validation
                         document.getElementById('password_alert').innerHTML = res.data.respon.password ?? ''
                         document.getElementById('email_alert').innerHTML = res.data.respon.email ?? ''
+                        document.getElementById('no_wa_alert').innerHTML = res.data.respon.no_wa ?? ''
                     }
 
                     document.getElementById("tombol_kirim").disabled = false;

@@ -17,8 +17,8 @@ class UsulanProposalController extends Controller
     }
 
     public function data(){
-        
-        $data = DB::table('usulan_proposals')
+        if(Auth::user()->role == "Admin") {
+            $data = DB::table('usulan_proposals')
                 ->join('usulan_juduls', 'usulan_juduls.id', '=', 'usulan_proposals.usulan_judul_id')
                 ->where('usulan_proposals.status','')
                 ->orWhere('usulan_proposals.status','0')
@@ -27,7 +27,19 @@ class UsulanProposalController extends Controller
                     'usulan_juduls.nama_ketua', 
                     'usulan_proposals.*'
                 )
+                ->get();    
+        } elseif(Auth::user()->role == "Reviewer") {
+            $data = DB::table('usulan_proposals')
+                ->join('usulan_juduls', 'usulan_juduls.id', '=', 'usulan_proposals.usulan_judul_id')
+                ->where('usulan_proposals.status','1')
+                ->select(
+                    'usulan_juduls.judul_penelitian', 
+                    'usulan_juduls.nama_ketua', 
+                    'usulan_proposals.*'
+                )
                 ->get();
+        }
+        
 
         return response()->json(['data' => $data]);
     }
