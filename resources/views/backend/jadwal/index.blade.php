@@ -147,7 +147,7 @@
                         <div class="form-group">
                             <label for="nama_file">Nama File</label>
                             <input name="nama_file" id="nama_file" type="text" placeholder="Nama File"
-                                class="form-control form-control-sm" aria-describedby="emailHelp" required>
+                                class="form-control form-control-sm" aria-describedby="emailHelp">
                             <span class="text-danger error" style="font-size: 12px;" id="nama_file_alert"></span>
                         </div>
                     </div>
