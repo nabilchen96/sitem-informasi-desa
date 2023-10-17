@@ -102,7 +102,7 @@ class JadwalController extends Controller
             'tanggal_awal'     => 'required',
             'tanggal_akhir'    => 'required',
             'tahapan'          => 'required',
-            'tahap_ke'          => 'required',
+            'tahap_ke'         => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -112,15 +112,23 @@ class JadwalController extends Controller
             ];
         } else {
 
+            if ($request->file_upload) {
+                $file = $request->file_upload;
+                $nama_file = '1' . date('YmdHis.') . $file->extension();
+                $file->move('file_pengumuman', $nama_file);
+            }
+
             $jadwal = Jadwal::find($request->id);
             $data = $jadwal->update([
                 'nama_jadwal'       => $request->nama_jadwal,
-                'kegiatan_id'   => $request->kegiatan_id,
-                'tanggal_awal'   => $request->tanggal_awal,
-                'tanggal_akhir'   => $request->tanggal_akhir,
-                'status'              => $request->status,
-                'tahapan'               => $request->tahapan,
+                'kegiatan_id'       => $request->kegiatan_id,
+                'tanggal_awal'      => $request->tanggal_awal,
+                'tanggal_akhir'     => $request->tanggal_akhir,
+                'status'            => $request->status,
+                'tahapan'           => $request->tahapan,
                 'tahap_ke'          => $request->tahap_ke,
+                'file_upload'       => $request->file_upload ? $nama_file : '',
+                'nama_file'         => $request->nama_file
             ]);
 
             $data = [
