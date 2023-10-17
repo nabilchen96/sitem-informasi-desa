@@ -103,7 +103,7 @@
                         <a class="nav-link" href="#">Publikasi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Izin Penelitian</a>
+                        <a class="nav-link" href="{{ url('surat-izin-penelitian') }}">Izin Penelitian</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Pelatihan</a>

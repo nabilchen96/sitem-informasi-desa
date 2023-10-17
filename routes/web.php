@@ -48,6 +48,14 @@ Route::post('/store-usul-proposal', 'App\Http\Controllers\UsulanProposalControll
 //REVISI PROPOSAL
 Route::post('/store-revisi-proposal', 'App\Http\Controllers\RevisiProposalController@store');
 
+//MENGAJUKAN SURAT IZIN PENELITIAN
+Route::post('/store-surat-izin-penelitian', 'App\Http\Controllers\SuratIzinPenelitianController@store');
+
+//HISTORY
+Route::get('/front/history', function(){
+    return view('frontend.history');
+});
+
 
 //KEBUTUHAN DOSEN
 Route::get('/front/kebutuhan_dosen', function(){
@@ -116,7 +124,10 @@ Route::group(['middleware' => 'auth'], function () {
     //REVISI PROPOSAL
     Route::get('/revisi-proposal', 'App\Http\Controllers\RevisiProposalController@index');
     Route::get('/data-revisi-proposal', 'App\Http\Controllers\RevisiProposalController@data');
-    
+
+    //IZIN PENELITIAN
+    Route::get('/surat-izin-penelitian', 'App\Http\Controllers\SuratIzinPenelitianController@index');
+    Route::get('/data-surat-izin-penelitian', 'App\Http\Controllers\SuratIzinPenelitianController@data');
 
     //REVISI PROPOSAL
 

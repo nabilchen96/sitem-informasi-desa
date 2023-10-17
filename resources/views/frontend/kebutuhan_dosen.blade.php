@@ -18,16 +18,20 @@
                             Kebutuhan Dosen Terkait Kegiatan Penelitian & Pengabdian Kepada Masyarakat Politeknik
                             Penerbangan Palembang
                         </h6>
-
-                        <button style="border-radius: 25px; font-size: 12px;"
-                            class="btn btn-info mx-1">Publikasi</button>
-                        <button style="border-radius: 25px; font-size: 12px;" class="btn btn-info mx-1">Surat Izin
-                            Penelitian</button>
-                        <button style="border-radius: 25px; font-size: 12px;" class="btn btn-info mx-1">Pelatihan
-                            Penelitian & Pengabdian</button>
+                        <a href="{{ url('/front/kebutuhan_dosen') }}?p=izin" style="border-radius: 25px; font-size: 12px;"
+                            class="btn btn-info mx-1">Surat Izin
+                            Penelitian</a>
+                        <a href="{{ url('/front/kebutuhan_dosen') }}?p=publikasi"
+                            style="border-radius: 25px; font-size: 12px;" class="btn btn-info mx-1">Publikasi</a>
+                        <a href="{{ url('/front/kebutuhan_dosen') }}?p=pelatihan"
+                            style="border-radius: 25px; font-size: 12px;" class="btn btn-info mx-1">Pelatihan
+                            Penelitian & Pengabdian</a>
                     </div>
                     <br>
-                    <div class="">
+                    @if (Request('p') == 'izin' || Request('p') == null)
+                        @include('frontend.kebutuhan.surat_izin')
+                    @endif
+                    {{-- <div class="">
                         <form action="">
                             <div class="mb-4">
                                 <label>Jenis Publikasi <sup class="text-danger">*</sup></label>
@@ -63,7 +67,7 @@
                                 <i class="bi bi-send"></i> Submit
                             </button>
                         </form>
-                    </div>
+                    </div> --}}
                 </div>
                 {{-- <div class="col-lg-4"></div> --}}
             </div>
