@@ -46,6 +46,7 @@ class PengumumanController extends Controller
             $data = Pengumuman::create([
                 'judul' => $request->judul,
                 'file' => $nama_file,
+                'keterangan' => $request->keterangan
             ]);
 
             $data = [
@@ -81,7 +82,8 @@ class PengumumanController extends Controller
             $pengumuman = Pengumuman::find($request->id);
             $data = $pengumuman->update([
                 'judul' => $request->judul,
-                'file' => $nama_file ?? $pengumuman->file
+                'file' => $nama_file ?? $pengumuman->file,
+                'keterangan' => $request->keterangan
             ]);
 
             $data = [

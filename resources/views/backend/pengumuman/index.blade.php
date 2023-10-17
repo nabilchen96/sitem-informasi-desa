@@ -41,6 +41,7 @@
                                 <tr>
                                     <th width="5%">No</th>
                                     <th>Pengumuman</th>
+                                    <th>Keterangan</th>
                                     <th>Tanggal</th>
                                     <th width="5%"></th>
                                     <th width="5%"></th>
@@ -72,6 +73,11 @@
                             <label>File <sup class="text-danger">*</sup></label>
                             <input name="file" id="file" type="file" placeholder="file"
                                 class="form-control form-control-sm" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Keterangan</label>
+                            <input name="keterangan" id="keterangan" type="keterangan" placeholder="Judul File"
+                                class="form-control form-control-sm">
                         </div>
                     </div>
                     <div class="modal-footer p-3">
@@ -105,6 +111,9 @@
                     },
                     {
                         data: "judul"
+                    },
+                    {
+                        data: "keterangan"
                     },
                     {
                         data: "created_at"
@@ -153,6 +162,7 @@
                 var modal = $(this)
                 modal.find('#id').val(cokData[0].id)
                 modal.find('#judul').val(cokData[0].judul)
+                modal.find('#keterangan').val(cokData[0].keterangan)
             }
         })
 
