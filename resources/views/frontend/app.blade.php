@@ -168,10 +168,12 @@
         <nav class="navbar navbar-expand-lg pl-3 pl-sm-0" id="navbar">
             <div class="container" data-aos="fade-down">
                 <div class="navbar-brand-wrapper d-flex w-100">
-                    <img class="icon-image d-none d-lg-block" src="{{ asset('sipp.png') }}"
-                        style="margin-top: -5px; width: 20%;" alt="">
-                    <img class="icon-image d-lg-none" src="{{ asset('sipp.png') }}"
-                        style="margin-top: -5px; width: 25%;" alt="">
+                    <a href="{{ url('/') }}">
+                        <img class="icon-image d-none d-lg-block" src="{{ asset('sipp.png') }}"
+                            style="margin-top: -5px; width: 20%;" alt="">
+                        <img class="icon-image d-lg-none" src="{{ asset('sipp.png') }}"
+                            style="margin-top: -5px; width: 25%;" alt="">
+                    </a>
                     <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">

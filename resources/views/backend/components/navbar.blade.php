@@ -121,7 +121,6 @@
                     <i class="bi bi-chat-left-text menu-icon"></i>
                     <span class="menu-title">Notifikasi</span>
                 </a>
-
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('library') }}">

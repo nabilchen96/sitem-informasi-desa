@@ -8,7 +8,7 @@
                     <h6 class="section-subtitle text-muted mb-4">
                         Kegiatan Penelitian dan Pengabdian Kepada Masyarakat <br> Politeknik Penerbangan Palembang
                     </h6>
-                    <span class="text-muted">Kunjungi tautan berikut ini <a class="text-info" href="#">History</a> <br>
+                    <span class="text-muted">Kunjungi tautan berikut ini <a class="text-info" href="{{ url('front/history') }}">History</a> <br>
                         untuk melihat history atau aktivitas penelitian anda</span>
                 </div>
                 <br><br>
@@ -21,11 +21,13 @@
                     <li @if (@getJadwalAktif()->tahap_ke == 3) style="background: red;" data-year="We Are Here!" @endif
                         data-year="" data-text="3. Proposal"></li>
                     <li @if (@getJadwalAktif()->tahap_ke == 4) style="background: red;" data-year="We Are Here!" @endif
-                        data-year="" data-text="4. {{ @getJadwalAktif()->tahap_ke == '4 '? @getJadwalAktif()->nama_jadwal : 'Seminar Proposal' }}"></li>
+                        data-year=""
+                        data-text="4. {{ @getJadwalAktif()->tahap_ke == '4 ' ? @getJadwalAktif()->nama_jadwal : 'Seminar Proposal' }}">
+                    </li>
                     <li @if (@getJadwalAktif()->tahap_ke == 5) style="background: red;" data-year="We Are Here!" @endif
                         data-year="" data-text="5. Pembahasan RAB"></li>
                     <li @if (@getJadwalAktif()->tahap_ke == 6) style="background: red;" data-year="We Are Here!" @endif
-                        data-year="" data-text="6. Surat Izin Penelitian"></li>
+                        data-year="" data-text="6. Penanda Tanganan Kontrak"></li>
                     <li @if (@getJadwalAktif()->tahap_ke == 7) style="background: red;" data-year="We Are Here!" @endif
                         data-year="" data-text="7. Seminar Antara"></li>
                     <li @if (@getJadwalAktif()->tahap_ke == 8) style="background: red;" data-year="We Are Here!" @endif
@@ -55,6 +57,8 @@
                 ])
             @elseif(@getJadwalAktif()->tahap_ke == 5)
                 @include('frontend.kegiatan.tahap5')
+            @elseif(@getJadwalAktif()->tahap_ke == 6)
+                @include('frontend.kegiatan.tahap6')
             @endif
         </div>
     </div>
