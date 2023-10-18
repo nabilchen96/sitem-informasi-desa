@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dosen;
+use App\Models\RecordUsulanProposal;
 use App\Models\UsulanProposal;
 use Illuminate\Http\Request;
 use DB;
@@ -13,7 +15,11 @@ class UsulanProposalController extends Controller
 {
     public function index(){
 
-        return view('backend.proposal.index');
+        $new = DB::table('usulan_proposals')->where('status','')->orWhere('status','0')->get();
+        $acc = DB::table('usulan_proposals')->where('status','1')->get();
+        $tolak = DB::table('usulan_proposals')->where('status','2')->get();
+
+        return view('backend.proposal.index',compact('new','acc','tolak'));
     }
 
     public function data(){
@@ -40,6 +46,36 @@ class UsulanProposalController extends Controller
                 ->get();
         }
         
+        return response()->json(['data' => $data]);
+    }
+
+
+    public function dataACC(){
+        
+        $data = DB::table('usulan_proposals')
+            ->join('usulan_juduls', 'usulan_juduls.id', '=', 'usulan_proposals.usulan_judul_id')
+            ->where('usulan_proposals.status','1')
+            ->select(
+                'usulan_juduls.judul_penelitian', 
+                'usulan_juduls.nama_ketua', 
+                'usulan_proposals.*'
+            )
+            ->get();
+
+        return response()->json(['data' => $data]);
+    }
+
+    public function dataTolak(){
+        
+        $data = DB::table('usulan_proposals')
+            ->join('usulan_juduls', 'usulan_juduls.id', '=', 'usulan_proposals.usulan_judul_id')
+            ->where('usulan_proposals.status','2')
+            ->select(
+                'usulan_juduls.judul_penelitian', 
+                'usulan_juduls.nama_ketua', 
+                'usulan_proposals.*'
+            )
+            ->get();
 
         return response()->json(['data' => $data]);
     }
@@ -83,6 +119,51 @@ class UsulanProposalController extends Controller
             $data = [
                 'responCode'    => 1,
                 'respon'        => 'Data Sukses Ditambah'
+            ];
+        }
+
+        return response()->json($data);
+    }
+
+    public function updateStatus(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'id'    => 'required',
+            
+        ]);
+
+        if ($validator->fails()) {
+            $data = [
+                'responCode'    => 0,
+                'respon'        => $validator->errors()
+            ];
+        } else {
+
+            $usulanproposal = UsulanProposal::find($request->id);
+            $getJudul = UsulanJudul::find($usulanproposal->usulan_judul_id);
+            $getDosen = Dosen::where('token_akses', $request->token_akses)->first();
+            
+            $data = $usulanproposal->update([
+                'status'            => $request->status,
+                'keterangan'        => $request->keterangan_respon,
+            ]);
+
+            RecordUsulanProposal::create([
+                'usulan_proposal_id' => $request->id,
+                'keterangan_respon' => $request->keterangan_respon,
+                'file_proposal_lama' => $usulanproposal->file_proposal,
+                'file_rab_lama' => $usulanproposal->file_rab,
+                'tgl_record' => date('Y-m-d'),
+                'status_record' => $request->status,
+                'status_perubahan' => $request->status,
+            ]);
+
+            sendUpdateUsulanProposal($getDosen->no_wa, $getDosen->nama_dosen, $getJudul->judul_penelitian, $request->status, $getDosen->jenis_kelamin, $request->keterangan_respon);
+
+            $data = [
+                'responCode'    => 1,
+                'respon'        => 'Data Sukses Disimpan'
             ];
         }
 

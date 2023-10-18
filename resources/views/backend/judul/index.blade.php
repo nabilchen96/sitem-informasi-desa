@@ -205,7 +205,7 @@
 
                             <div class="form-group">
                                 <label for="token_akses">Token Akses</label>
-                                <input name="token_akses" id="token_akses" type="text" placeholder="Token Akses"
+                                <input name="token_akses" id="token_akses" type="hidden" placeholder="Token Akses"
                                     class="form-control form-control-sm" aria-describedby="emailHelp" required>
                             </div>
 

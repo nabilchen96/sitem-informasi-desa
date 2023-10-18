@@ -107,7 +107,8 @@ class UsulanJudulController extends Controller
                 'keterangan_respon' => $request->keterangan_respon,
                 'judul_lama' => $usulanjudul->judul_penelitian,
                 'tgl_record' => date('Y-m-d'),
-                'status_record' => $request->status
+                'status_record' => $request->status,
+                'status_perubahan' => $request->status
             ]);
 
             sendUpdateUsulanJudul($getDosen->no_wa, $getDosen->nama_dosen, $request->judul_penelitian, $request->status, $getDosen->jenis_kelamin);

@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class RecordUsulanProposal extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
 }
