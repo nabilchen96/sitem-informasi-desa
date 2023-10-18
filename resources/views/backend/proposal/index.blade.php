@@ -191,7 +191,7 @@
                                 <i style="font-size: 1rem;" class="bi bi-cloud-arrow-down"></i> File RAB
                             </a>
                             <br>
-                            <a href="/file_proposal_library/${row.file_rab}">
+                            <a href="${row.link_video}" target="_blank"> 
                                 <i style="font-size: 0.9rem;" class="bi bi-film"></i> Link Video
                             </a>
                             `

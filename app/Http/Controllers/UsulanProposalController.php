@@ -74,7 +74,7 @@ class UsulanProposalController extends Controller
                 'file_proposal'     => $nama_file_proposal, 
                 'file_rab'          => $nama_file_rab,
                 'anggota'           => $request->anggota,
-                'link_vide'         => $request->link_video, 
+                'link_video'         => $request->link_video, 
                 'token_akses'       => $request->token_akses,
                 'status'            => '0', 
                 'tanggal_upload'    => date('Y-m-d'), 
