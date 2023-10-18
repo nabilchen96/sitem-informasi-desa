@@ -142,7 +142,7 @@
                         <div class="form-group">
                             <label>File Pendukung</label>
                             <input name="file_upload" id="file_upload" type="file" placeholder="Upload File"
-                                class="form-control form-control-sm" required>
+                                class="form-control form-control-sm">
                         </div>
                         <div class="form-group">
                             <label for="nama_file">Nama File</label>
