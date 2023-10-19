@@ -13,51 +13,55 @@ use Illuminate\Support\Facades\Validator;
 
 class UsulanProposalController extends Controller
 {
-    public function index(){
+    public function index()
+    {
 
-        $new = DB::table('usulan_proposals')->where('status','')->orWhere('status','0')->get();
-        $acc = DB::table('usulan_proposals')->where('status','1')->get();
-        $tolak = DB::table('usulan_proposals')->where('status','2')->get();
+        $new = DB::table('usulan_proposals')->where('status', '')->orWhere('status', '0')->get();
+        $acc = DB::table('usulan_proposals')->where('status', '1')->get();
+        $tolak = DB::table('usulan_proposals')->where('status', '2')->get();
+        $reviewers = DB::table('users')->where('role', 'Reviewer')->get();
 
-        return view('backend.proposal.index',compact('new','acc','tolak'));
+        return view('backend.proposal.index', compact('new', 'acc', 'tolak', 'reviewers'));
     }
 
-    public function data(){
-        if(Auth::user()->role == "Admin") {
+    public function data()
+    {
+        if (Auth::user()->role == "Admin") {
             $data = DB::table('usulan_proposals')
                 ->join('usulan_juduls', 'usulan_juduls.id', '=', 'usulan_proposals.usulan_judul_id')
-                ->where('usulan_proposals.status','')
-                ->orWhere('usulan_proposals.status','0')
+                ->where('usulan_proposals.status', '')
+                ->orWhere('usulan_proposals.status', '0')
                 ->select(
-                    'usulan_juduls.judul_penelitian', 
-                    'usulan_juduls.nama_ketua', 
+                    'usulan_juduls.judul_penelitian',
+                    'usulan_juduls.nama_ketua',
                     'usulan_proposals.*'
                 )
-                ->get();    
-        } elseif(Auth::user()->role == "Reviewer") {
+                ->get();
+        } elseif (Auth::user()->role == "Reviewer") {
             $data = DB::table('usulan_proposals')
                 ->join('usulan_juduls', 'usulan_juduls.id', '=', 'usulan_proposals.usulan_judul_id')
-                ->where('usulan_proposals.status','1')
+                ->where('usulan_proposals.status', '1')
                 ->select(
-                    'usulan_juduls.judul_penelitian', 
-                    'usulan_juduls.nama_ketua', 
+                    'usulan_juduls.judul_penelitian',
+                    'usulan_juduls.nama_ketua',
                     'usulan_proposals.*'
                 )
                 ->get();
         }
-        
+
         return response()->json(['data' => $data]);
     }
 
 
-    public function dataACC(){
-        
+    public function dataACC()
+    {
+
         $data = DB::table('usulan_proposals')
             ->join('usulan_juduls', 'usulan_juduls.id', '=', 'usulan_proposals.usulan_judul_id')
-            ->where('usulan_proposals.status','1')
+            ->where('usulan_proposals.status', '1')
             ->select(
-                'usulan_juduls.judul_penelitian', 
-                'usulan_juduls.nama_ketua', 
+                'usulan_juduls.judul_penelitian',
+                'usulan_juduls.nama_ketua',
                 'usulan_proposals.*'
             )
             ->get();
@@ -65,14 +69,15 @@ class UsulanProposalController extends Controller
         return response()->json(['data' => $data]);
     }
 
-    public function dataTolak(){
-        
+    public function dataTolak()
+    {
+
         $data = DB::table('usulan_proposals')
             ->join('usulan_juduls', 'usulan_juduls.id', '=', 'usulan_proposals.usulan_judul_id')
-            ->where('usulan_proposals.status','2')
+            ->where('usulan_proposals.status', '2')
             ->select(
-                'usulan_juduls.judul_penelitian', 
-                'usulan_juduls.nama_ketua', 
+                'usulan_juduls.judul_penelitian',
+                'usulan_juduls.nama_ketua',
                 'usulan_proposals.*'
             )
             ->get();
@@ -80,13 +85,14 @@ class UsulanProposalController extends Controller
         return response()->json(['data' => $data]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         // dd($request->all());
 
         $validator = Validator::make($request->all(), [
-            'usulan_judul_id'   => 'required', 
-            'token_akses'       => 'required', 
+            'usulan_judul_id'   => 'required',
+            'token_akses'       => 'required',
         ]);
 
         //upload file proposal
@@ -99,21 +105,21 @@ class UsulanProposalController extends Controller
         $nama_file_rab = '1' . date('YmdHis.') . $file_rab->extension();
         $file_rab->move('file_rab_library', $nama_file_rab);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             $data = [
                 'responCode'    => 0,
                 'respon'        => $validator->errors()
             ];
-        }else{
+        } else {
             $data = UsulanProposal::create([
                 'usulan_judul_id'   => $request->usulan_judul_id,
-                'file_proposal'     => $nama_file_proposal, 
+                'file_proposal'     => $nama_file_proposal,
                 'file_rab'          => $nama_file_rab,
                 'anggota'           => $request->anggota,
-                'link_video'         => $request->link_video, 
+                'link_video'         => $request->link_video,
                 'token_akses'       => $request->token_akses,
-                'status'            => '0', 
-                'tanggal_upload'    => date('Y-m-d'), 
+                'status'            => '0',
+                'tanggal_upload'    => date('Y-m-d'),
             ]);
 
             $data = [
@@ -130,7 +136,7 @@ class UsulanProposalController extends Controller
 
         $validator = Validator::make($request->all(), [
             'id'    => 'required',
-            
+
         ]);
 
         if ($validator->fails()) {
@@ -143,7 +149,7 @@ class UsulanProposalController extends Controller
             $usulanproposal = UsulanProposal::find($request->id);
             $getJudul = UsulanJudul::find($usulanproposal->usulan_judul_id);
             $getDosen = Dosen::where('token_akses', $request->token_akses)->first();
-            
+
             $data = $usulanproposal->update([
                 'status'            => $request->status,
                 'keterangan'        => $request->keterangan_respon,
@@ -160,6 +166,45 @@ class UsulanProposalController extends Controller
             ]);
 
             sendUpdateUsulanProposal($getDosen->no_wa, $getDosen->nama_dosen, $getJudul->judul_penelitian, $request->status, $getDosen->jenis_kelamin, $request->keterangan_respon);
+
+            $data = [
+                'responCode'    => 1,
+                'respon'        => 'Data Sukses Disimpan'
+            ];
+        }
+
+        return response()->json($data);
+    }
+
+    public function updateReviewer(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'idACC'    => 'required',
+            'reviewer1' => 'required',
+            'reviewer2' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            $data = [
+                'responCode'    => 0,
+                'respon'        => $validator->errors()
+            ];
+        } elseif ($request->reviewer1 == $request->reviewer2) {
+            $data = [
+                'responCode'    => 2,
+                'respon'        => "Reviewer 1 dan 2 tidak boleh sama"
+            ];
+            
+        } else {
+
+            $usulanproposal = UsulanProposal::find($request->idACC);
+
+            $data = $usulanproposal->update([
+                'reviewer1_id'            => $request->reviewer1,
+                'reviewer2_id'        => $request->reviewer2,
+            ]);
+
 
             $data = [
                 'responCode'    => 1,

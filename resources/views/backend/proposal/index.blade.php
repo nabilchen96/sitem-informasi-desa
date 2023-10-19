@@ -173,6 +173,47 @@
             </div>
         </div>
 
+        <div class="modal fade" id="modalACC" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form id="formACC">
+                        <div class="modal-header p-3">
+                            <h5 class="modal-title m-2" id="exampleModalLabel">Tim Reviewer</h5>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" name="idACC" id="idACC">
+                            <div class="form-group">
+                                <label for="reviewer1">Reviewer 1</label>
+                                <select name="reviewer1" id="reviewer1" class="form-control border">
+                                    <option value="">--Pilih--</option>
+                                    @foreach ($reviewers as $rv)
+                                        <option value="{{ $rv->id }}">{{ $rv->name }}</option>
+                                    @endforeach
+                                </select>
+                                <span class="text-danger error" style="font-size: 12px;" id="reviewer1_alert"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="reviewer2">Reviewer 2</label>
+                                <select name="reviewer2" id="reviewer2" class="form-control border">
+                                    <option value="">--Pilih--</option>
+                                    @foreach ($reviewers as $rv)
+                                        <option value="{{ $rv->id }}">{{ $rv->name }}</option>
+                                    @endforeach
+                                </select>
+                                <span class="text-danger error" style="font-size: 12px;" id="reviewer2_alert"></span>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer p-3">
+                            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+                            <button id="tombol_kirim_acc" class="btn btn-primary btn-sm">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
         <div class="modal fade" id="modalTolak" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -357,7 +398,7 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            return `<a data-toggle="modal" data-target="#modal"
+                            return `<a data-toggle="modal" data-target="#modalACC"
                                 data-bs-id=` + (row.id) + ` href="javascript:void(0)">
                                 <i style="font-size: 1.5rem;" class="text-success bi bi-grid"></i>
                             </a>`
@@ -498,6 +539,27 @@
             }
         })
 
+        $('#modalACC').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var recipient = button.data('bs-id') // Extract info from data-* attributes
+            var cok = $("#myTable2").DataTable().rows().data().toArray()
+
+            let cokData = cok.filter((dt) => {
+                return dt.id == recipient;
+            })
+
+            document.getElementById("form").reset();
+            document.getElementById('id').value = ''
+            $('.error').empty();
+
+            if (recipient) {
+                var modal = $(this)
+                modal.find('#idACC').val(cokData[0].id)
+                modal.find('#reviewer1').val(cokData[0].reviewer1_id)
+                modal.find('#reviewer2').val(cokData[0].reviewer2_id)
+            }
+        })
+
         form.onsubmit = (e) => {
 
             let formData = new FormData(form);
@@ -533,7 +595,7 @@
 
                     } else {
                         //error validation
-                        document.getElementById('status_alert').innerHTML = res.data.respon.statys ?? ''
+                        document.getElementById('status_alert').innerHTML = res.data.respon.status ?? ''
                     }
 
                     document.getElementById("tombol_kirim").disabled = false;
@@ -542,6 +604,69 @@
                     document.getElementById("tombol_kirim").disabled = false;
                     //handle error
                     console.log(res);
+                });
+        }
+
+        formACC.onsubmit = (e) => {
+
+            let formData = new FormData(formACC);
+
+            e.preventDefault();
+
+            document.getElementById("tombol_kirim_acc").disabled = true;
+
+            axios({
+                    method: 'post',
+                    url: '/update-reviewer-proposal',
+                    data: formData,
+                })
+                .then(function(res) {
+                    //handle success         
+                    if (res.data.responCode == 1) {
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Sukses',
+                            text: res.data.respon,
+                            timer: 3000,
+                            showConfirmButton: false
+                        })
+
+                        $("#modalACC").modal("hide");
+                        $('#myTable2').DataTable().clear().destroy();
+                        getData2()
+
+                    } else if (res.data.responCode == 2) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Sukses',
+                            text: res.data.respon,
+                            timer: 3000,
+                            showConfirmButton: false
+                        })
+
+                        $("#modalACC").modal("hide");
+                        $('#myTable2').DataTable().clear().destroy();
+                        getData2()
+                    } else {
+                        //error validation
+                        document.getElementById('reviewer1_alert').innerHTML = res.data.respon.reviewer1 ?? ''
+                        document.getElementById('reviewer2_alert').innerHTML = res.data.respon.reviewer2 ?? ''
+                    }
+
+                    document.getElementById("tombol_kirim_acc").disabled = false;
+                })
+                .catch(function(res) {
+                    document.getElementById("tombol_kirim_acc").disabled = false;
+                    //handle error
+                    console.log(res);
+                    Swal.fire({
+                            icon: 'error',
+                            title: 'Proses Error!',
+                            text: res.response.data.message,
+                            timer: 3000,
+                            showConfirmButton: false
+                        })
                 });
         }
 
