@@ -133,45 +133,177 @@
 
             </div>
         </div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form id="form">
-                        <div class="modal-header p-3">
-                            <h5 class="modal-title m-2" id="exampleModalLabel">Ubah Status Usulan</h5>
-                        </div>
-                        <div class="modal-body">
-                            <input type="hidden" name="id" id="id">
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Status</label>
-                                <select name="status" id="status" class="form-control border" required>
-                                    <option value="">--Pilih--</option>
-                                    <option value="0">Baru</option>
-                                    <option value="1">ACC</option>
-                                    <option value="2">Tolak</option>
-                                </select>
+        @if (Auth::user()->role == 'Admin')
+            <!-- Modal -->
+            <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form id="form">
+                            <div class="modal-header p-3">
+                                <h5 class="modal-title m-2" id="exampleModalLabel">Ubah Status Usulan</h5>
                             </div>
+                            <div class="modal-body">
+                                <input type="hidden" name="id" id="id">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Status</label>
+                                    <select name="status" id="status" class="form-control border" required>
+                                        <option value="">--Pilih--</option>
+                                        <option value="0">Baru</option>
+                                        <option value="1">ACC</option>
+                                        <option value="2">Tolak</option>
+                                    </select>
+                                </div>
 
-                            <input name="token_akses" id="token_akses" type="hidden" placeholder="Token Akses"
-                                class="form-control form-control-sm" aria-describedby="emailHelp" required>
+                                <input name="token_akses" id="token_akses" type="hidden" placeholder="Token Akses"
+                                    class="form-control form-control-sm" aria-describedby="emailHelp" required>
 
-                            <div class="form-group">
-                                <label for="keterangan_respon">Ketarangan</label>
-                                <input name="keterangan_respon" id="keterangan_respon" type="text"
-                                    placeholder="Keterangan" class="form-control form-control-sm"
-                                    aria-describedby="emailHelp">
+                                <div class="form-group">
+                                    <label for="keterangan_respon">Ketarangan</label>
+                                    <input name="keterangan_respon" id="keterangan_respon" type="text"
+                                        placeholder="Keterangan" class="form-control form-control-sm"
+                                        aria-describedby="emailHelp">
+                                </div>
                             </div>
-                        </div>
-                        <div class="modal-footer p-3">
-                            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
-                            <button id="tombol_kirim" class="btn btn-primary btn-sm">Submit</button>
-                        </div>
-                    </form>
+                            <div class="modal-footer p-3">
+                                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+                                <button id="tombol_kirim" class="btn btn-primary btn-sm">Submit</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        @endif
+
+        @if (Auth::user()->role == 'Reviewer')
+            <!-- Modal -->
+            <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <form id="form">
+                            <div class="modal-header p-3">
+                                <h5 class="modal-title m-2" id="exampleModalLabel">Penilaian Proposal</h5>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" name="id" id="id">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Hari</label>
+                                    <select name="hari" id="hari" class="form-control border" required>
+                                        <option value="">--Pilih--</option>
+                                        <option value="Senin">Senin</option>
+                                        <option value="Selasa">Selasa</option>
+                                        <option value="Rabu">Rabu</option>
+                                        <option value="Kamis">Kamis</option>
+                                        <option value="Jumat">Jumat</option>
+                                        <option value="Sabtu">Sabtu</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Tanggal</label>
+                                    <input type="date" name="tanggal" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="biaya_diusulkan">Biaya yang diusulkan ke Poltekbang Palembang</label>
+                                    <input type="text" name="biaya_diusulkan" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="biaya_direkomendasikan">Biaya yang Direkomendasikan</label>
+                                    <input type="text" name="biaya_direkomendasikan" class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="keterangan_respon">Dengan hasil penelitian sebagai berikut : </label>
+                                    <table class="table">
+                                        <tr>
+                                            <td>No</td>
+                                            <td>Kriteria</td>
+                                            <td>Indikator</td>
+                                            <td>Bobot(B)</td>
+                                            <td>Skor(S)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Relevansi Dengan RIP Poltekbang Palembang </td>
+                                            <td>Tema dan Sub Tema sesuai dengan RIP Poltekbang Palembang </td>
+                                            <td>15</td>
+                                            <td>
+                                                <input type="number" name="nilai_kriteria_1" min="1" max="5">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Perumusan Masalah</td>
+                                            <td>Ketajaman rumusan masalah dan tujuan penelitian</td>
+                                            <td>10</td>
+                                            <td>
+                                                <input type="number" name="nilai_kriteria_2" min="1" max="5">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Manfaat hasil penellitian</td>
+                                            <td>Pembangunan Iptek, pembangunan dan/atau pengembangan kelembagaan</td>
+                                            <td>15</td>
+                                            <td>
+                                                <input type="number" name="nilai_kriteria_3" min="1" max="5">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>Tinjauan Pustaka</td>
+                                            <td>Relevansi kemutakhiran, dan penyusunan daftar Pustaka</td>
+                                            <td>20</td>
+                                            <td>
+                                                <input type="number" name="nilai_kriteria_4" min="1" max="5">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td>Metode Penelitian</td>
+                                            <td>Ketepatan metode yang digunakan</td>
+                                            <td>20</td>
+                                            <td>
+                                                <input type="number" name="nilai_kriteria_5" min="1" max="5">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            <td>Kelayakan penelitian</td>
+                                            <td>Kesesuaian jadwal, kesesuaian keahlian personalia, kesesuaian ajuan dana</td>
+                                            <td>20</td>
+                                            <td>
+                                                <input type="number" name="nilai_kriteria_6" min="1" max="5">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="rekomendasi">Rekomendasi</label>
+                                    <select name="rekomendasi" class="form-control" id="rekomendasi">
+                                        <option value="Diterima">Diterima</option>
+                                        <option value="Tidak Diterima">Tidak Diterima</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="saran_perbaikan">Saran Perbaikan (jika ada) bagi yang Diterima: </label>
+                                    <textarea class="form-control" name="saran_perbaikan" id="saran_perbaikan" cols="30" rows="10"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="alasan_bagi_yang_tidak_diterima">Alasan bagi Yang Tidak Diterima:</label>
+                                    <textarea class="form-control" name="alasan_bagi_yang_tidak_diterima" id="alasan_bagi_yang_tidak_diterima" cols="30" rows="10"></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer p-3">
+                                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+                                <button id="tombol_kirim" class="btn btn-primary btn-sm">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endif
 
         <div class="modal fade" id="modalACC" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -661,12 +793,12 @@
                     //handle error
                     console.log(res);
                     Swal.fire({
-                            icon: 'error',
-                            title: 'Proses Error!',
-                            text: res.response.data.message,
-                            timer: 3000,
-                            showConfirmButton: false
-                        })
+                        icon: 'error',
+                        title: 'Proses Error!',
+                        text: res.response.data.message,
+                        timer: 3000,
+                        showConfirmButton: false
+                    })
                 });
         }
 

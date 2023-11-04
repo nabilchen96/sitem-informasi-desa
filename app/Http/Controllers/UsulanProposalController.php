@@ -41,6 +41,8 @@ class UsulanProposalController extends Controller
             $data = DB::table('usulan_proposals')
                 ->join('usulan_juduls', 'usulan_juduls.id', '=', 'usulan_proposals.usulan_judul_id')
                 ->where('usulan_proposals.status', '1')
+                ->where('usulan_proposals.reviewer1_id', Auth::user()->id)
+                ->orWhere('usulan_proposals.reviewer2_id', Auth::user()->id)
                 ->select(
                     'usulan_juduls.judul_penelitian',
                     'usulan_juduls.nama_ketua',
@@ -195,7 +197,7 @@ class UsulanProposalController extends Controller
                 'responCode'    => 2,
                 'respon'        => "Reviewer 1 dan 2 tidak boleh sama"
             ];
-            
+
         } else {
 
             $usulanproposal = UsulanProposal::find($request->idACC);
