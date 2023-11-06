@@ -120,6 +120,7 @@ Route::group(['middleware' => 'auth'], function () {
     //USULAN PROPOSAL
     Route::get('/usulan-proposal', 'App\Http\Controllers\UsulanProposalController@index');
     Route::get('/penilaian-proposal', 'App\Http\Controllers\UsulanProposalController@index');
+    Route::post('/update-penilaian-proposal', 'App\Http\Controllers\PenilaianProposalController@store');
     Route::get('/data-usulan-proposal', 'App\Http\Controllers\UsulanProposalController@data');
     Route::get('/data-usulan-proposal-acc', 'App\Http\Controllers\UsulanProposalController@dataAcc');
     Route::get('/data-usulan-proposal-tolak', 'App\Http\Controllers\UsulanProposalController@dataTolak');

@@ -802,6 +802,53 @@
                 });
         }
 
+        formPenilaian.onsubmit = (e) => {
+
+        let formData = new FormData(formPenilaian);
+
+        e.preventDefault();
+
+        document.getElementById("tombol_kirim").disabled = true;
+
+        axios({
+                method: 'post',
+                url: formData.get('id') == '' ? '/store-usulan-judul' : '/update-penilaian-proposal',
+                data: formData,
+            })
+            .then(function(res) {
+                //handle success         
+                if (res.data.responCode == 1) {
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses',
+                        text: res.data.respon,
+                        timer: 3000,
+                        showConfirmButton: false
+                    })
+
+                    // $("#modal").modal("hide");
+                    // $('#myTable').DataTable().clear().destroy();
+                    // getData()
+
+                    setTimeout(() => {
+                        location.reload(res.data.respon);
+                    }, 1500);
+
+                } else {
+                    //error validation
+                    document.getElementById('status_alert').innerHTML = res.data.respon.status ?? ''
+                }
+
+                document.getElementById("tombol_kirim").disabled = false;
+            })
+            .catch(function(res) {
+                document.getElementById("tombol_kirim").disabled = false;
+                //handle error
+                console.log(res);
+            });
+        }
+
         hapusData = (id) => {
             Swal.fire({
                 title: "Yakin hapus data?",
