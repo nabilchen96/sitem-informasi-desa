@@ -155,6 +155,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/update-pengumuman', 'App\Http\Controllers\PengumumanController@update');
     Route::post('/delete-pengumuman', 'App\Http\Controllers\PengumumanController@delete');
 
+    //KONTRAK
+    Route::get('/kontrak', 'App\Http\Controllers\KontrakController@index');
+    Route::get('/data-kontrak', 'App\Http\Controllers\KontrakController@data');
+    Route::post('/store-kontrak', 'App\Http\Controllers\KontrakController@store');
+    Route::post('/update-kontrak', 'App\Http\Controllers\KontrakController@update');
+    Route::post('/delete-kontrak', 'App\Http\Controllers\KontrakController@delete');
+
 });
 
 //LOGOUT

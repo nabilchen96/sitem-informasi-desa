@@ -66,7 +66,7 @@
                             <a class="nav-link" href="{{ url('revisi-proposal') }}">Revisi Proposal</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Kontrak</a>
+                            <a class="nav-link" href="{{ url('kontrak') }}">Kontrak</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Sem. Antara</a>
