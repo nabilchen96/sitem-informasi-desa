@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PenilaianProposalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/nanang', function(){
+    return "Nanang";
+});
+
+Route::get('nilai/{id}',[PenilaianProposalController::class,'cetakNilai']);
+
 
 //LANDING
 Route::get('/', function(){
@@ -69,6 +77,8 @@ Route::post('/loginProses', 'App\Http\Controllers\AuthController@loginProses');
 //BACKEND
 Route::group(['middleware' => 'auth'], function () {
 
+    Route::get('/cetak-nilai-proposal/{usulan_proposal_id}', 'App\Http\Controllers\PenilaianProposalController@cetakNilai');
+    
     //DASHBOARD
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index');
 
@@ -122,6 +132,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/penilaian-proposal', 'App\Http\Controllers\UsulanProposalController@index');
     Route::post('/update-penilaian-proposal', 'App\Http\Controllers\PenilaianProposalController@store');
     Route::get('/data-usulan-proposal', 'App\Http\Controllers\UsulanProposalController@data');
+    
     Route::get('/data-usulan-proposal-acc', 'App\Http\Controllers\UsulanProposalController@dataAcc');
     Route::get('/data-usulan-proposal-tolak', 'App\Http\Controllers\UsulanProposalController@dataTolak');
     Route::post('/update-status-usulan-proposal', 'App\Http\Controllers\UsulanProposalController@updateStatus');
