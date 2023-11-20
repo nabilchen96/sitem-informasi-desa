@@ -20,7 +20,7 @@
         <h4 class="text-center">LEMBAR PENILAIAN PROPOSAL PENELITIAN</h4>
         <br>
         <div class="row">
-            <p>Pada Hari {{ $data->hari }}. Tanggal {{ $data->tanggal }}.Bulan November. telah dilakukan penilaian terhadap proposal penelitian sebagai berikut : </p>
+            <p>Pada Hari {{ $data->hari }} Tanggal {{ date('d',strtotime($data->tanggal)) }} Bulan {{ bln_indo($data->tanggal) }} Tahun {{ date('Y', strtotime($data->tanggal) ) }} telah dilakukan penilaian terhadap proposal penelitian sebagai berikut : </p>
             <table class="table">
                 <tr>
                     <td>1.</td>
@@ -143,6 +143,28 @@
                 <li>Saran Perbaikan (jika ada) bagi yang Diterima: <br> {{ $data->saran_perbaikan != "" || $data->saran_perbaikan != NULL ? $data->saran_perbaikan : "-"  }} </li>
                 <li>Alasan bagi Yang Tidak Diterima: <br> {{ $data->alasan_bagi_yang_tidak_diterima != "" || $data->alasan_bagi_yang_tidak_diterima != NULL ? $data->alasan_bagi_yang_tidak_diterima : "-"  }} </li>
             </ol>
+        </div>
+
+        <div>
+            <br><br><br>
+           
+            <div style="float: left; margin-left: 20px;">
+                <p style="color: white">White text</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reviewer 1</p>
+                <br><br>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;({{$peneliti->reviewer1}})</p>
+            </div>
+
+            <div style="float: right;">
+                @php
+                    $now = now();
+                @endphp
+                <p>Palembang, {{ tgl_indo(date('Y-m-d', strtotime($now) )) }}</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reviewer 2</p>
+                <br><br>
+                <p>&nbsp;&nbsp;&nbsp;({{$peneliti->reviewer2}})</p>
+            </div>
+            
         </div>
 
     </div>

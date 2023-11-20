@@ -154,8 +154,8 @@ function sendReviewerAccount($noWA, $namaDosen, $email, $password)
 function sendWAJadwal($kegiatan, $message, $tgl_awal, $tgl_akhir)
 {
 
-    $tglawal = date('d-m-Y',strtotime($tgl_awal));
-    $tglakhir = date('d-m-Y',strtotime($tgl_akhir));
+    $tglawal = date('d-m-Y', strtotime($tgl_awal));
+    $tglakhir = date('d-m-Y', strtotime($tgl_akhir));
 
     $noWA = getListDosenWANumber();
 
@@ -172,7 +172,7 @@ function sendWAJadwal($kegiatan, $message, $tgl_awal, $tgl_akhir)
         CURLOPT_CUSTOMREQUEST => 'POST',
         CURLOPT_POSTFIELDS => array(
             'target' => $noWA,
-            'message' => "Informasi Jadwal *$kegiatan*. Tahap : *" .$message. "* dimulai pada *$tglawal* s/d *$tglakhir*. Silahkan cek informasi pada https://sipp.poltekbangplg.ac.id/front/kegiatan Salam Hormat *- Admin PUSPPM -*",
+            'message' => "Informasi Jadwal *$kegiatan*. Tahap : *" . $message . "* dimulai pada *$tglawal* s/d *$tglakhir*. Silahkan cek informasi pada https://sipp.poltekbangplg.ac.id/front/kegiatan Salam Hormat *- Admin PUSPPM -*",
             'delay' => '5', //nilai jgan diubah
             'countryCode' => '62', //optional
         ),
@@ -189,10 +189,10 @@ function sendWAJadwal($kegiatan, $message, $tgl_awal, $tgl_akhir)
 
 function sendUpdateUsulanJudul($noWA, $namaDosen, $judul, $status, $jk)
 {
-   
-    if($status == "1") {
+
+    if ($status == "1") {
         $ubah = "Disetujui";
-    } else if($status == "2") {
+    } else if ($status == "2") {
         $ubah = "Ditolak";
     } else {
         $ubah = "-";
@@ -240,10 +240,10 @@ function sendUpdateUsulanJudul($noWA, $namaDosen, $judul, $status, $jk)
 
 function sendUpdateUsulanProposal($noWA, $namaDosen, $judul, $status, $jk, $keterangan)
 {
-   
-    if($status == "1") {
+
+    if ($status == "1") {
         $ubah = "Disetujui";
-    } else if($status == "2") {
+    } else if ($status == "2") {
         $ubah = "Ditolak";
     } else {
         $ubah = "";
@@ -257,7 +257,7 @@ function sendUpdateUsulanProposal($noWA, $namaDosen, $judul, $status, $jk, $kete
         $nick = "";
     }
 
-    if($keterangan) {
+    if ($keterangan) {
         $ket = $keterangan;
     } else {
         $ket = "-";
@@ -296,4 +296,46 @@ function sendUpdateUsulanProposal($noWA, $namaDosen, $judul, $status, $jk, $kete
 
     curl_close($curl);
     // echo $response;
+}
+
+function tgl_indo($tanggal)
+{
+    $bulan = [
+        1 => 'Januari',
+        'Februari',
+        'Maret',
+        'April',
+        'Mei',
+        'Juni',
+        'Juli',
+        'Agustus',
+        'September',
+        'Oktober',
+        'November',
+        'Desember',
+    ];
+    $pecahkan = explode('-', $tanggal);
+
+    return $pecahkan[2] . ' ' . $bulan[(int) $pecahkan[1]] . ' ' . $pecahkan[0];
+}
+
+function bln_indo($tanggal)
+{
+    $bulan = [
+        1 => 'Januari',
+        'Februari',
+        'Maret',
+        'April',
+        'Mei',
+        'Juni',
+        'Juli',
+        'Agustus',
+        'September',
+        'Oktober',
+        'November',
+        'Desember',
+    ];
+    $pecahkan = explode('-', $tanggal);
+
+    return $bulan[(int) $pecahkan[1]];
 }

@@ -77,11 +77,13 @@ class PenilaianProposalController extends Controller
 
         $peneliti = DB::table('usulan_proposals')
             ->leftJoin('dosens', 'dosens.token_akses', 'usulan_proposals.token_akses')
-            ->select('usulan_proposals.*', 'dosens.nama_dosen')
+            ->leftJoin('users as rv1','rv1.id','usulan_proposals.reviewer1_id')
+            ->leftJoin('users as rv2','rv2.id','usulan_proposals.reviewer2_id')
+            ->select('usulan_proposals.*', 'dosens.nama_dosen','rv1.name as reviewer1','rv2.name as reviewer2')
             ->where('usulan_proposals.id', $usulan_proposal_id)
             ->first();
         $judul = DB::table('usulan_juduls')->where('id', $peneliti->usulan_judul_id)->first();
-
+        
         $pdf = PDF::loadview('backend.proposal.nilai_pdf', ['data' => $data, 'peneliti' => $peneliti, 'judul' => $judul]);
         $pdf->setPaper('A4', 'potrait');
 
