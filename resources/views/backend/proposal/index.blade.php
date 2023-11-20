@@ -144,6 +144,7 @@
                             </div>
                             <div class="modal-body">
                                 <input type="hidden" name="id" id="id">
+                                <input type="hidden" name="bentuk" id="bentuk" value="admin">
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Status</label>
                                     <select name="status" id="status" class="form-control border" required>
@@ -186,6 +187,7 @@
                             </div>
                             <div class="modal-body">
                                 <input type="hidden" name="id" id="id">
+                                <input type="hidden" name="bentuk" id="bentuk" value="reviewer">
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Hari</label>
                                     <select name="hari" id="hari" class="form-control border" required>
@@ -450,10 +452,22 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            return `<a data-toggle="modal" data-target="#modal"
+
+                            if (row.sudah_dinilai == "0") {
+                                return `<a data-toggle="modal" data-target="#modal"
                                 data-bs-id=` + (row.id) + ` href="javascript:void(0)">
-                                <i style="font-size: 1.5rem;" class="text-success bi bi-grid"></i>
+                                <i style="font-size: 1.5rem;" class="text-warning bi bi-pencil"></i>
                             </a>`
+                            } else {
+                                return `<a data-toggle="modal" data-placement="top" title="Isi Nilai" data-target="#modal"
+                                data-bs-id=` + (row.id) + ` href="javascript:void(0)">
+                                <i style="font-size: 1.5rem;" class="text-warning bi bi-pencil"></i>
+                            </a> &nbsp; <a title="Cetak Nilai" href="nilai/` + (row.id) + `" target="_blank">
+                                <i style="font-size: 1.5rem;" class="text-success bi bi-printer"></i>
+                            </a> `
+                           
+                            }
+                            
                         }
                     },
                     {
@@ -629,8 +643,8 @@
         }
 
         $('#modal').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget) // Button that triggered the modal
-            var recipient = button.data('bs-id') // Extract info from data-* attributes
+            var button = $(event.relatedTarget)
+            var recipient = button.data('bs-id')
             var cok = $("#myTable").DataTable().rows().data().toArray()
 
             let cokData = cok.filter((dt) => {
@@ -693,14 +707,15 @@
         })
 
         form.onsubmit = (e) => {
-
+            
             let formData = new FormData(form);
+            console.log(formData.get('bentuk'));
 
             e.preventDefault();
 
             document.getElementById("tombol_kirim").disabled = true;
-
-            axios({
+            if(formData.get('bentuk') == 'admin') {
+                axios({
                     method: 'post',
                     url: formData.get('id') == '' ? '/store-usulan-judul' : '/update-status-usulan-proposal',
                     data: formData,
@@ -716,10 +731,6 @@
                             timer: 3000,
                             showConfirmButton: false
                         })
-
-                        // $("#modal").modal("hide");
-                        // $('#myTable').DataTable().clear().destroy();
-                        // getData()
 
                         setTimeout(() => {
                             location.reload(res.data.respon);
@@ -737,6 +748,42 @@
                     //handle error
                     console.log(res);
                 });
+            } else if(formData.get('bentuk') == 'reviewer') {
+                axios({
+                    method: 'post',
+                    url: '/update-penilaian-proposal',
+                    data: formData,
+                })
+                .then(function(res) {
+                    //handle success         
+                    if (res.data.responCode == 1) {
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Sukses',
+                            text: res.data.respon,
+                            timer: 3000,
+                            showConfirmButton: false
+                        })
+
+                        setTimeout(() => {
+                            location.reload(res.data.respon);
+                        }, 1500);
+
+                    } else {
+                        //error validation
+                        document.getElementById('status_alert').innerHTML = res.data.respon.status ?? ''
+                    }
+
+                    document.getElementById("tombol_kirim").disabled = false;
+                })
+                .catch(function(res) {
+                    document.getElementById("tombol_kirim").disabled = false;
+                    //handle error
+                    console.log(res);
+                });
+            }
+            
         }
 
         formACC.onsubmit = (e) => {
@@ -800,53 +847,6 @@
                         showConfirmButton: false
                     })
                 });
-        }
-
-        formPenilaian.onsubmit = (e) => {
-
-        let formData = new FormData(formPenilaian);
-
-        e.preventDefault();
-
-        document.getElementById("tombol_kirim").disabled = true;
-
-        axios({
-                method: 'post',
-                url: formData.get('id') == '' ? '/store-usulan-judul' : '/update-penilaian-proposal',
-                data: formData,
-            })
-            .then(function(res) {
-                //handle success         
-                if (res.data.responCode == 1) {
-
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Sukses',
-                        text: res.data.respon,
-                        timer: 3000,
-                        showConfirmButton: false
-                    })
-
-                    // $("#modal").modal("hide");
-                    // $('#myTable').DataTable().clear().destroy();
-                    // getData()
-
-                    setTimeout(() => {
-                        location.reload(res.data.respon);
-                    }, 1500);
-
-                } else {
-                    //error validation
-                    document.getElementById('status_alert').innerHTML = res.data.respon.status ?? ''
-                }
-
-                document.getElementById("tombol_kirim").disabled = false;
-            })
-            .catch(function(res) {
-                document.getElementById("tombol_kirim").disabled = false;
-                //handle error
-                console.log(res);
-            });
         }
 
         hapusData = (id) => {

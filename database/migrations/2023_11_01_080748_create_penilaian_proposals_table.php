@@ -30,7 +30,7 @@ class CreatePenilaianProposalsTable extends Migration
             $table->date('tanggal')->nullable();
             $table->string('bulan')->nullable();
             $table->year('tahun')->nullable();
-            $table->enum('rekomendasi',['Diterma','Tidak Diterima'])->nullable();
+            $table->enum('rekomendasi',['Diterima','Tidak Diterima'])->nullable();
             $table->timestamps();
 
             $table->foreign('usulan_proposal_id')->references('id')->on('usulan_proposals')
