@@ -15,7 +15,8 @@ class SuratIzinPenelitianController extends Controller
         return view('backend.surat_izin_penelitian.index');
     }
 
-    public function data(){
+    public function data()
+    {
 
         $data = DB::table('surat_izin_penelitians')->get();
 
@@ -27,11 +28,6 @@ class SuratIzinPenelitianController extends Controller
         $validator = Validator::make($request->all(), [
             'nama_dosen' => 'required'
         ]);
-
-        //upload file proposal
-        // $surat_izin_penelitian = $request->surat_izin_penelitian;
-        // $nama_surat_izin_penelitian = '1' . date('YmdHis.') . $surat_izin_penelitian->extension();
-        // $surat_izin_penelitian->move('surat_izin_penelitian_library', $nama_surat_izin_penelitian);
 
         if ($validator->fails()) {
             $data = [
@@ -45,7 +41,6 @@ class SuratIzinPenelitianController extends Controller
                 'tanggal_rencana_kegiatan' => $request->tanggal_rencana_kegiatan,
                 'lokasi_rencana_kegiatan' => $request->lokasi_rencana_kegiatan,
                 'judul_penelitian_terkait' => $request->judul_penelitian_terkait,
-                // 'file_surat_izin_penelitian' => $nama_surat_izin_penelitian,
             ]);
 
             $data = [
@@ -53,6 +48,31 @@ class SuratIzinPenelitianController extends Controller
                 'respon' => 'Data Sukses Ditambah'
             ];
         }
+
+        return response()->json($data);
+    }
+
+    public function storeFile(Request $request)
+    {
+        //upload file seminar antara
+        $file_surat_izin_penelitian = $request->file_surat_izin_penelitian;
+        $nama_file_surat_izin_penelitian = '1' . date('YmdHis.') . $file_surat_izin_penelitian->extension();
+        $file_surat_izin_penelitian->move('file_surat_izin_penelitian_library', $nama_file_surat_izin_penelitian);
+
+        $data = SuratIzinPenelitian::UpdateOrcreate(
+            [
+                'id'    => $request->id
+            ],
+            [
+                'file_surat_izin_penelitian' => $nama_file_surat_izin_penelitian
+            ]
+        );
+
+        $data = [
+            'responCode' => 1,
+            'respon' => 'Data Sukses Ditambah'
+        ];
+
 
         return response()->json($data);
     }

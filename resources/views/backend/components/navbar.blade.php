@@ -69,18 +69,18 @@
                             <a class="nav-link" href="{{ url('kontrak') }}">Kontrak</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Sem. Antara</a>
+                            <a class="nav-link" href="{{ url('seminar-antara') }}">Sem. Antara</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Luaran</a>
+                            <a class="nav-link" href="{{ url('luaran-penelitian') }}">Luaran</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Sem. Hasil</a>
+                            <a class="nav-link" href="{{ url('seminar-hasil') }}">Sem. Hasil</a>
                         </li>
                     </ul>
                 </div>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#tahap3" aria-expanded="false"
                     aria-controls="ui-basic">
                     <i class="bi bi-box-seam menu-icon"></i>
@@ -94,7 +94,7 @@
                         </li>
                     </ul>
                 </div>
-            </li>
+            </li> --}}
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#lain" aria-expanded="false"
                     aria-controls="ui-basic">
@@ -104,15 +104,15 @@
                 </a>
                 <div class="collapse" id="lain">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="#">Publikasi</a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Izin Penelitian</a>
+                            <a class="nav-link" href="{{ url('surat-izin-penelitian') }}">Izin Penelitian</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="#">Pelatihan</a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </li>

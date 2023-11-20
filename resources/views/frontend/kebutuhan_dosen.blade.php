@@ -19,57 +19,19 @@
                             Penerbangan Palembang
                         </h6>
                         <a href="{{ url('/front/kebutuhan_dosen') }}?p=izin" style="border-radius: 25px; font-size: 12px;"
-                            class="btn btn-info mx-1">Surat Izin
+                            class="btn btn-info">Surat Izin
                             Penelitian</a>
-                        <a href="{{ url('/front/kebutuhan_dosen') }}?p=publikasi"
+                        {{-- <a href="{{ url('/front/kebutuhan_dosen') }}?p=publikasi"
                             style="border-radius: 25px; font-size: 12px;" class="btn btn-info mx-1">Publikasi</a>
                         <a href="{{ url('/front/kebutuhan_dosen') }}?p=pelatihan"
                             style="border-radius: 25px; font-size: 12px;" class="btn btn-info mx-1">Pelatihan
-                            Penelitian & Pengabdian</a>
+                            Penelitian & Pengabdian</a> --}}
                     </div>
                     <br>
                     @if (Request('p') == 'izin' || Request('p') == null)
                         @include('frontend.kebutuhan.surat_izin')
                     @endif
-                    {{-- <div class="">
-                        <form action="">
-                            <div class="mb-4">
-                                <label>Jenis Publikasi <sup class="text-danger">*</sup></label>
-                                <select name="" class="form-control border" id="">
-                                    <option value="">publikasi buku</option>
-                                </select>
-                            </div>
-                            <div class="mb-4">
-                                <label for="">Nama Dosen Pengusul<sup class="text-danger">*</sup></label>
-                                <input type="text" class="form-control border" placeholder="Nama Dosen">
-                            </div>
-                            <div class="mb-4">
-                                <label for="">Jumlah Pengajuan (Rp) <sup class="text-danger">*</sup></label>
-                                <input type="text" class="form-control border" placeholder="Jumlah Pengajuan (Rp)">
-                            </div>
-                            <div class="mb-4">
-                                <label for="">Judul Publikasi <sup class="text-danger">*</sup></label>
-                                <input type="text" class="form-control border" placeholder="Judul Publikasi">
-                            </div>
-                            <div class="mb-4">
-                                <label for="">Link Publikasi <sup class="text-danger">*</sup></label>
-                                <input type="text" class="form-control border" placeholder="Link Publikasi">
-                            </div>
-                            <div class="mb-4">
-                                <label for="">Upload Dokumen Publikasi <sup class="text-danger">*</sup></label>
-                                <input type="file" class="form-control border" placeholder="Nama Dosen">
-                            </div>
-                            <div class="mb-4">
-                                <label for="">Upload Bukti Pembayaran <sup class="text-danger">*</sup></label>
-                                <input type="file" class="form-control border" placeholder="Nama Dosen">
-                            </div>
-                            <button class="btn btn-info btn-sm">
-                                <i class="bi bi-send"></i> Submit
-                            </button>
-                        </form>
-                    </div> --}}
                 </div>
-                {{-- <div class="col-lg-4"></div> --}}
             </div>
         </div>
     </div>
