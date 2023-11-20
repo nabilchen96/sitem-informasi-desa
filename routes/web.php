@@ -22,17 +22,17 @@ Route::get('nilai/{id}',[PenilaianProposalController::class,'cetakNilai']);
 
 
 //LANDING
-Route::get('/', function(){
+Route::get('/', function () {
     return view('frontend.landing');
 });
 
 //JADWAL
-Route::get('/front/jadwal', function(){
+Route::get('/front/jadwal', function () {
     return view('frontend.jadwal');
 });
 
 //PENGUMUMAN
-Route::get('/front/pengumuman', function(){
+Route::get('/front/pengumuman', function () {
     return view('frontend.pengumuman');
 });
 
@@ -43,7 +43,7 @@ Route::get('/front/library', 'App\Http\Controllers\LibraryController@frontLibrar
 Route::get('/front/pengumuman', 'App\Http\Controllers\PengumumanController@frontPengumuman');
 
 //FORMULIR
-Route::get('/front/kegiatan', function(){
+Route::get('/front/kegiatan', function () {
     return view('frontend.kegiatan');
 });
 
@@ -59,14 +59,23 @@ Route::post('/store-revisi-proposal', 'App\Http\Controllers\RevisiProposalContro
 //MENGAJUKAN SURAT IZIN PENELITIAN
 Route::post('/store-surat-izin-penelitian', 'App\Http\Controllers\SuratIzinPenelitianController@store');
 
+//SEMINAR ANTARAN
+Route::post('/store-seminar-antara', 'App\Http\Controllers\SeminarAntaraController@store');
+
+//LUARAN PENELITIAN
+Route::post('/store-luaran-penelitian', 'App\Http\Controllers\LuaranPenelitianController@store');
+
+//SEMINAR HASIL
+Route::post('/store-seminar-hasil', 'App\Http\Controllers\SeminarHasilController@store');
+
 //HISTORY
-Route::get('/front/history', function(){
+Route::get('/front/history', function () {
     return view('frontend.history');
 });
 
 
 //KEBUTUHAN DOSEN
-Route::get('/front/kebutuhan_dosen', function(){
+Route::get('/front/kebutuhan_dosen', function () {
     return view('frontend.kebutuhan_dosen');
 });
 
@@ -110,7 +119,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/store-kegiatan', 'App\Http\Controllers\KegiatanController@store');
     Route::post('/update-kegiatan', 'App\Http\Controllers\KegiatanController@update');
     Route::post('/delete-kegiatan', 'App\Http\Controllers\KegiatanController@delete');
-    
+
     //JADWAL
     Route::get('/jadwal', 'App\Http\Controllers\JadwalController@index');
     Route::get('/data-jadwal', 'App\Http\Controllers\JadwalController@data');
@@ -145,11 +154,23 @@ Route::group(['middleware' => 'auth'], function () {
     //IZIN PENELITIAN
     Route::get('/surat-izin-penelitian', 'App\Http\Controllers\SuratIzinPenelitianController@index');
     Route::get('/data-surat-izin-penelitian', 'App\Http\Controllers\SuratIzinPenelitianController@data');
+    Route::post('/store-file-surat-izin-penelitian', 'App\Http\Controllers\SuratIzinPenelitianController@storeFile');
 
-    //REVISI PROPOSAL
+
+    //SEMINAR ANTARA
+    Route::get('/seminar-antara', 'App\Http\Controllers\SeminarAntaraController@index');
+    Route::get('/data-seminar-antara', 'App\Http\Controllers\SeminarAntaraController@data');
+
+    //LUARAN PENELITIAN
+    Route::get('/luaran-penelitian', 'App\Http\Controllers\LuaranPenelitianController@index');
+    Route::get('/data-luaran-penelitian', 'App\Http\Controllers\LuaranPenelitianController@data');
+
+    //SEMINAR HASIL
+    Route::get('/seminar-hasil', 'App\Http\Controllers\SeminarHasilController@index');
+    Route::get('/data-seminar-hasil', 'App\Http\Controllers\SeminarHasilController@data');
 
     //NOTIFIKASI WHATSAPP
-    Route::get('/notifikasi', function(){
+    Route::get('/notifikasi', function () {
         return view('backend.notifikasi.index');
     });
 

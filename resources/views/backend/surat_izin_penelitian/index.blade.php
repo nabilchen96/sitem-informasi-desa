@@ -16,6 +16,11 @@
         .table-striped tbody tr:nth-of-type(odd) {
             background-color: #9e9e9e21 !important;
         }
+
+        th,
+        td {
+            white-space: nowrap !important;
+        }
     </style>
 @endpush
 @section('content')
@@ -23,7 +28,7 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-12 col-xl-8 mb-xl-0">
-                    <h3 class="font-weight-bold text-white">Data User</h3>
+                    <h3 class="font-weight-bold">Data Luaran Penelitian</h3>
                 </div>
             </div>
         </div>
@@ -32,19 +37,17 @@
         <div class="col-12 mt-4">
             <div class="card w-100">
                 <div class="card-body">
-                    {{-- @if (Auth::user()->role == 'Admin')                         --}}
-                        <button type="button" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#modal">
-                            Tambah
-                        </button>
-                    {{-- @endif --}}
                     <div class="table-responsive">
                         <table id="myTable" class="table table-striped" style="width: 100%;">
                             <thead class="bg-info text-white">
                                 <tr>
                                     <th width="5%">No</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
+                                    <th>Nama Dosen</th>
+                                    <th>Alasan Pengajuan</th>
+                                    <th>Tanggal Rencana</th>
+                                    <th>Lokasi Renacana</th>
+                                    <th>Judul Penelitian</th>
+                                    <th>File Surat Izin</th>
                                     <th width="5%"></th>
                                     <th width="5%"></th>
                                 </tr>
@@ -61,37 +64,20 @@
             <div class="modal-content">
                 <form id="form">
                     <div class="modal-header p-3">
-                        <h5 class="modal-title m-2" id="exampleModalLabel">User Form</h5>
+                        <h5 class="modal-title m-2" id="exampleModalLabel">File Upload</h5>
                     </div>
                     <div class="modal-body">
                         <input type="hidden" name="id" id="id">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input name="email" id="email" type="email" placeholder="email"
-                                class="form-control form-control-sm" aria-describedby="emailHelp" required>
-                            <span class="text-danger error" style="font-size: 12px;" id="email_alert"></span>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Nama Lengkap</label>
-                            <input name="name" id="name" type="text" placeholder="Nama Lengkap"
-                                class="form-control form-control-sm" aria-describedby="emailHelp" required>
-                        </div>
-                    
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input name="password" id="password" type="password" placeholder="Password"
+                            <label>Nama Dosen</label>
+                            <input name="nama_dosen" id="nama_dosen" type="text" readonly
                                 class="form-control form-control-sm" required>
-                            <span class="text-danger error" style="font-size: 12px;" id="password_alert"></span>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Role</label>
-                            <select name="role" class="form-control" id="role" required>
-                                <option value="Admin">Admin</option>
-                                <option value="Verifikator">Verifikator</option>
-                                <option value="Pengguna">Pengguna</option>
-                            </select>
+                            <label for="exampleInputEmail1">File Surat Izin Penelitian</label>
+                            <input type="file" class="form-control form-control-sm" name="file_surat_izin_penelitian"
+                                required>
                         </div>
-                        
                     </div>
                     <div class="modal-footer p-3">
                         <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
@@ -103,6 +89,7 @@
     </div>
 @endsection
 @push('script')
+    <script src="https://cdn.datatables.net/fixedcolumns/4.2.2/js/dataTables.fixedColumns.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             getData()
@@ -111,35 +98,58 @@
         function getData() {
             $("#myTable").DataTable({
                 "ordering": false,
-                ajax: '/data-user',
+                scrollX: true,
+                scrollCollapse: true,
+                ajax: '/data-surat-izin-penelitian',
                 processing: true,
                 'language': {
                     'loadingRecords': '&nbsp;',
                     'processing': 'Loading...'
                 },
+
                 columns: [{
                         render: function(data, type, row, meta) {
                             return meta.row + meta.settings._iDisplayStart + 1;
                         }
                     },
                     {
-                        data: "name"
+                        data: "nama_dosen"
                     },
                     {
-                        data: "email"
+                        // data: "judul_penelitian"
+                        render: function(data, type, row, meta) {
+                            return `<span style="
+                            width: 205px !important;
+                            white-space: normal;
+                            display: inline-block !important;
+                            ">
+                            ${row.alasan_pengajuan_surat}
+                            </span>`
+                        }
+                    },
+                    {
+                        data: "tanggal_rencana_kegiatan"
+                    },
+                    {
+                        data: "lokasi_rencana_kegiatan"
+                    },
+                    {
+                        data: "judul_penelitian_terkait"
                     },
                     {
                         render: function(data, type, row, meta) {
-                            if (row.role == "Admin") {
-                                return `<span class="badge badge-success">${row.role}</span>`
-                            } else if (row.role == "Pengguna") {
-                                return `<span class="badge badge-danger">Laboran</span>`
-                            } else if (row.role == "Verifikator") {
-                                return `<span class="badge badge-primary">${row.role}</span>`
-                            } 
+                            if(row.file_surat_izin_penelitian == null){
+
+                                return ``
+
+                            }else{
+                                
+                                return `<a href="/file_surat_izin_penelitian_library/${row.file_surat_izin_penelitian}">
+                                    <i style="font-size: 1rem;" class="bi bi-cloud-arrow-down"></i> File Surat Izin Penelitian
+                                </a>`
+                            }
                         }
                     },
-                    
                     {
                         render: function(data, type, row, meta) {
                             return `<a data-toggle="modal" data-target="#modal"
@@ -152,8 +162,8 @@
                         render: function(data, type, row, meta) {
                             return `<a href="javascript:void(0)" onclick="hapusData(` + (row
                                 .id) + `)">
-                                    <i style="font-size: 1.5rem;" class="text-danger bi bi-trash"></i>
-                                </a>`
+                                <i style="font-size: 1.5rem;" class="text-danger bi bi-trash"></i>
+                            </a>`
                         }
                     },
                 ]
@@ -176,9 +186,7 @@
             if (recipient) {
                 var modal = $(this)
                 modal.find('#id').val(cokData[0].id)
-                modal.find('#email').val(cokData[0].email)
-                modal.find('#name').val(cokData[0].name)
-                modal.find('#role').val(cokData[0].role)
+                modal.find('#nama_dosen').val(cokData[0].nama_dosen)
             }
         })
 
@@ -192,7 +200,7 @@
 
             axios({
                     method: 'post',
-                    url: formData.get('id') == '' ? '/store-user' : '/update-user',
+                    url: '/store-file-surat-izin-penelitian',
                     data: formData,
                 })
                 .then(function(res) {
@@ -215,6 +223,7 @@
                         //error validation
                         document.getElementById('password_alert').innerHTML = res.data.respon.password ?? ''
                         document.getElementById('email_alert').innerHTML = res.data.respon.email ?? ''
+                        document.getElementById('no_wa_alert').innerHTML = res.data.respon.no_wa ?? ''
                     }
 
                     document.getElementById("tombol_kirim").disabled = false;
@@ -224,49 +233,6 @@
                     //handle error
                     console.log(res);
                 });
-        }
-
-        hapusData = (id) => {
-            Swal.fire({
-                title: "Yakin hapus data?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                confirmButtonText: 'Ya',
-                cancelButtonColor: '#3085d6',
-                cancelButtonText: "Batal"
-
-            }).then((result) => {
-
-                if (result.value) {
-                    axios.post('/delete-user', {
-                            id
-                        })
-                        .then((response) => {
-                            if (response.data.responCode == 1) {
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Berhasil',
-                                    timer: 2000,
-                                    showConfirmButton: false
-                                })
-
-                                $('#myTable').DataTable().clear().destroy();
-                                getData();
-
-                            } else {
-                                Swal.fire({
-                                    icon: 'warning',
-                                    title: 'Gagal...',
-                                    text: response.data.respon,
-                                })
-                            }
-                        }, (error) => {
-                            console.log(error);
-                        });
-                }
-
-            });
         }
     </script>
 @endpush

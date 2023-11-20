@@ -28,7 +28,7 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-12 col-xl-8 mb-xl-0">
-                    <h3 class="font-weight-bold">Data Revisi Proposal</h3>
+                    <h3 class="font-weight-bold">Data Luaran Penelitian</h3>
                 </div>
             </div>
         </div>
@@ -44,9 +44,10 @@
                                     <th width="5%">No</th>
                                     <th>Judul</th>
                                     <th>Peneliti</th>
-                                    <th>File Revisi</th>
+                                    <th>Kategori</th>
+                                    <th>Jenis Publikasi</th>
+                                    <th>File Luaran</th>
                                     <th>Tanggal Unggah</th>
-                                    <th width="5%"></th>
                                     <th width="5%"></th>
                                 </tr>
                             </thead>
@@ -69,7 +70,7 @@
                 "ordering": false,
                 scrollX: true,
                 scrollCollapse: true,
-                ajax: '/data-revisi-proposal',
+                ajax: '/data-luaran-penelitian',
                 processing: true,
                 'language': {
                     'loadingRecords': '&nbsp;',
@@ -97,23 +98,21 @@
                         data: "nama_dosen"
                     },
                     {
+                        data: "kategori"
+                    },
+                    {
+                        data: "jenis_publikasi"
+                    },
+                    {
                         // data: "anggota"
                         render: function(data, type, row, meta) {
-                            return `<a href="/file_proposal_revisi_library/${row.file_proposal_revisi}">
-                                <i style="font-size: 1rem;" class="bi bi-cloud-arrow-down"></i> File Proposal
+                            return `<a href="/file_luaran/${row.file_luaran}">
+                                <i style="font-size: 1rem;" class="bi bi-cloud-arrow-down"></i> File Luaran Penelitian
                             </a>`
                         }
                     },
                     {
                         data: "created_at"
-                    },
-                    {
-                        render: function(data, type, row, meta) {
-                            return `<a data-toggle="modal" data-target="#modal"
-                                data-bs-id=` + (row.id) + ` href="javascript:void(0)">
-                                <i style="font-size: 1.5rem;" class="text-success bi bi-grid"></i>
-                            </a>`
-                        }
                     },
                     {
                         render: function(data, type, row, meta) {

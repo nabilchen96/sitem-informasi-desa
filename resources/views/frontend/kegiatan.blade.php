@@ -8,7 +8,8 @@
                     <h6 class="section-subtitle text-muted mb-4">
                         Kegiatan Penelitian dan Pengabdian Kepada Masyarakat <br> Politeknik Penerbangan Palembang
                     </h6>
-                    <span class="text-muted">Kunjungi tautan berikut ini <a class="text-info" href="{{ url('front/history') }}">History</a> <br>
+                    <span class="text-muted">Kunjungi tautan berikut ini <a class="text-info"
+                            href="{{ url('front/history') }}">History</a> <br>
                         untuk melihat history atau aktivitas penelitian anda</span>
                 </div>
                 <br><br>
@@ -59,6 +60,14 @@
                 @include('frontend.kegiatan.tahap5')
             @elseif(@getJadwalAktif()->tahap_ke == 6)
                 @include('frontend.kegiatan.tahap6')
+            @elseif(@getJadwalAktif()->tahap_ke == 7)
+                @include('frontend.kegiatan.tahap7')
+            @elseif(@getJadwalAktif()->tahap_ke == 8)
+                @include('frontend.kegiatan.tahap8')
+            @elseif(@getJadwalAktif()->tahap_ke == 9)
+                @include('frontend.kegiatan.tahap9')
+            @elseif(@getJadwalAktif()->tahap_ke == 10)
+                @include('frontend.kegiatan.tahap10')
             @endif
         </div>
     </div>
