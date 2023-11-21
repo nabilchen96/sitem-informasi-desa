@@ -150,7 +150,7 @@
                             <a class="nav-link" href="{{ url('penilaian-proposal') }}">Penilaian Proposal</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Revisi Proposal</a>
+                            <a class="nav-link" href="{{ url('revisi-proposal') }}">Revisi Proposal</a>
                         </li>
                     </ul>
                 </div>

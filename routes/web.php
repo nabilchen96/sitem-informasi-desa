@@ -14,12 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/nanang', function(){
-    return "Nanang";
-});
-
 Route::get('nilai/{id}',[PenilaianProposalController::class,'cetakNilai']);
-
 
 //LANDING
 Route::get('/', function () {
