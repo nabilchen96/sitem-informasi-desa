@@ -42,40 +42,15 @@
                         <thead class="bg-info text-white">
                             <tr>
                                 <th width="5%">No</th>
-                                <th>Tanggal</th>
+                                <th>Judul</th>
                                 <th>Pesan</th>
-                                <th width="5%"></th>
-                                <th width="5%"></th>
+                                <th width="5%">No. WA</th>
+                                {{-- <th width="5%"></th> --}}
                                 <th width="5%"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td style="width: 80px;">
-                                    10-10-2023
-                                </td>
-                                <td>
-                                    Diharapkan kepada bapak/ibu untuk segera mengirimkan usulan judul penelitian melalui
-                                    tautan https://sipp.poltekbangplg.ac.id/kegiatanpppm. Karena batas waktu pengumpulan 2 hari lagi
-                                    yaitu di tanggal 12-10-2023
-                                </td>
-                                <td>
-                                    <a href="javascript:void(0)">
-                                        <i style="font-size: 1.5rem;" class="text-info bi bi-send"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="javascript:void(0)">
-                                        <i style="font-size: 1.5rem;" class="text-success bi bi-grid"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="javascript:void(0)">
-                                        <i style="font-size: 1.5rem;" class="text-danger bi bi-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                            
                         </tbody>
                     </table>
                 </div>
@@ -96,12 +71,12 @@
                     <input type="hidden" name="id" id="id">
                     <div class="form-group">
                         <label>Judul Pengumuman <sup class="text-danger">*</sup></label>
-                        <input name="judul" id="judul" type="judul" placeholder="Judul File" class="form-control form-control-sm" required>
+                        <input name="judul_notif" id="judul_notif" type="judul_notif" placeholder="Judul File" class="form-control form-control-sm" required>
                     </div>
                     <div class="form-group">
                         <label>Kirim ke - <sup class="text-danger">*</sup></label>
-                        <select class="js-example-basic-multiple" name="list_nomor[]" id="list_nomor" multiple="multiple" style="width: 450px !important">
-                            <option value="Semua" selected>Semua</option>
+                        <select class="js-example-basic-multiple" name="list_nomor[]" id="list_nomor" multiple="multiple" style="width: 450px !important" required>
+                            <option value="Semua">Semua</option>
                             @foreach ($dosens as $ds)
                                 <option value="{{ $ds->no_wa }}">{{ $ds->nama_dosen }}</option>
                             @endforeach
@@ -110,7 +85,7 @@
                     </div>
                     <div class="form-group">
                         <label>Keterangan</label>
-                        <input name="keterangan" id="keterangan" type="keterangan" placeholder="Judul File" class="form-control form-control-sm">
+                        <input name="isi_notif" id="isi_notif" type="isi_notif" placeholder="Isi Pesan" class="form-control form-control-sm" required>
                     </div>
                 </div>
                 <div class="modal-footer p-3">
@@ -150,22 +125,22 @@
                     }
                 }
                 , {
-                    data: "judul"
+                    data: "judul_notif"
                 }
                 , {
-                    data: "keterangan"
+                    data: "isi_notif"
                 }
                 , {
-                    data: "created_at"
+                    data: "list_nomor"
                 }
-                , {
-                    render: function(data, type, row, meta) {
-                        return `<a data-toggle="modal" data-target="#modal"
-                                data-bs-id=` + (row.id) + ` href="javascript:void(0)">
-                                <i style="font-size: 1.5rem;" class="text-success bi bi-grid"></i>
-                            </a>`
-                    }
-                }
+                // , {
+                //     render: function(data, type, row, meta) {
+                //         return `<a data-toggle="modal" data-target="#modal"
+                //                 data-bs-id=` + (row.id) + ` href="javascript:void(0)">
+                //                 <i style="font-size: 1.5rem;" class="text-success bi bi-grid"></i>
+                //             </a>`
+                //     }
+                // }
                 , {
                     render: function(data, type, row, meta) {
                         return `<a href="javascript:void(0)" onclick="hapusData(` + (row
@@ -194,8 +169,8 @@
         if (recipient) {
             var modal = $(this)
             modal.find('#id').val(cokData[0].id)
-            modal.find('#judul').val(cokData[0].judul)
-            modal.find('#keterangan').val(cokData[0].keterangan)
+            modal.find('#judul_notif').val(cokData[0].judul_notif)
+            modal.find('#isi_notif').val(cokData[0].isi_notif)
         }
     })
 

@@ -37,14 +37,11 @@ class NotifikasiController extends Controller
 
     public function store(Request $request)
     {   
-
+        // dd(count($request->list_nomor));
         $validator = Validator::make($request->all(), [
-            'judul' => 'required',
+            'judul_notif' => 'required',
+            'isi_notif' => 'required',
         ]);
-
-        $file = $request->file;
-        $nama_file = '1' . date('YmdHis.') . $file->extension();
-        $file->move('file_notifikasi', $nama_file);
 
         if ($validator->fails()) {
 
@@ -54,11 +51,29 @@ class NotifikasiController extends Controller
             ];
 
         } else {
+            
+            if($request->list_nomor[0] == 'Semua' || count($request->list_nomor) > 1){
+                $tipe_pengiriman = 'Broadcast';
+            } else {
+                $tipe_pengiriman = "Personal";
+            }
+
+            if($request->list_nomor == 'Semua') {
+                $listnomor = "Semua";
+            } else {
+                $listnomor = implode(',', $request->list_nomor);
+                
+            }
+
             $data = Notifikasi::create([
-                'judul' => $request->judul,
-                'file' => $nama_file,
-                'keterangan' => $request->keterangan
+                'judul_notif' => $request->judul_notif,
+                'isi_notif' => $request->isi_notif,
+                'list_nomor' => $listnomor,
+                'tipe_pengiriman' => $tipe_pengiriman,
+                'kirim_sekarang' => '1',
             ]);
+
+            sendWANotif($request->isi_notif, $request->list_nomor);
 
             $data = [
                 'responCode' => 1,
@@ -74,7 +89,7 @@ class NotifikasiController extends Controller
 
         $validator = Validator::make($request->all(), [
             'id' => 'required',
-            'judul' => 'required'
+            'judul_notif' => 'required'
         ]);
 
         if ($request->file) {
@@ -92,7 +107,7 @@ class NotifikasiController extends Controller
 
             $notifikasi = Notifikasi::find($request->id);
             $data = $notifikasi->update([
-                'judul' => $request->judul,
+                'judul_notif' => $request->judul_notif,
                 'file' => $nama_file ?? $notifikasi->file,
                 'keterangan' => $request->keterangan
             ]);

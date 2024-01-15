@@ -170,7 +170,7 @@ Route::group(['middleware' => 'auth'], function () {
     // });
     Route::get('/notifikasi', 'App\Http\Controllers\NotifikasiController@index');
     Route::get('/data-notifikasi', 'App\Http\Controllers\NotifikasiController@data');
-    Route::post('/store-notifikasi', 'App\Http\Controllers\NotifikasiController@teskirimNotif');
+    Route::post('/store-notifikasi', 'App\Http\Controllers\NotifikasiController@store');
     Route::post('/update-notifikasi', 'App\Http\Controllers\NotifikasiController@update');
     Route::post('/delete-notifikasi', 'App\Http\Controllers\NotifikasiController@delete');
 
