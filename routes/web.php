@@ -165,9 +165,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/data-seminar-hasil', 'App\Http\Controllers\SeminarHasilController@data');
 
     //NOTIFIKASI WHATSAPP
-    Route::get('/notifikasi', function () {
-        return view('backend.notifikasi.index');
-    });
+    // Route::get('/notifikasi', function () {
+    //     return view('backend.notifikasi.index');
+    // });
+    Route::get('/notifikasi', 'App\Http\Controllers\NotifikasiController@index');
+    Route::get('/data-notifikasi', 'App\Http\Controllers\NotifikasiController@data');
+    Route::post('/store-notifikasi', 'App\Http\Controllers\NotifikasiController@teskirimNotif');
+    Route::post('/update-notifikasi', 'App\Http\Controllers\NotifikasiController@update');
+    Route::post('/delete-notifikasi', 'App\Http\Controllers\NotifikasiController@delete');
 
     //LIBRARY
     Route::get('/library', 'App\Http\Controllers\LibraryController@index');

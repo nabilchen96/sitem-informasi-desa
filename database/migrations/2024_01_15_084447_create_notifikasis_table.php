@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateNotifikasisTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('notifikasis', function (Blueprint $table) {
+            $table->id();
+            $table->string('judul_notif')->nullable();
+            $table->text('isi_notif')->nullable();
+            $table->text('list_nomor')->nullable();
+            $table->enum('kirim_sekarang',['0','1']);
+            $table->enum('tipe_pengiriman',['Personal','Broadcast']);
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('notifikasis');
+    }
+}

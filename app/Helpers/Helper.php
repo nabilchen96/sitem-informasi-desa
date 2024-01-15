@@ -81,7 +81,15 @@ function sendWADosen($noWA, $namaDosen, $tokenAkses, $jk)
         $nick = "";
     }
 
-    $pesan = "$greet $nick $namaDosen, berikut kami sampaikan Token untuk mengakses aplikasi PUSPPM. URL : https://sipp.poltekbangplg.ac.id TOKEN : *$tokenAkses*. Harap simpan *TOKEN* tersebut agar bisa mengakses aplikasi SIPP. Salam Hormat *- Admin PUSPPM -*";
+    $pesan = "$greet $nick 
+*$namaDosen*, berikut kami sampaikan Token untuk mengakses aplikasi PUSPPM.
+URL : https://sipp.poltekbangplg.ac.id
+TOKEN : *$tokenAkses*. 
+
+Harap simpan *TOKEN* tersebut agar bisa mengakses aplikasi SIPP. 
+
+Salam Hormat 
+*- Admin PUSPPM -*";
 
     $curl = curl_init();
 
@@ -115,13 +123,18 @@ function sendReviewerAccount($noWA, $namaDosen, $email, $password)
 {
     $greet = greetToDosen();
 
-    $pesan = "$greet $namaDosen, berikut kami sampaikan Detail Akun Reviewer Anda. 
-    URL : https://sipp.poltekbangplg.ac.id/login
-    Email : *$email*
-    Password : *$password*
-    Harap simpan informasi *AKUN* tersebut agar bisa mengakses aplikasi SIPP. 
-    Salam Hormat 
-    *- Admin PUSPPM -*";
+    $pesan = "$greet $namaDosen, berikut kami sampaikan Detail Akun Reviewer Anda.
+
+==============================
+URL : https://sipp.poltekbangplg.ac.id/login
+Email : *$email*
+Password : *$password*
+==============================
+
+Harap simpan informasi *AKUN* tersebut agar bisa mengakses aplikasi SIPP. 
+Salam Hormat
+
+*- Admin PUSPPM -*";
 
     $curl = curl_init();
 
@@ -172,8 +185,13 @@ function sendWAJadwal($kegiatan, $message, $tgl_awal, $tgl_akhir)
         CURLOPT_CUSTOMREQUEST => 'POST',
         CURLOPT_POSTFIELDS => array(
             'target' => $noWA,
-            'message' => "Informasi Jadwal *$kegiatan*. Tahap : *" . $message . "* dimulai pada *$tglawal* s/d *$tglakhir*. Silahkan cek informasi pada https://sipp.poltekbangplg.ac.id/front/kegiatan Salam Hormat *- Admin PUSPPM -*",
-            'delay' => '5', //nilai jgan diubah
+            'message' => "Informasi Jadwal *$kegiatan*. Tahap : *" . $message . "* dimulai pada *$tglawal* s/d *$tglakhir*.
+
+Silahkan cek informasi pada https://sipp.poltekbangplg.ac.id/front/kegiatan
+
+Salam Hormat 
+*- Admin PUSPPM -*",
+            'delay' => '2', //nilai jgan diubah
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
@@ -266,9 +284,11 @@ function sendUpdateUsulanProposal($noWA, $namaDosen, $judul, $status, $jk, $kete
     $greet = greetToDosen();
 
     $pesan = "$greet $nick $namaDosen usulan Proposal *$judul* *$ubah*.
-    Keterangan : *$ket*.
-    Silahkan cek informasi pada https://sipp.poltekbangplg.ac.id/front/history
-    Salam Hormat *- Admin PUSPPM -*  ";
+Keterangan : *$ket*.
+Silahkan cek informasi pada https://sipp.poltekbangplg.ac.id/front/history
+
+Salam Hormat
+*- Admin PUSPPM -*  ";
 
     $curl = curl_init();
 
@@ -284,6 +304,49 @@ function sendUpdateUsulanProposal($noWA, $namaDosen, $judul, $status, $jk, $kete
         CURLOPT_POSTFIELDS => array(
             'target' => $noWA,
             'message' => $pesan,
+            'delay' => '2', //nilai jgan diubah
+            'countryCode' => '62', //optional
+        ),
+        CURLOPT_HTTPHEADER => array(
+            'Authorization: +@sfKr+UZgUoSLEsTWb8' //change TOKEN to your actual token
+        ),
+    ));
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+    // echo $response;
+}
+
+function sendWANotif($message, $list_nomor)
+{
+
+    if($list_nomor[0] == 'Semua'){
+        $noWA = getListDosenWANumber();
+    } else {
+        $noWA = implode(',', $list_nomor);
+    }
+    
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api.fonnte.com/send',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => array(
+            'target' => $noWA,
+            'message' => "" . $message . ".
+
+Silahkan cek informasi pada https://sipp.poltekbangplg.ac.id/front/kegiatan
+
+Salam Hormat 
+*- Admin PUSPPM -*",
             'delay' => '2', //nilai jgan diubah
             'countryCode' => '62', //optional
         ),
