@@ -101,7 +101,7 @@ function sendWADosen($noWA, $namaDosen, $tokenAkses, $jk)
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
-            'Authorization: 32IW16nCPnRmoLc5yCm9' //change TOKEN to your actual token
+            'Authorization: +@sfKr+UZgUoSLEsTWb8' //change TOKEN to your actual token
         ),
     ));
 
@@ -141,7 +141,7 @@ function sendReviewerAccount($noWA, $namaDosen, $email, $password)
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
-            'Authorization: 32IW16nCPnRmoLc5yCm9' //change TOKEN to your actual token
+            'Authorization: +@sfKr+UZgUoSLEsTWb8' //change TOKEN to your actual token
         ),
     ));
 
@@ -177,7 +177,7 @@ function sendWAJadwal($kegiatan, $message, $tgl_awal, $tgl_akhir)
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
-            'Authorization: 32IW16nCPnRmoLc5yCm9' //change TOKEN to your actual token
+            'Authorization: +@sfKr+UZgUoSLEsTWb8' //change TOKEN to your actual token
         ),
     ));
 
@@ -228,7 +228,7 @@ function sendUpdateUsulanJudul($noWA, $namaDosen, $judul, $status, $jk)
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
-            'Authorization: 32IW16nCPnRmoLc5yCm9' //change TOKEN to your actual token
+            'Authorization: +@sfKr+UZgUoSLEsTWb8' //change TOKEN to your actual token
         ),
     ));
 
@@ -288,7 +288,7 @@ function sendUpdateUsulanProposal($noWA, $namaDosen, $judul, $status, $jk, $kete
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
-            'Authorization: 32IW16nCPnRmoLc5yCm9' //change TOKEN to your actual token
+            'Authorization: +@sfKr+UZgUoSLEsTWb8' //change TOKEN to your actual token
         ),
     ));
 
