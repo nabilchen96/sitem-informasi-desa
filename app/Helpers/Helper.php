@@ -187,7 +187,8 @@ function sendWAJadwal($kegiatan, $message, $tgl_awal, $tgl_akhir)
             'target' => $noWA,
             'message' => "Informasi Jadwal *$kegiatan*. Tahap : *" . $message . "* dimulai pada *$tglawal* s/d *$tglakhir*.
 
-Silahkan cek informasi pada https://sipp.poltekbangplg.ac.id/front/kegiatan
+Silahkan cek informasi pada 
+https://sipp.poltekbangplg.ac.id/front/kegiatan
 
 Salam Hormat 
 *- Admin PUSPPM -*",
@@ -343,7 +344,8 @@ function sendWANotif($message, $list_nomor)
             'target' => $noWA,
             'message' => "" . $message . ".
 
-Silahkan cek informasi pada https://sipp.poltekbangplg.ac.id/front/kegiatan
+Silahkan cek informasi pada : 
+https://sipp.poltekbangplg.ac.id/front/kegiatan
 
 Salam Hormat 
 *- Admin PUSPPM -*",
