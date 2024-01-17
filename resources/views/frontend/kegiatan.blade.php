@@ -12,9 +12,8 @@
                             href="{{ url('front/history') }}">History</a> <br>
                         untuk melihat history atau aktivitas penelitian anda</span>
                 </div>
-                <br><br>
-
-                <ul class="timeline">
+                <br>
+                <ul class="d-none d-lg-block d-xl-block timeline">
                     <li @if (@getJadwalAktif()->tahap_ke == 1) style="background: red;" data-year="We Are Here!" @endif
                         data-text="1. Pengajuan Judul"></li>
                     <li @if (@getJadwalAktif()->tahap_ke == 2) style="background: red;" data-year="We Are Here!" @endif
@@ -38,6 +37,95 @@
                     <li @if (@getJadwalAktif()->tahap_ke == 10) style="background: red;" data-year="We Are Here!" @endif
                         data-year="" data-text="10. Survey Kepuasan Layanan"></li>
                 </ul>
+                <div class="d-lg-none d-xl-none d-xxl-none">
+                    <style>
+                        ul.timelinex {
+                            list-style-type: none;
+                            position: relative;
+                        }
+
+                        ul.timelinex:before {
+                            content: ' ';
+                            background: #d4d9df;
+                            display: inline-block;
+                            position: absolute;
+                            left: 29px;
+                            width: 2px;
+                            height: 100%;
+                            z-index: 400;
+                        }
+
+                        ul.timelinex>li {
+                            margin: 25px 0;
+                            padding-left: 20px;
+                        }
+
+                        ul.timelinex>li:before {
+                            content: ' ';
+                            background: white;
+                            display: inline-block;
+                            position: absolute;
+                            border-radius: 50%;
+                            border: 3px solid #22c0e8;
+                            left: 20px;
+                            width: 20px;
+                            height: 20px;
+                            z-index: 400;
+                        }
+                    </style>
+                    <ul class="timelinex">
+                        <li class="text-left">
+                            1. Pengajuan Judul @if (@getJadwalAktif()->tahap_ke == 1)
+                                <br> <b>We Are Here!</b>
+                            @endif
+                        </li>
+                        <li class="text-left">
+                            2. Pengumuman Hasil Seleksi @if (@getJadwalAktif()->tahap_ke == 2)
+                                <br> <b>We Are Here!</b>
+                            @endif
+                        </li>
+                        <li class="text-left">
+                            3. Proposal @if (@getJadwalAktif()->tahap_ke == 3)
+                                <br> <b>We Are Here!</b>
+                            @endif
+                        </li>
+                        <li class="text-left">
+                            4. Seminar Proposal @if (@getJadwalAktif()->tahap_ke == 4)
+                                <br> <b>We Are Here!</b>
+                            @endif
+                        </li>
+                        <li class="text-left">
+                            5. RAB @if (@getJadwalAktif()->tahap_ke == 5)
+                                <br> <b>We Are Here!</b>
+                            @endif
+                        </li>
+                        <li class="text-left">
+                            6. Surat Izin Penelitian @if (@getJadwalAktif()->tahap_ke == 6)
+                                <br> <b>We Are Here!</b>
+                            @endif
+                        </li>
+                        <li class="text-left">
+                            7. Seminar Antara @if (@getJadwalAktif()->tahap_ke == 7)
+                                <br> <b>We Are Here!</b>
+                            @endif
+                        </li>
+                        <li class="text-left">
+                            8. Luaran Penelitian @if (@getJadwalAktif()->tahap_ke == 8)
+                                <br> <b>We Are Here!</b>
+                            @endif
+                        </li>
+                        <li class="text-left">
+                            9. Seminar Hasil @if (@getJadwalAktif()->tahap_ke == 9)
+                                <br> <b>We Are Here!</b>
+                            @endif
+                        </li>
+                        <li class="text-left">
+                            10. Survey Kepuasan Layanan @if (@getJadwalAktif()->tahap_ke == 10)
+                                <br> <b>We Are Here!</b>
+                            @endif
+                        </li>
+                    </ul>
+                </div>
                 <br><br>
             </section>
             @if (@getJadwalAktif()->tahap_ke == 1)

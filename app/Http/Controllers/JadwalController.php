@@ -71,7 +71,8 @@ class JadwalController extends Controller
                 'tahap_ke'           => $request->tahap_ke,
                 'publish_pengumuman' => $request->publish_pengumuman,
                 'file_upload'        => $request->file_upload ? $nama_file : '',
-                'nama_file'          => $request->nama_file
+                'nama_file'          => $request->nama_file,
+                'kirim_wa'           => $request->kirim_wa
             ]);
             
             if ($request->publish_pengumuman) {
@@ -81,7 +82,10 @@ class JadwalController extends Controller
                 ]);
             }
 
-            sendWAJadwal($kegiatan->nama_kegiatan, $request->nama_jadwal, $request->tanggal_awal, $request->tanggal_akhir);
+            if($request->kirim_wa == '1'){
+                sendWAJadwal($kegiatan->nama_kegiatan, $request->nama_jadwal, $request->tanggal_awal, $request->tanggal_akhir,'insert');
+            }
+            // sendWAJadwal($kegiatan->nama_kegiatan, $request->nama_jadwal, $request->tanggal_awal, $request->tanggal_akhir);
 
             $data = [
                 'responCode'    => 1,
@@ -118,6 +122,10 @@ class JadwalController extends Controller
                 $file->move('file_pengumuman', $nama_file);
             }
 
+
+            $kegiatan = Kegiatan::find($request->kegiatan_id);
+            $cekAktifJadwal = Jadwal::where('status','1')->first();
+
             $jadwal = Jadwal::find($request->id);
             $data = $jadwal->update([
                 'nama_jadwal'       => $request->nama_jadwal,
@@ -128,8 +136,13 @@ class JadwalController extends Controller
                 'tahapan'           => $request->tahapan,
                 'tahap_ke'          => $request->tahap_ke,
                 'file_upload'       => $request->file_upload ? $nama_file : '',
-                'nama_file'         => $request->nama_file
+                'nama_file'         => $request->nama_file,
+                'kirim_wa'          => $request->kirim_wa
             ]);
+
+            if($request->kirim_wa == '1'){
+                sendWAJadwal($kegiatan->nama_kegiatan, $request->nama_jadwal, $request->tanggal_awal, $request->tanggal_akhir,'update');
+            }
 
             $data = [
                 'responCode'    => 1,

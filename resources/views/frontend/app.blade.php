@@ -193,11 +193,11 @@
                                 <span class="close-icon toggle-icon mdi mdi-close navbar-toggler-icon pl-5"></span>
                             </button>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" style="white-space: nowrap;" href="{{ url('front/jadwal') }}">
                                 📅 Jadwal
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link" style="white-space: nowrap;" href="{{ url('front/pengumuman') }}">
                                 🎺 Pengumuman

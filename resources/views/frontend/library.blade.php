@@ -4,14 +4,14 @@
         <div class="container">
             <section class="features-overview" id="features-section">
                 <div class="row">
-                    <div class="col-lg-6 mt-4" data-aos="fade-up" data-aos-duration="1200">
-                        <div id="lottie-container"></div>
+                    <div class="col-lg-6 mt-4 d-none d-sm-block" data-aos="fade-up" data-aos-duration="1200">
+                        <div class="" id="lottie-container"></div>
                     </div>
                     <div class="col-lg-6" data-aos="fade-up" data-aos-duration="1200">
-                        <div class="mt-3">
+                        <div class="text-center mt-3">
                             <h2>📂 Library</h2>
                             <h6 class="section-subtitle text-muted mb-4">
-                                Library Penelitian dan Pengabdian Kepada Masyarakat <br> Politeknik Penerbangan Palembang
+                                Library Penelitian dan Pengabdian Kepada Masyarakat Politeknik Penerbangan Palembang
                             </h6>
                         </div>
                         <div class="table-responsive">

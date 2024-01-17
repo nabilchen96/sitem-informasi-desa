@@ -8,8 +8,8 @@
                     Sistem Informasi Penelitian dan Pengabdian Kepada Masyarakat
                     <br>Politeknik Penerbangan Palembang
                 </p>
-                <p class="text-muted">Lihat timelinex Jadwal</p>
-                <a style="border-radius: 25px;" class="text-white btn btn-danger">
+                <p class="text-muted">Lihat timeline Jadwal</p>
+                <a href="{{ url('front/kegiatan') }}" style="border-radius: 25px;" class="text-white btn btn-danger">
                     Jadwal &nbsp; <i class="bi bi-play-circle-fill"></i>
                 </a>
             </div>

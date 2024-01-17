@@ -106,7 +106,7 @@
                     {
                         // data: "anggota"
                         render: function(data, type, row, meta) {
-                            return `<a href="/file_luaran/${row.file_luaran}">
+                            return `<a href="/file_luaran_library/${row.file_luaran}">
                                 <i style="font-size: 1rem;" class="bi bi-cloud-arrow-down"></i> File Luaran Penelitian
                             </a>`
                         }

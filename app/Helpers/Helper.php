@@ -164,11 +164,18 @@ Salam Hormat
     // echo $response;
 }
 
-function sendWAJadwal($kegiatan, $message, $tgl_awal, $tgl_akhir)
+function sendWAJadwal($kegiatan, $message, $tgl_awal, $tgl_akhir, $tipe)
 {
 
     $tglawal = date('d-m-Y', strtotime($tgl_awal));
     $tglakhir = date('d-m-Y', strtotime($tgl_akhir));
+
+    $depan = "";
+    if($tipe == "update"){
+        $depan = "Update ";
+    } else {
+        $depan = "";
+    }
 
     $noWA = getListDosenWANumber();
 
@@ -185,7 +192,7 @@ function sendWAJadwal($kegiatan, $message, $tgl_awal, $tgl_akhir)
         CURLOPT_CUSTOMREQUEST => 'POST',
         CURLOPT_POSTFIELDS => array(
             'target' => $noWA,
-            'message' => "Informasi Jadwal *$kegiatan*. Tahap : *" . $message . "* dimulai pada *$tglawal* s/d *$tglakhir*.
+            'message' => "$depan.'Informasi Jadwal *$kegiatan*. Tahap : *" . $message . "* dimulai pada *$tglawal* s/d *$tglakhir*.
 
 Silahkan cek informasi pada 
 https://sipp.poltekbangplg.ac.id/front/kegiatan

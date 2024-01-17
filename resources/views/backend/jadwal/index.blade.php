@@ -140,6 +140,13 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label for="kirim_wa">Kirim WA?</label>
+                            <select name="kirim_wa" class="form-control" id="kirim_wa" required>
+                                <option value="1">Ya</option>
+                                <option value="0">Tidak</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label>File Pendukung</label>
                             <input name="file_upload" id="file_upload" type="file" placeholder="Upload File"
                                 class="form-control form-control-sm">
