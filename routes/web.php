@@ -64,9 +64,7 @@ Route::post('/store-luaran-penelitian', 'App\Http\Controllers\LuaranPenelitianCo
 Route::post('/store-seminar-hasil', 'App\Http\Controllers\SeminarHasilController@store');
 
 //HISTORY
-Route::get('/front/history', function () {
-    return view('frontend.history');
-});
+Route::get('/front/history', 'App\Http\Controllers\HistoryController@index');
 
 
 //KEBUTUHAN DOSEN

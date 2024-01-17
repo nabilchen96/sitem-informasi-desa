@@ -39,11 +39,7 @@ class LuaranPenelitianController extends Controller
         $nama_file_luaran = '1' . date('YmdHis.') . $file_luaran->extension();
         $file_luaran->move('file_luaran_library', $nama_file_luaran);
 
-        $data = LuaranPenelitian::UpdateOrcreate(
-            [
-                'usulan_judul_id' => $request->usulan_judul_id,
-                'token_akses' => $request->token_akses,
-            ],
+        $data = LuaranPenelitian::create(
             [
                 'usulan_judul_id' => $request->usulan_judul_id,
                 'file_luaran' => $nama_file_luaran,
