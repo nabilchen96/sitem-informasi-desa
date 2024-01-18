@@ -59,18 +59,18 @@
                                         <div class="mb-4">
                                             <label class="form-label">Ketua Peneliti <sup
                                                     class="text-danger">*</sup></label>
-                                            <input value="{{ $judul->nama_ketua }}" type="text"
+                                            <input value="{{ @$judul->nama_ketua }}" type="text"
                                                 class="form-control border" placeholder="Ketua Peneliti" readonly>
                                         </div>
                                         <div class="mb-4">
                                             <label class="form-label">Program Studi <sup class="text-danger">*</sup></label>
-                                            <input value="{{ $judul->program_studi }}" type="text"
+                                            <input value="{{ @$judul->program_studi }}" type="text"
                                                 class="form-control border" placeholder="Program Studi" readonly>
                                         </div>
                                         <div class="mb-4">
                                             <label class="form-label">Judul Penelitian <sup
                                                     class="text-danger">*</sup></label>
-                                            <input value="{{ $judul->judul_penelitian }}" type="text"
+                                            <input value="{{ @$judul->judul_penelitian }}" type="text"
                                                 class="form-control border" placeholder="Judul Penelitian" readonly>
                                         </div>
 
@@ -79,19 +79,19 @@
                                         <div class="mb-4">
                                             <label class="form-label">Jenis Penelitian <sup
                                                     class="text-danger">*</sup></label>
-                                            <input value="{{ $judul->jenis_penelitian }}" type="text"
+                                            <input value="{{ @$judul->jenis_penelitian }}" type="text"
                                                 class="form-control border" placeholder="Jenis Penelitian" readonly>
                                         </div>
                                         <div class="mb-4">
                                             <label class="form-label">Sub Topik Penelitian <sup
                                                     class="text-danger">*</sup></label>
-                                            <input value="{{ $judul->sub_topik }}" type="text"
+                                            <input value="{{ @$judul->sub_topik }}" type="text"
                                                 class="form-control border" placeholder="Sub Topik Penelitian" readonly>
                                         </div>
                                         <div class="mb-4">
                                             <label class="form-label">Pelaksanaan Penelitian <sup
                                                     class="text-danger">*</sup></label>
-                                            <input value="{{ $judul->jenis_pelaksanaan }}" type="text" class="form-control border"
+                                            <input value="{{ @$judul->jenis_pelaksanaan }}" type="text" class="form-control border"
                                                 placeholder="Jenis Pelaksanaan" readonly>
                                         </div>
                                     </div>

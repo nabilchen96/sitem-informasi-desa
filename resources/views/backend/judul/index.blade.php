@@ -61,7 +61,7 @@
                                 <table id="myTable" class="table table-striped" style="width: 100%;">
                                     <thead class="bg-info text-white">
                                         <tr>
-                                            <th width="5%">No</th>
+                                            <th>No</th>
                                             <th>Judul</th>
                                             <th>Peneliti</th>
                                             <th>Prodi</th>
@@ -81,7 +81,7 @@
                                 <table id="myTable2" class="table table-striped" style="width: 100%;">
                                     <thead class="bg-info text-white">
                                         <tr>
-                                            <th width="5%">No</th>
+                                            <th>No</th>
                                             <th>Judul</th>
                                             <th>Peneliti</th>
                                             <th>Prodi</th>
@@ -101,7 +101,7 @@
                                 <table id="myTable3" class="table table-striped" style="width: 100%;">
                                     <thead class="bg-info text-white">
                                         <tr>
-                                            <th width="5%">No</th>
+                                            <th>No</th>
                                             <th>Judul</th>
                                             <th>Peneliti</th>
                                             <th>Prodi</th>

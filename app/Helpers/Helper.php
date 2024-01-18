@@ -105,7 +105,7 @@ Salam Hormat
         CURLOPT_POSTFIELDS => array(
             'target' => $noWA,
             'message' => $pesan,
-            'delay' => '2', //nilai jgan diubah
+            'delay' => '10', //nilai jgan diubah
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
@@ -150,7 +150,7 @@ Salam Hormat
         CURLOPT_POSTFIELDS => array(
             'target' => $noWA,
             'message' => $pesan,
-            'delay' => '2', //nilai jgan diubah
+            'delay' => '10', //nilai jgan diubah
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
@@ -172,7 +172,7 @@ function sendWAJadwal($kegiatan, $message, $tgl_awal, $tgl_akhir, $tipe)
 
     $depan = "";
     if($tipe == "update"){
-        $depan = "Update ";
+        $depan = "Perubahan : ";
     } else {
         $depan = "";
     }
@@ -199,7 +199,7 @@ https://sipp.poltekbangplg.ac.id/front/kegiatan
 
 Salam Hormat 
 *- Admin PUSPPM -*",
-            'delay' => '2', //nilai jgan diubah
+            'delay' => '10', //nilai jgan diubah
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
@@ -250,7 +250,7 @@ function sendUpdateUsulanJudul($noWA, $namaDosen, $judul, $status, $jk)
         CURLOPT_POSTFIELDS => array(
             'target' => $noWA,
             'message' => $pesan,
-            'delay' => '2', //nilai jgan diubah
+            'delay' => '10', //nilai jgan diubah
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
@@ -312,7 +312,7 @@ Salam Hormat
         CURLOPT_POSTFIELDS => array(
             'target' => $noWA,
             'message' => $pesan,
-            'delay' => '2', //nilai jgan diubah
+            'delay' => '10', //nilai jgan diubah
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
@@ -356,7 +356,7 @@ https://sipp.poltekbangplg.ac.id/front/kegiatan
 
 Salam Hormat 
 *- Admin PUSPPM -*",
-            'delay' => '2', //nilai jgan diubah
+            'delay' => '10', //nilai jgan diubah
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
