@@ -1,5 +1,11 @@
 @extends('frontend.app')
 @section('content')
+    <style>
+        th,
+        td {
+            white-space: nowrap;
+        }
+    </style>
     <div class="content-wrapper">
         <div class="container">
             <section class="features-overview" id="features-section">
@@ -19,7 +25,7 @@
                                 <select name="id_kegiatan" id="id_kegiatan" class="form-control">
                                     <?php $kegiatan = DB::table('kegiatans')->get(); ?>
                                     @foreach ($kegiatan as $item)
-                                        <option value="{{ $item->id }}">{{ $item->nama_kegiatan }}</option>
+                                        <option value="{{ @$item->id }}">{{ @$item->nama_kegiatan }}</option>
                                     @endforeach
                                 </select>
                                 <span class="text-white" style="font-size: 12px;">*</span>
@@ -91,8 +97,8 @@
                                         <div class="mb-4">
                                             <label class="form-label">Pelaksanaan Penelitian <sup
                                                     class="text-danger">*</sup></label>
-                                            <input value="{{ @$judul->jenis_pelaksanaan }}" type="text" class="form-control border"
-                                                placeholder="Jenis Pelaksanaan" readonly>
+                                            <input value="{{ @$judul->jenis_pelaksanaan }}" type="text"
+                                                class="form-control border" placeholder="Jenis Pelaksanaan" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -110,40 +116,70 @@
                         </div>
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                             <div class="card-body">
-                                <div class="row">
-
-                                    <div class="col-lg-6">
-
-                                        <div class="mb-4">
-                                            <label class="form-label">
-                                                File Proposal <sup class="text-danger">*</sup>
-                                            </label><br>
-                                            <a href="#" style="font-size: 20px;"><i
-                                                    class="bi bi-file-earmark-text"></i> Lihat File
-                                                Proposal</a>
-                                        </div>
-                                        <div class="mb-4">
-                                            <label class="form-label">File RAB <sup class="text-danger">*</sup></label>
-                                            <br>
-                                            <a href="#" style="font-size: 20px;">
-                                                <i class="bi bi-file-earmark-text"></i>
-                                                Lihat File RAB
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="mb-4">
-                                            <label class="form-label">Link Video <sup class="text-danger">*</sup></label>
-                                            <input value="https://www.youtube.com/watch?v=dqj4gkCQCwk" type="text"
-                                                name="link_video" id="link_video" class="form-control border"
-                                                placeholder="Link Video" required>
-                                        </div>
-                                        <div class="mb-4">
-                                            <label class="form-label">Anggota <sup class="text-danger">*</sup></label>
-                                            <textarea name="anggota" id="anggota" placeholder="WAHID ALQORNI, S.KOM., M.KOM." class="form-control border"
-                                                required rows="5"></textarea>
-                                        </div>
-                                    </div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead class="bg-info text-white">
+                                            <tr>
+                                                <th>Anggota</th>
+                                                <th>Rev</th>
+                                                <th class="text-center">Proposal</th>
+                                                <th class="text-center">RAB</th>
+                                                <th class="text-center">Video</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($proposal as $item)
+                                                <tr>
+                                                    <td>
+                                                        {{ $item->anggota }}
+                                                    </td>
+                                                    <td></td>
+                                                    <td class="text-center">
+                                                        <a href="/file_proposal_library/{{ $item->file_proposal }}">
+                                                            <i style="font-size: 1rem;"
+                                                                class="bi bi-file-earmark-text"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a href="/file_rab_library/{{ $item->file_rab }}">
+                                                            <i style="font-size: 1rem;"
+                                                                class="bi bi-file-earmark-text"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a href="{{ $item->link_video }}">
+                                                            <i style="font-size: 1rem;" class="bi bi-film"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            @foreach ($revisi as $k => $item)
+                                                <tr>
+                                                    <td>
+                                                        {{ $item->anggota }}
+                                                    </td>
+                                                    <td>Ke {{ $k + 1 }}</td>
+                                                    <td class="text-center">
+                                                        <a href="/file_proposal_library/{{ $item->file_proposal }}">
+                                                            <i style="font-size: 1rem;"
+                                                                class="bi bi-file-earmark-text"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a href="/file_rab_library/{{ $item->file_rab }}">
+                                                            <i style="font-size: 1rem;"
+                                                                class="bi bi-file-earmark-text"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a href="{{ $item->link_video }}">
+                                                            <i style="font-size: 1rem;" class="bi bi-film"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -163,51 +199,77 @@
                                 <label class="form-label">
                                     File Kontrak <sup class="text-danger">*</sup>
                                 </label><br>
-                                <a href="#" style="font-size: 20px;"><i class="bi bi-file-earmark-text"></i> Lihat
+                                <a target="_blank" href="{{ url('file_kontrak') }}/{{ @$kontrak->file_kontrak }}"
+                                    style="font-size: 20px;"><i class="bi bi-file-earmark-text"></i> Lihat
                                     File
                                     Kontrak</a>
                             </div>
                         </div>
                     </div>
                     <div class="card">
-                        <div class="card-header" id="headingThree">
+                        <div class="card-header" id="headingFour">
                             <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" data-toggle="collapse"
-                                    data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour"
+                                    aria-expanded="false" aria-controls="collapseFour">
                                     Seminar Antara
                                 </button>
                             </h5>
                         </div>
-                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                            data-parent="#accordion">
+                        <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                             <div class="card-body">
                                 <label class="form-label">
-                                    File Surat Izin Penelitian <sup class="text-danger">*</sup>
+                                    File Seminar Antara <sup class="text-danger">*</sup>
                                 </label><br>
-                                <a href="#" style="font-size: 20px;"><i class="bi bi-file-earmark-text"></i> Lihat
+                                <a target="_blank"
+                                    href="{{ url('file_seminar_antara_library') }}/{{ @$seminar->file_seminar_antara }}"
+                                    style="font-size: 20px;"><i class="bi bi-file-earmark-text"></i> Lihat
                                     File
-                                    Surat Izin Penelitian</a>
+                                    Seminar Antara</a>
                             </div>
                         </div>
                     </div>
                     <div class="card">
                         <div class="card-header" id="headingThree">
                             <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" data-toggle="collapse"
-                                    data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive"
+                                    aria-expanded="false" aria-controls="collapseThree">
                                     Luaran Penelitian
                                 </button>
                             </h5>
                         </div>
-                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                            data-parent="#accordion">
+                        <div id="collapseFive" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                             <div class="card-body">
-                                <label class="form-label">
-                                    File Surat Izin Penelitian <sup class="text-danger">*</sup>
-                                </label><br>
-                                <a href="#" style="font-size: 20px;"><i class="bi bi-file-earmark-text"></i> Lihat
-                                    File
-                                    Surat Izin Penelitian</a>
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead class="bg-info text-white">
+                                            <tr>
+                                                <th>Kategori</th>
+                                                <th>Publikasi</th>
+                                                <th class="text-center">File</th>
+                                                <th class="text-center">Tanggal Unggah</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($luaran as $item)
+                                                <tr>
+                                                    <td>
+                                                        {{ $item->kategori }}
+                                                    </td>
+                                                    <td>{{ $item->jenis_publikasi }}</td>
+                                                    <td class="text-center">
+                                                        <a href="{{ url('file_luaran_library') }} / {{$item->file_luaran}}">
+                                                            <i style="font-size: 1rem;"
+                                                                class="bi bi-file-earmark-text"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {{ $item->created_at }}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
