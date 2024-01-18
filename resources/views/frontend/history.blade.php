@@ -131,23 +131,23 @@
                                             @foreach ($proposal as $item)
                                                 <tr>
                                                     <td>
-                                                        {{ $item->anggota }}
+                                                        {{ @$item->anggota }}
                                                     </td>
                                                     <td></td>
                                                     <td class="text-center">
-                                                        <a href="/file_proposal_library/{{ $item->file_proposal }}">
+                                                        <a href="/file_proposal_library/{{ @$item->file_proposal }}">
                                                             <i style="font-size: 1rem;"
                                                                 class="bi bi-file-earmark-text"></i>
                                                         </a>
                                                     </td>
                                                     <td class="text-center">
-                                                        <a href="/file_rab_library/{{ $item->file_rab }}">
+                                                        <a href="/file_rab_library/{{ @$item->file_rab }}">
                                                             <i style="font-size: 1rem;"
                                                                 class="bi bi-file-earmark-text"></i>
                                                         </a>
                                                     </td>
                                                     <td class="text-center">
-                                                        <a href="{{ $item->link_video }}">
+                                                        <a href="{{ @$item->link_video }}">
                                                             <i style="font-size: 1rem;" class="bi bi-film"></i>
                                                         </a>
                                                     </td>
@@ -156,23 +156,23 @@
                                             @foreach ($revisi as $k => $item)
                                                 <tr>
                                                     <td>
-                                                        {{ $item->anggota }}
+                                                        {{ @$item->anggota }}
                                                     </td>
                                                     <td>Ke {{ $k + 1 }}</td>
                                                     <td class="text-center">
-                                                        <a href="/file_proposal_library/{{ $item->file_proposal }}">
+                                                        <a href="/file_proposal_library/{{ @$item->file_proposal }}">
                                                             <i style="font-size: 1rem;"
                                                                 class="bi bi-file-earmark-text"></i>
                                                         </a>
                                                     </td>
                                                     <td class="text-center">
-                                                        <a href="/file_rab_library/{{ $item->file_rab }}">
+                                                        <a href="/file_rab_library/{{ @$item->file_rab }}">
                                                             <i style="font-size: 1rem;"
                                                                 class="bi bi-file-earmark-text"></i>
                                                         </a>
                                                     </td>
                                                     <td class="text-center">
-                                                        <a href="{{ $item->link_video }}">
+                                                        <a href="{{ @$item->link_video }}">
                                                             <i style="font-size: 1rem;" class="bi bi-film"></i>
                                                         </a>
                                                     </td>
@@ -253,17 +253,17 @@
                                             @foreach ($luaran as $item)
                                                 <tr>
                                                     <td>
-                                                        {{ $item->kategori }}
+                                                        {{ @$item->kategori }}
                                                     </td>
-                                                    <td>{{ $item->jenis_publikasi }}</td>
+                                                    <td>{{ @$item->jenis_publikasi }}</td>
                                                     <td class="text-center">
-                                                        <a href="{{ url('file_luaran_library') }} / {{$item->file_luaran}}">
+                                                        <a href="{{ url('file_luaran_library') }} / {{@$item->file_luaran}}">
                                                             <i style="font-size: 1rem;"
                                                                 class="bi bi-file-earmark-text"></i>
                                                         </a>
                                                     </td>
                                                     <td class="text-center">
-                                                        {{ $item->created_at }}
+                                                        {{ @$item->created_at }}
                                                     </td>
                                                 </tr>
                                             @endforeach
