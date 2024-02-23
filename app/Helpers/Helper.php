@@ -192,7 +192,10 @@ function sendWAJadwal($kegiatan, $message, $tgl_awal, $tgl_akhir, $tipe)
         CURLOPT_CUSTOMREQUEST => 'POST',
         CURLOPT_POSTFIELDS => array(
             'target' => $noWA,
-            'message' => "$depan.'Informasi Jadwal *$kegiatan*. Tahap : *" . $message . "* dimulai pada *$tglawal* s/d *$tglakhir*.
+            // 'message' => "$depan.'Informasi Jadwal *$kegiatan*. Tahap : *" . $message . "* dimulai pada *$tglawal* s/d *$tglakhir*.
+            'message' => "*" .strtoupper($message) . "* 
+            
+periode *$tglawal* s/d *$tglakhir*.
 
 Silahkan cek informasi pada 
 https://sipp.poltekbangplg.ac.id/front/kegiatan
