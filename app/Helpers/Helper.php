@@ -109,7 +109,7 @@ Salam Hormat
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
-            'Authorization: +@sfKr+UZgUoSLEsTWb8' //change TOKEN to your actual token
+            'Authorization: Wk-6dJFS_rTacwVFzdbk' //change TOKEN to your actual token
         ),
     ));
 
@@ -154,7 +154,7 @@ Salam Hormat
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
-            'Authorization: +@sfKr+UZgUoSLEsTWb8' //change TOKEN to your actual token
+            'Authorization: Wk-6dJFS_rTacwVFzdbk' //change TOKEN to your actual token
         ),
     ));
 
@@ -203,7 +203,7 @@ Salam Hormat
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
-            'Authorization: +@sfKr+UZgUoSLEsTWb8' //change TOKEN to your actual token
+            'Authorization: Wk-6dJFS_rTacwVFzdbk' //change TOKEN to your actual token
         ),
     ));
 
@@ -254,7 +254,7 @@ function sendUpdateUsulanJudul($noWA, $namaDosen, $judul, $status, $jk)
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
-            'Authorization: +@sfKr+UZgUoSLEsTWb8' //change TOKEN to your actual token
+            'Authorization: Wk-6dJFS_rTacwVFzdbk' //change TOKEN to your actual token
         ),
     ));
 
@@ -316,7 +316,7 @@ Salam Hormat
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
-            'Authorization: +@sfKr+UZgUoSLEsTWb8' //change TOKEN to your actual token
+            'Authorization: Wk-6dJFS_rTacwVFzdbk' //change TOKEN to your actual token
         ),
     ));
 
@@ -360,7 +360,7 @@ Salam Hormat
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
-            'Authorization: +@sfKr+UZgUoSLEsTWb8' //change TOKEN to your actual token
+            'Authorization: Wk-6dJFS_rTacwVFzdbk' //change TOKEN to your actual token
         ),
     ));
 
