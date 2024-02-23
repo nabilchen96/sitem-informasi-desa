@@ -508,7 +508,7 @@
             }).then((result) => {
 
                 if (result.value) {
-                    axios.post('/delete-dosen', {
+                    axios.post('/delete-usulan-judul', {
                             id
                         })
                         .then((response) => {
