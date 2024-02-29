@@ -55,6 +55,7 @@
                                     <th>Publish Pengumuman?</th>
                                     <th width="5%"></th>
                                     <th width="5%"></th>
+                                    <th width="5%"></th>
                                 </tr>
                             </thead>
                         </table>
@@ -226,7 +227,13 @@
                             }
                         }
                     },
-                    
+                    {
+                        render: function(data, type, row, meta) {
+                            return `<a href="/file_pengumuman/${row.file_upload}">
+                                    <i style="font-size: 1.5rem;" class="text-danger bi bi-file-earmark-text"></i>
+                                </a>`
+                        }
+                    },
                     {
                         render: function(data, type, row, meta) {
                             return `<a data-toggle="modal" data-target="#modal"

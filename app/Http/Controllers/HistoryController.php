@@ -13,9 +13,10 @@ class HistoryController extends Controller
         $id_kegiatan = Request('id_kegiatan');
 
         //JUDUL PENELITIAN
-        $judul = DB::table('usulan_juduls')
-                    ->where('token_akses', $token)
-                    ->where('id', $id_kegiatan)
+        $judul = DB::table('usulan_juduls as uj')
+                    ->join('jadwals as j', 'j.id', '=', 'uj.jadwal_id')
+                    ->where('uj.token_akses', $token)
+                    ->where('j.kegiatan_id', $id_kegiatan)
                     ->first();
 
         //PROPOSAL DAN RAB
@@ -69,6 +70,8 @@ class HistoryController extends Controller
             )
             ->where('uj.id', $id_kegiatan)
             ->get();
+
+            // dd($judul);
 
         return view('frontend.history', [
             'judul' => $judul, 

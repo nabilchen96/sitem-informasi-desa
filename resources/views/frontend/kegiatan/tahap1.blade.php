@@ -2,14 +2,26 @@
     <div style="width: 100%;">
 
         <form id="form">
-            <input type="hidden" name="jadwal_id" value="{{ $jadwal->id}}">
+            <input type="hidden" name="jadwal_id" value="{{ $jadwal->id }}">
             <div class="row">
                 <?php
                 
-                $data = DB::table('dosens')
-                    ->where('token_akses', Request('token_akses'))
-                    ->first();
+                $data = DB::table('dosens')->where('token_akses', Request('token_akses'))->first();
                 ?>
+                <div class="col-lg-6">
+                    <div class="mb-4">
+                        <label class="form-label">File Pengumuman<sup class="text-danger">*</sup></label>
+                        <br>
+                        @if ($jadwal->file_upload)
+                            <a class="mt-4" style="text-decoration: underline !important; color: red;"
+                                href="{{ asset('file_kontrak') }}/{{ @$jadwal->file_pengumuman }}"><i
+                                    class="bi bi-file-earmark"></i> Unduh File Pengumuman</a>
+                        @else
+                            <a class="mt-4" style="text-decoration: underline !important; color: red;"
+                                href="#">Belum Ada File Pengumuman</a>
+                        @endif
+                    </div>
+                </div>
                 <div class="col-lg-6">
                     <form action="{{ url('front/kegiatan') }}" method="GET">
                         <div class="mb-4">
@@ -44,9 +56,12 @@
                             <option>DIII MBU</option>
                         </select>
                     </div>
+                </div>
+                <div class="col-lg-6">
                     <div class="mb-4">
                         <label class="form-label">Judul Penelitian <sup class="text-danger">*</sup></label>
-                        <input type="text" name="judul_penelitian" id="judul_penelitian" class="form-control border" placeholder="Judul Penelitian" required>
+                        <input type="text" name="judul_penelitian" id="judul_penelitian" class="form-control border"
+                            placeholder="Judul Penelitian" required>
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Jenis Penelitian <sup class="text-danger">*</sup></label>
