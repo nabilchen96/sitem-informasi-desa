@@ -14,7 +14,7 @@
                         <br>
                         @if ($jadwal->file_upload)
                             <a class="mt-4" style="text-decoration: underline !important; color: red;"
-                                href="{{ asset('file_kontrak') }}/{{ @$jadwal->file_pengumuman }}"><i
+                                href="{{ asset('file_kontrak') }}/{{ @$jadwal->file_upload }}"><i
                                     class="bi bi-file-earmark"></i> Unduh File Pengumuman</a>
                         @else
                             <a class="mt-4" style="text-decoration: underline !important; color: red;"
