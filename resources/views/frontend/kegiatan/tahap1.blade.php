@@ -13,7 +13,7 @@
                         <label class="form-label">File Pengumuman<sup class="text-danger">*</sup></label>
                         <br>
                         @if ($jadwal->file_upload)
-                            <a class="mt-4" style="text-decoration: underline !important; color: red;"
+                            <a target="_blank" class="mt-4" style="text-decoration: underline !important; color: red;"
                                 href="{{ asset('file_pengumuman') }}/{{ @$jadwal->file_upload }}"><i
                                     class="bi bi-file-earmark"></i> Unduh File Pengumuman</a>
                         @else
