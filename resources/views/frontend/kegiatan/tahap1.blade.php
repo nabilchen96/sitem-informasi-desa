@@ -59,7 +59,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-4">
-                        <label class="form-label">Judul Penelitian <sup class="text-danger">*</sup></label>
+                        <label class="form-label">Judul Penelitian / PKM <sup class="text-danger">*</sup></label>
                         <input type="text" name="judul_penelitian" id="judul_penelitian" class="form-control border"
                             placeholder="Judul Penelitian" required>
                     </div>
