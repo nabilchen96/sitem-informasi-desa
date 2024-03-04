@@ -64,7 +64,7 @@
                             placeholder="Judul Penelitian" required>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label">Jenis Penelitian <sup class="text-danger">*</sup></label>
+                        <label class="form-label">Jenis Penelitian / PKM <sup class="text-danger">*</sup></label>
                         <select name="jenis_penelitian" id="jenis_penelitian" class="form-control border" required>
                             <option value="">--Pilih Jenis Penelitian--</option>
                             <option>Dasar</option>
@@ -76,7 +76,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-4">
-                        <label class="form-label">Sub Topik Penelitian <sup class="text-danger">*</sup></label>
+                        <label class="form-label">Sub Topik Penelitian / PKM <sup class="text-danger">*</sup></label>
                         <select name="sub_topik" id="sub_topik" class="form-control border" required>
                             <option value="">--Pilih Sub Topik Penelitian--</option>
                             <option>Aviation of Learning Technology</option>
@@ -94,7 +94,7 @@
                         </select>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label">Pelaksanaan Penelitian <sup class="text-danger">*</sup></label>
+                        <label class="form-label">Pelaksanaan Penelitian / PKM <sup class="text-danger">*</sup></label>
                         <select name="jenis_pelaksanaan" class="form-control border" required>
                             <option value="">--Pilih Jenis Pelaksanaan--</option>
                             <option>Kelompok</option>
