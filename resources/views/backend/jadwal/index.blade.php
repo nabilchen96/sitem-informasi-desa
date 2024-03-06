@@ -148,6 +148,11 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label for="komen">Komentar</label>
+                            <textarea name="komen" id="komen" class="form-control" cols="30" rows="10"></textarea>
+                            <span class="text-danger error" style="font-size: 12px;" id="komen_alert"></span>
+                        </div>
+                        <div class="form-group">
                             <label>File Pendukung</label>
                             <input name="file_upload" id="file_upload" type="file" placeholder="Upload File"
                                 class="form-control form-control-sm">

@@ -164,7 +164,7 @@ Salam Hormat
     // echo $response;
 }
 
-function sendWAJadwal($kegiatan, $message, $tgl_awal, $tgl_akhir, $tipe)
+function sendWAJadwal($kegiatan, $message, $komen, $tgl_awal, $tgl_akhir, $tipe)
 {
 
     $tglawal = date('d-m-Y', strtotime($tgl_awal));
@@ -197,8 +197,12 @@ function sendWAJadwal($kegiatan, $message, $tgl_awal, $tgl_akhir, $tipe)
             
 periode *$tglawal* s/d *$tglakhir*.
 
-Silahkan cek informasi pada 
+$komen
+
+=============================
+Silahkan cek informasi jadwal pada 
 https://sipp.poltekbangplg.ac.id/front/kegiatan
+=============================
 
 Salam Hormat 
 *- Admin PUSPPM -*",

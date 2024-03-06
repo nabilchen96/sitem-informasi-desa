@@ -83,7 +83,7 @@ class JadwalController extends Controller
             }
 
             if($request->kirim_wa == '1'){
-                sendWAJadwal($kegiatan->nama_kegiatan, $request->nama_jadwal, $request->tanggal_awal, $request->tanggal_akhir,'insert');
+                sendWAJadwal($kegiatan->nama_kegiatan, $request->nama_jadwal, $request->komen, $request->tanggal_awal, $request->tanggal_akhir,'insert');
             }
             // sendWAJadwal($kegiatan->nama_kegiatan, $request->nama_jadwal, $request->tanggal_awal, $request->tanggal_akhir);
 
@@ -141,7 +141,7 @@ class JadwalController extends Controller
             ]);
 
             if($request->kirim_wa == '1'){
-                sendWAJadwal($kegiatan->nama_kegiatan, $request->nama_jadwal, $request->tanggal_awal, $request->tanggal_akhir,'update');
+                sendWAJadwal($kegiatan->nama_kegiatan, $request->nama_jadwal, $request->komen, $request->tanggal_awal, $request->tanggal_akhir,'update');
             }
 
             $data = [
