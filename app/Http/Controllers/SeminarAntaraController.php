@@ -52,6 +52,8 @@ class SeminarAntaraController extends Controller
             ]
         );
 
+        sendWAAjuan("Seminar Antara");
+
         $data = [
             'responCode' => 1,
             'respon' => 'Data Sukses Ditambah'

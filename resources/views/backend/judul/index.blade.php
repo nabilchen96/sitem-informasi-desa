@@ -68,6 +68,7 @@
                                             <th>Jenis Penelitian</th>
                                             <th>Sub Topik Penelitian</th>
                                             <th>Pelaksanaan Penelitian</th>
+                                            <th>Jenis Usulan</th>
                                             <th width="5%"></th>
                                             <th width="5%"></th>
                                         </tr>
@@ -88,8 +89,9 @@
                                             <th>Jenis Penelitian</th>
                                             <th>Sub Topik Penelitian</th>
                                             <th>Pelaksanaan Penelitian</th>
-                                            <th width="5%"></th>
-                                            <th width="5%"></th>
+                                            <th>Jenis Usulan</th>
+                                            {{-- <th width="5%"></th>
+                                            <th width="5%"></th> --}}
                                         </tr>
                                     </thead>
                                 </table>
@@ -108,8 +110,9 @@
                                             <th>Jenis Penelitian</th>
                                             <th>Sub Topik Penelitian</th>
                                             <th>Pelaksanaan Penelitian</th>
-                                            <th width="5%"></th>
-                                            <th width="5%"></th>
+                                            <th>Jenis Usulan</th>
+                                            {{-- <th width="5%"></th>
+                                            <th width="5%"></th> --}}
                                         </tr>
                                     </thead>
                                 </table>
@@ -162,6 +165,14 @@
                                     <option>Terapan</option>
                                     <option>Pengembangan</option>
                                     <option>Pengembangan Lanjutan</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Jenis Usulan</label>
+                                <select name="jenis_usulan" id="jenis_usulan" class="form-control border" required>
+                                    <option value="">--Pilih Jenis Usulan--</option>
+                                    <option>Penelitian</option>
+                                    <option>PKM</option>
                                 </select>
                             </div>
 
@@ -269,6 +280,9 @@
                         data: "jenis_pelaksanaan"
                     },
                     {
+                        data: "jenis_usulan"
+                    },
+                    {
                         render: function(data, type, row, meta) {
                             return `<a data-toggle="modal" data-target="#modal"
                                     data-bs-id=` + (row.id) + ` href="javascript:void(0)">
@@ -324,31 +338,34 @@
                         data: "jenis_pelaksanaan"
                     },
                     {
-                        render: function(data, type, row, meta) {
-                            if(row.status == "0"){
-                                return `<a data-toggle="modal" data-target="#modal"
-                                    data-bs-id=` + (row.id) + ` href="javascript:void(0)">
-                                    <i style="font-size: 1.5rem;" class="text-success bi bi-grid"></i>
-                                </a>`
-                            } else {
-                                return `-`
-                            }
-                            
-                        }
+                        data: "jenis_usulan"
                     },
-                    {
-                        render: function(data, type, row, meta) {
-                            if(row.status == "0"){
-                                return `<a href="javascript:void(0)" onclick="hapusData(` + (row
-                                .id) + `)">
-                                    <i style="font-size: 1.5rem;" class="text-danger bi bi-trash"></i>
-                                </a>`
-                            } else {
-                                return `-`
-                            }
+                    // {
+                    //     render: function(data, type, row, meta) {
+                    //         if(row.status == "0"){
+                    //             return `<a data-toggle="modal" data-target="#modal"
+                    //                 data-bs-id=` + (row.id) + ` href="javascript:void(0)">
+                    //                 <i style="font-size: 1.5rem;" class="text-success bi bi-grid"></i>
+                    //             </a>`
+                    //         } else {
+                    //             return `-`
+                    //         }
                             
-                        }
-                    },
+                    //     }
+                    // },
+                    // {
+                    //     render: function(data, type, row, meta) {
+                    //         if(row.status == "0"){
+                    //             return `<a href="javascript:void(0)" onclick="hapusData(` + (row
+                    //             .id) + `)">
+                    //                 <i style="font-size: 1.5rem;" class="text-danger bi bi-trash"></i>
+                    //             </a>`
+                    //         } else {
+                    //             return `-`
+                    //         }
+                            
+                    //     }
+                    // },
                 ]
             })
         }
@@ -389,31 +406,34 @@
                         data: "jenis_pelaksanaan"
                     },
                     {
-                        render: function(data, type, row, meta) {
-                            if(row.status == "0"){
-                                return `<a data-toggle="modal" data-target="#modal"
-                                    data-bs-id=` + (row.id) + ` href="javascript:void(0)">
-                                    <i style="font-size: 1.5rem;" class="text-success bi bi-grid"></i>
-                                </a>`
-                            } else {
-                                return `-`
-                            }
-                            
-                        }
+                        data: "jenis_usulan"
                     },
-                    {
-                        render: function(data, type, row, meta) {
-                            if(row.status == "0"){
-                                return `<a href="javascript:void(0)" onclick="hapusData(` + (row
-                                .id) + `)">
-                                    <i style="font-size: 1.5rem;" class="text-danger bi bi-trash"></i>
-                                </a>`
-                            } else {
-                                return `-`
-                            }
-                            
-                        }
-                    },
+                        // {
+                        //     render: function(data, type, row, meta) {
+                        //         if(row.status == "0"){
+                        //             return `<a data-toggle="modal" data-target="#modal"
+                        //                 data-bs-id=` + (row.id) + ` href="javascript:void(0)">
+                        //                 <i style="font-size: 1.5rem;" class="text-success bi bi-grid"></i>
+                        //             </a>`
+                        //         } else {
+                        //             return `-`
+                        //         }
+                                
+                        //     }
+                        // },
+                        // {
+                        //     render: function(data, type, row, meta) {
+                        //         if(row.status == "0"){
+                        //             return `<a href="javascript:void(0)" onclick="hapusData(` + (row
+                        //             .id) + `)">
+                        //                 <i style="font-size: 1.5rem;" class="text-danger bi bi-trash"></i>
+                        //             </a>`
+                        //         } else {
+                        //             return `-`
+                        //         }
+                                
+                        //     }
+                        // },
                 ]
             })
         }
@@ -439,6 +459,7 @@
                 modal.find('#program_studi').val(cokData[0].program_studi)
                 modal.find('#jenis_penelitian').val(cokData[0].jenis_penelitian)
                 modal.find('#jenis_pelaksanaan').val(cokData[0].jenis_pelaksanaan)
+                modal.find('#jenis_usulan').val(cokData[0].jenis_usulan)
                 modal.find('#sub_topik').val(cokData[0].sub_topik)
                 modal.find('#status').val(cokData[0].status)
                 modal.find('#token_akses').val(cokData[0].token_akses)

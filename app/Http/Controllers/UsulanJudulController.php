@@ -71,9 +71,12 @@ class UsulanJudulController extends Controller
                 'program_studi' => $request->program_studi,
                 'sub_topik' => $request->sub_topik,
                 'token_akses' => $request->token_akses,
+                'jenis_usulan' => $request->jenis_usulan,
                 'status' => '0',
                 'tanggal_upload' => date('Y-m-d'),
             ]);
+
+            sendWAAjuan("Usulan Judul");
 
             $data = [
                 'responCode' => 1,
@@ -104,6 +107,12 @@ class UsulanJudulController extends Controller
 
             $data = $usulanjudul->update([
                 'nip' => $request->nip,
+                'judul_penelitian' => $request->judul_penelitian,
+                'jenis_pelaksanaan' => $request->jenis_pelaksanaan,
+                'jenis_penelitian' => $request->jenis_penelitian,
+                'program_studi' => $request->program_studi,
+                'sub_topik' => $request->sub_topik,
+                'jenis_usulan' => $request->jenis_usulan,
                 'status' => $request->status
             ]);
 

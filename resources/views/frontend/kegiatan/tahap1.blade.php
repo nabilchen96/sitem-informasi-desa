@@ -73,6 +73,14 @@
                             <option>Pengembangan Lanjutan</option>
                         </select>
                     </div>
+                    <div class="mb-4">
+                        <label class="form-label">Jenis Usulan <sup class="text-danger">*</sup></label>
+                        <select name="jenis_usulan" class="form-control" id="jenis_usulan" required>
+                            <option value="">--Pilih--</option>
+                            <option value="Penelitian">Penelitian</option>
+                            <option value="PKM">PKM</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-4">
