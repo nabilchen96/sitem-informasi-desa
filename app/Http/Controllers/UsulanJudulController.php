@@ -62,6 +62,15 @@ class UsulanJudulController extends Controller
                 'respon' => $validator->errors()
             ];
         } else {
+
+            $file = $request->file_blanko;
+            if($file){
+                $nama_file = '1' . date('YmdHis.') . $file->extension();
+                $file->move('scan_blanko', $nama_file);
+            } else {
+                $nama_file = NULL;
+            }
+            
             $data = UsulanJudul::create([
                 'jadwal_id' => $request->jadwal_id,
                 'nama_ketua' => $request->nama_ketua,
@@ -73,6 +82,7 @@ class UsulanJudulController extends Controller
                 'token_akses' => $request->token_akses,
                 'jenis_usulan' => $request->jenis_usulan,
                 'status' => '0',
+                'file_blanko' => $nama_file,
                 'tanggal_upload' => date('Y-m-d'),
             ]);
 
@@ -105,6 +115,12 @@ class UsulanJudulController extends Controller
             $usulanjudul = UsulanJudul::find($request->id);
             $getDosen = Dosen::where('token_akses', $request->token_akses)->first();
 
+            if($request->file_blanko){
+                $file = $request->file_blanko;
+                $nama_file = '1' . date('YmdHis.') . $file->extension();
+                $file->move('scan_blanko', $nama_file);
+            }
+
             $data = $usulanjudul->update([
                 'nip' => $request->nip,
                 'judul_penelitian' => $request->judul_penelitian,
@@ -113,6 +129,7 @@ class UsulanJudulController extends Controller
                 'program_studi' => $request->program_studi,
                 'sub_topik' => $request->sub_topik,
                 'jenis_usulan' => $request->jenis_usulan,
+                'file_blanko'  => $nama_file ?? $usulanjudul->file_blanko,
                 'status' => $request->status
             ]);
 

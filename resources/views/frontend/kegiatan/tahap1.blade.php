@@ -109,6 +109,13 @@
                             <option>Mandiri</option>
                         </select>
                     </div>
+                    
+                    <div class="mb-4">
+                        <label class="form-label">Scan Blanko Persetujuan<sup class="text-danger">*</sup></label>
+                        <input type="file" name="file_blanko" id="file_blanko"
+                            class="form-control border"required>
+                    </div>
+                   
                 </div>
                 <div class="col-lg-12">
                     <div class="mb-4">
