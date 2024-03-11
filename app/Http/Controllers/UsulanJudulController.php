@@ -142,7 +142,10 @@ class UsulanJudulController extends Controller
                 'status_perubahan' => $request->status
             ]);
 
-            sendUpdateUsulanJudul($getDosen->no_wa, $getDosen->nama_dosen, $request->judul_penelitian, $request->status, $getDosen->jenis_kelamin);
+            if($request->kirim_wa == '1') {
+                sendUpdateUsulanJudul($getDosen->no_wa, $getDosen->nama_dosen, $request->judul_penelitian, $request->status, $getDosen->jenis_kelamin);
+            }
+
 
             $data = [
                 'responCode' => 1,

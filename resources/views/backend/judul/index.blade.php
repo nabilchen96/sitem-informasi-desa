@@ -215,7 +215,13 @@
                                     <option value="2">Tolak</option>
                                 </select>
                             </div>
-
+                            <div class="form-group">
+                                <label for="kirim_wa">Kirim WA?</label>
+                                <select name="kirim_wa" class="form-control" id="kirim_wa" required>
+                                    <option value="1">Ya</option>
+                                    <option value="0">Tidak</option>
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label for="token_akses">Token Akses</label>
                                 <input name="token_akses" id="token_akses" type="hidden" placeholder="Token Akses"
