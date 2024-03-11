@@ -129,11 +129,11 @@
 
         <!-- Modal -->
         <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <form id="form">
                         <div class="modal-header p-3">
-                            <h5 class="modal-title m-2" id="exampleModalLabel">Dosen Form</h5>
+                            <h5 class="modal-title m-2" id="exampleModalLabel">Usulan Judul Form</h5>
                         </div>
                         <div class="modal-body">
                             <input type="hidden" name="id" id="id">
@@ -244,11 +244,11 @@
 
         {{-- modal2 --}}
         <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <form id="form2">
                         <div class="modal-header p-3">
-                            <h5 class="modal-title m-2" id="exampleModalLabel">Dosen Form</h5>
+                            <h5 class="modal-title m-2" id="exampleModalLabel">Usulan Judul Form</h5>
                         </div>
                         <div class="modal-body">
                             <input type="hidden" name="id" id="id2">
