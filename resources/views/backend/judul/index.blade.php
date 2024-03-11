@@ -216,13 +216,6 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="kirim_wa">Kirim WA?</label>
-                                <select name="kirim_wa" class="form-control" id="kirim_wa" required>
-                                    <option value="1">Ya</option>
-                                    <option value="0">Tidak</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
                                 <label for="token_akses">Token Akses</label>
                                 <input name="token_akses" id="token_akses" type="hidden" placeholder="Token Akses"
                                     class="form-control form-control-sm" aria-describedby="emailHelp" required>
@@ -261,7 +254,7 @@
                             <input type="hidden" name="id" id="id2">
                             <div class="form-group">
                                 <label for="judul_penelitian2">Judul Penelitian</label>
-                                <input name="judul_penelitian2" id="judul_penelitian2" type="text" placeholder="Judul Penelitian"
+                                <input name="judul_penelitian" id="judul_penelitian2" type="text" placeholder="Judul Penelitian"
                                     class="form-control form-control-sm" aria-describedby="emailHelp" required>
                                 <span class="text-danger error" style="font-size: 12px;" id="judul_penelitian_alert"></span>
                             </div>
@@ -301,7 +294,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="is_active">Sub Topik</label>
+                                <label for="sub_topik2">Sub Topik</label>
                                 <select name="sub_topik" id="sub_topik2" class="form-control border" required>
                                     <option value="">--Pilih Sub Topik Penelitian--</option>
                                     <option>Aviation of Learning Technology</option>
@@ -335,6 +328,14 @@
                                     <option value="0">Baru</option>
                                     <option value="1">ACC</option>
                                     <option value="2">Tolak</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="kirim_wa">Kirim WA?</label>
+                                <select name="kirim_wa" class="form-control" id="kirim_wa" required>
+                                    <option value="1">Ya</option>
+                                    <option value="0">Tidak</option>
                                 </select>
                             </div>
 
