@@ -40,6 +40,7 @@ class JadwalController extends Controller
             'tanggal_akhir'    => 'required',
             'tahapan'          => 'required',
             'tahap_ke'          => 'required',
+            'file_upload'  => 'mimes:jpg,png,pdf,docx,doc,xlsx,xls',
         ]);
 
         if ($validator->fails()) {
@@ -107,6 +108,7 @@ class JadwalController extends Controller
             'tanggal_akhir'    => 'required',
             'tahapan'          => 'required',
             'tahap_ke'         => 'required',
+            'file_upload'  => 'mimes:jpg,png,pdf,docx,doc,xlsx,xls',
         ]);
 
         if ($validator->fails()) {
@@ -135,7 +137,7 @@ class JadwalController extends Controller
                 'status'            => $request->status,
                 'tahapan'           => $request->tahapan,
                 'tahap_ke'          => $request->tahap_ke,
-                'file_upload'       => $request->file_upload ? $nama_file : '',
+                'file_upload'       => $request->file_upload ? $nama_file : $jadwal->file_upload,
                 'nama_file'         => $request->nama_file,
                 'kirim_wa'          => $request->kirim_wa
             ]);
