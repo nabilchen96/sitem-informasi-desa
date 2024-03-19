@@ -90,8 +90,6 @@ class UsulanProposalController extends Controller
     public function store(Request $request)
     {
 
-        // dd($request->all());
-
         $validator = Validator::make($request->all(), [
             'usulan_judul_id'   => 'required',
             'token_akses'       => 'required',
