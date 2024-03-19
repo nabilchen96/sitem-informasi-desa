@@ -122,6 +122,8 @@ class UsulanProposalController extends Controller
                 'tanggal_upload'    => date('Y-m-d'),
             ]);
 
+            sendWAAjuan("Usulan Proposal");
+
             $data = [
                 'responCode'    => 1,
                 'respon'        => 'Data Sukses Ditambah'

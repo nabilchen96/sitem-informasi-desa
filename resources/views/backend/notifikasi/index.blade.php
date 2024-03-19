@@ -85,7 +85,8 @@
                     </div>
                     <div class="form-group">
                         <label>Keterangan</label>
-                        <input name="isi_notif" id="isi_notif" type="isi_notif" placeholder="Isi Pesan" class="form-control form-control-sm" required>
+                        <textarea name="isi_notif" id="isi_notif" class="form-control" cols="30" rows="10" required></textarea>
+                        {{-- <input name="isi_notif" id="isi_notif" type="isi_notif" placeholder="Isi Pesan" class="form-control form-control-sm" required> --}}
                     </div>
                 </div>
                 <div class="modal-footer p-3">

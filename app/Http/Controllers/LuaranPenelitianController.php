@@ -49,6 +49,8 @@ class LuaranPenelitianController extends Controller
             ]
         );
 
+        sendWAAjuan("Luaran Penelitian");
+
         $data = [
             'responCode' => 1,
             'respon' => 'Data Sukses Ditambah'

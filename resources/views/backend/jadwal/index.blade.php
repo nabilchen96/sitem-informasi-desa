@@ -148,9 +148,15 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label for="komen">Komentar</label>
+                            <textarea name="komen" id="komen" class="form-control" cols="30" rows="10"></textarea>
+                            <span class="text-danger error" style="font-size: 12px;" id="komen_alert"></span>
+                        </div>
+                        <div class="form-group">
                             <label>File Pendukung</label>
                             <input name="file_upload" id="file_upload" type="file" placeholder="Upload File"
                                 class="form-control form-control-sm">
+                            <span class="text-danger error" style="font-size: 12px;" id="file_upload_alert"></span>
                         </div>
                         <div class="form-group">
                             <label for="nama_file">Nama File</label>
@@ -313,9 +319,11 @@
 
                     } else {
                         //error validation
+                        console.log(res.data.respon.file_upload)
                         document.getElementById('nama_jadwal_alert').innerHTML = res.data.respon.nama_jadwal ?? ''
                         document.getElementById('kegiatan_id_alert').innerHTML = res.data.respon.kegiatan_id ?? ''
                         document.getElementById('tanggal_awal_alert').innerHTML = res.data.respon.tanggal_awal ?? ''
+                        document.getElementById('file_upload_alert').innerHTML = res.data.respon.file_upload ?? ''
                         document.getElementById('tanggal_akhir_alert').innerHTML = res.data.respon.tanggal_akhir ??
                             ''
                     }

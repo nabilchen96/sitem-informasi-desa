@@ -40,6 +40,7 @@ class JadwalController extends Controller
             'tanggal_akhir'    => 'required',
             'tahapan'          => 'required',
             'tahap_ke'          => 'required',
+            'file_upload'  => 'mimes:jpg,png,pdf,docx,doc,xlsx,xls',
         ]);
 
         if ($validator->fails()) {
@@ -83,7 +84,7 @@ class JadwalController extends Controller
             }
 
             if($request->kirim_wa == '1'){
-                sendWAJadwal($kegiatan->nama_kegiatan, $request->nama_jadwal, $request->tanggal_awal, $request->tanggal_akhir,'insert');
+                sendWAJadwal($kegiatan->nama_kegiatan, $request->nama_jadwal, $request->komen, $request->tanggal_awal, $request->tanggal_akhir,'insert');
             }
             // sendWAJadwal($kegiatan->nama_kegiatan, $request->nama_jadwal, $request->tanggal_awal, $request->tanggal_akhir);
 
@@ -107,6 +108,7 @@ class JadwalController extends Controller
             'tanggal_akhir'    => 'required',
             'tahapan'          => 'required',
             'tahap_ke'         => 'required',
+            'file_upload'  => 'mimes:jpg,png,pdf,docx,doc,xlsx,xls',
         ]);
 
         if ($validator->fails()) {
@@ -135,13 +137,13 @@ class JadwalController extends Controller
                 'status'            => $request->status,
                 'tahapan'           => $request->tahapan,
                 'tahap_ke'          => $request->tahap_ke,
-                'file_upload'       => $request->file_upload ? $nama_file : '',
+                'file_upload'       => $request->file_upload ? $nama_file : $jadwal->file_upload,
                 'nama_file'         => $request->nama_file,
                 'kirim_wa'          => $request->kirim_wa
             ]);
 
             if($request->kirim_wa == '1'){
-                sendWAJadwal($kegiatan->nama_kegiatan, $request->nama_jadwal, $request->tanggal_awal, $request->tanggal_akhir,'update');
+                sendWAJadwal($kegiatan->nama_kegiatan, $request->nama_jadwal, $request->komen, $request->tanggal_awal, $request->tanggal_akhir,'update');
             }
 
             $data = [

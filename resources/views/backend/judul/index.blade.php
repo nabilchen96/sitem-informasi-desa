@@ -68,6 +68,8 @@
                                             <th>Jenis Penelitian</th>
                                             <th>Sub Topik Penelitian</th>
                                             <th>Pelaksanaan Penelitian</th>
+                                            <th>Jenis Usulan</th>
+                                            <th>Scan Blanko</th>
                                             <th width="5%"></th>
                                             <th width="5%"></th>
                                         </tr>
@@ -88,6 +90,8 @@
                                             <th>Jenis Penelitian</th>
                                             <th>Sub Topik Penelitian</th>
                                             <th>Pelaksanaan Penelitian</th>
+                                            <th>Jenis Usulan</th>
+                                            <th>Scan Blanko</th>
                                             <th width="5%"></th>
                                             <th width="5%"></th>
                                         </tr>
@@ -108,8 +112,9 @@
                                             <th>Jenis Penelitian</th>
                                             <th>Sub Topik Penelitian</th>
                                             <th>Pelaksanaan Penelitian</th>
-                                            <th width="5%"></th>
-                                            <th width="5%"></th>
+                                            <th>Jenis Usulan</th>
+                                            {{-- <th width="5%"></th>
+                                            <th width="5%"></th> --}}
                                         </tr>
                                     </thead>
                                 </table>
@@ -124,11 +129,11 @@
 
         <!-- Modal -->
         <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <form id="form">
                         <div class="modal-header p-3">
-                            <h5 class="modal-title m-2" id="exampleModalLabel">Dosen Form</h5>
+                            <h5 class="modal-title m-2" id="exampleModalLabel">Usulan Judul Form</h5>
                         </div>
                         <div class="modal-body">
                             <input type="hidden" name="id" id="id">
@@ -162,6 +167,14 @@
                                     <option>Terapan</option>
                                     <option>Pengembangan</option>
                                     <option>Pengembangan Lanjutan</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Jenis Usulan</label>
+                                <select name="jenis_usulan" id="jenis_usulan" class="form-control border" required>
+                                    <option value="">--Pilih Jenis Usulan--</option>
+                                    <option>Penelitian</option>
+                                    <option>PKM</option>
                                 </select>
                             </div>
 
@@ -202,7 +215,6 @@
                                     <option value="2">Tolak</option>
                                 </select>
                             </div>
-
                             <div class="form-group">
                                 <label for="token_akses">Token Akses</label>
                                 <input name="token_akses" id="token_akses" type="hidden" placeholder="Token Akses"
@@ -214,6 +226,12 @@
                                 <input name="keterangan_respon" id="keterangan_respon" type="text" placeholder="Keterangan"
                                     class="form-control form-control-sm" aria-describedby="emailHelp">
                             </div>
+
+                            <div class="form-group">
+                                <label for="file_blanko">Scan Blanko</label>
+                                <input name="file_blanko" id="file_blanko" type="file" placeholder="Scan Blanko"
+                                    class="form-control form-control-sm" aria-describedby="emailHelp">
+                            </div>
                         </div>
                         <div class="modal-footer p-3">
                             <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
@@ -223,6 +241,131 @@
                 </div>
             </div>
         </div>
+
+        {{-- modal2 --}}
+        <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <form id="form2">
+                        <div class="modal-header p-3">
+                            <h5 class="modal-title m-2" id="exampleModalLabel">Usulan Judul Form</h5>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" name="id" id="id2">
+                            <div class="form-group">
+                                <label for="judul_penelitian2">Judul Penelitian</label>
+                                <input name="judul_penelitian" id="judul_penelitian2" type="text" placeholder="Judul Penelitian"
+                                    class="form-control form-control-sm" aria-describedby="emailHelp" required>
+                                <span class="text-danger error" style="font-size: 12px;" id="judul_penelitian_alert"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="nama_ketua2">Nama Ketua</label>
+                                <input name="nama_ketua" id="nama_ketua2" type="text" placeholder="Nama Ketua"
+                                    class="form-control form-control-sm" aria-describedby="emailHelp" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Program Studi</label>
+                                <select name="program_studi" id="program_studi2" class="form-control border" required>
+                                    <option value="">--Pilih Prodi--</option>
+                                    <option>DIV TRBU</option>
+                                    <option>DIII PPKP</option>
+                                    <option>DIII MBU</option>
+                                </select>
+                                <span class="text-danger error" style="font-size: 12px;" id="program_studi_alert"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Jenis Penelitian</label>
+                                <select name="jenis_penelitian" id="jenis_penelitian2" class="form-control border" required>
+                                    <option value="">--Pilih Jenis Penelitian--</option>
+                                    <option>Dasar</option>
+                                    <option>Terapan</option>
+                                    <option>Pengembangan</option>
+                                    <option>Pengembangan Lanjutan</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Jenis Usulan</label>
+                                <select name="jenis_usulan" id="jenis_usulan2" class="form-control border" required>
+                                    <option value="">--Pilih Jenis Usulan--</option>
+                                    <option>Penelitian</option>
+                                    <option>PKM</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sub_topik2">Sub Topik</label>
+                                <select name="sub_topik" id="sub_topik2" class="form-control border" required>
+                                    <option value="">--Pilih Sub Topik Penelitian--</option>
+                                    <option>Aviation of Learning Technology</option>
+                                    <option>Evaluation of Education Management</option>
+                                    <option>Development of Learning Technology</option>
+                                    <option>Implementation of Learning Media</option>
+                                    <option>Airport Design, Planning, Maintenance</option>
+                                    <option>Eco/Smart Airport</option>
+                                    <option>Automation System</option>
+                                    <option>Fire Engineering</option>
+                                    <option>Aviation Safety</option>
+                                    <option>Aviation Security</option>
+                                    <option>Aviation Services</option>
+                                    <option>Human Resources Deevelopment</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Jenis Pelaksanaan</label>
+                                <select name="jenis_pelaksanaan" id="jenis_pelaksanaan2" class="form-control border" required>
+                                    <option value="">--Pilih Jenis Pelaksanaan--</option>
+                                    <option>Kelompok</option>
+                                    <option>Mandiri</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Status</label>
+                                <select name="status" id="status2" class="form-control border" required>
+                                    <option value="">--Pilih--</option>
+                                    <option value="0">Baru</option>
+                                    <option value="1">ACC</option>
+                                    <option value="2">Tolak</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="kirim_wa">Kirim WA?</label>
+                                <select name="kirim_wa" class="form-control" id="kirim_wa" required>
+                                    <option value="1">Ya</option>
+                                    <option value="0">Tidak</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="token_akses2">Token Akses</label>
+                                <input name="token_akses" id="token_akses2" type="hidden" placeholder="Token Akses"
+                                    class="form-control form-control-sm" aria-describedby="emailHelp" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="keterangan_respon2">Ketarangan</label>
+                                <input name="keterangan_respon" id="keterangan_respon2" type="text" placeholder="Keterangan"
+                                    class="form-control form-control-sm" aria-describedby="emailHelp">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="file_blanko2">Scan Blanko</label>
+                                <input name="file_blanko" id="file_blanko2" type="file" placeholder="Scan Blanko"
+                                    class="form-control form-control-sm" aria-describedby="emailHelp">
+                            </div>
+                        </div>
+                        <div class="modal-footer p-3">
+                            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+                            <button id="tombol_kirim2" class="btn btn-primary btn-sm">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </div>
 @endsection
 @push('script')
@@ -267,6 +410,16 @@
                     },
                     {
                         data: "jenis_pelaksanaan"
+                    },
+                    {
+                        data: "jenis_usulan"
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            return `<a href="/scan_blanko/${row.file_blanko}" target="_blank">
+                                    <i style="font-size: 1.5rem;" class="text-danger bi bi-file-earmark-text"></i>
+                                </a>`
+                        }
                     },
                     {
                         render: function(data, type, row, meta) {
@@ -324,29 +477,29 @@
                         data: "jenis_pelaksanaan"
                     },
                     {
+                        data: "jenis_usulan"
+                    },
+                    {
                         render: function(data, type, row, meta) {
-                            if(row.status == "0"){
-                                return `<a data-toggle="modal" data-target="#modal"
-                                    data-bs-id=` + (row.id) + ` href="javascript:void(0)">
-                                    <i style="font-size: 1.5rem;" class="text-success bi bi-grid"></i>
+                            return `<a href="/scan_blanko/${row.file_blanko}" target="_blank">
+                                    <i style="font-size: 1.5rem;" class="text-danger bi bi-file-earmark-text"></i>
                                 </a>`
-                            } else {
-                                return `-`
-                            }
-                            
                         }
                     },
                     {
                         render: function(data, type, row, meta) {
-                            if(row.status == "0"){
-                                return `<a href="javascript:void(0)" onclick="hapusData(` + (row
+                            return `<a data-toggle="modal" data-target="#modal2"
+                                    data-bs-id=` + (row.id) + ` href="javascript:void(0)">
+                                    <i style="font-size: 1.5rem;" class="text-success bi bi-grid"></i>
+                                </a>`
+                        }
+                    },
+                    {
+                        render: function(data, type, row, meta) {
+                            return `<a href="javascript:void(0)" onclick="hapusData(` + (row
                                 .id) + `)">
                                     <i style="font-size: 1.5rem;" class="text-danger bi bi-trash"></i>
                                 </a>`
-                            } else {
-                                return `-`
-                            }
-                            
                         }
                     },
                 ]
@@ -389,31 +542,34 @@
                         data: "jenis_pelaksanaan"
                     },
                     {
-                        render: function(data, type, row, meta) {
-                            if(row.status == "0"){
-                                return `<a data-toggle="modal" data-target="#modal"
-                                    data-bs-id=` + (row.id) + ` href="javascript:void(0)">
-                                    <i style="font-size: 1.5rem;" class="text-success bi bi-grid"></i>
-                                </a>`
-                            } else {
-                                return `-`
-                            }
-                            
-                        }
+                        data: "jenis_usulan"
                     },
-                    {
-                        render: function(data, type, row, meta) {
-                            if(row.status == "0"){
-                                return `<a href="javascript:void(0)" onclick="hapusData(` + (row
-                                .id) + `)">
-                                    <i style="font-size: 1.5rem;" class="text-danger bi bi-trash"></i>
-                                </a>`
-                            } else {
-                                return `-`
-                            }
-                            
-                        }
-                    },
+                        // {
+                        //     render: function(data, type, row, meta) {
+                        //         if(row.status == "0"){
+                        //             return `<a data-toggle="modal" data-target="#modal"
+                        //                 data-bs-id=` + (row.id) + ` href="javascript:void(0)">
+                        //                 <i style="font-size: 1.5rem;" class="text-success bi bi-grid"></i>
+                        //             </a>`
+                        //         } else {
+                        //             return `-`
+                        //         }
+                                
+                        //     }
+                        // },
+                        // {
+                        //     render: function(data, type, row, meta) {
+                        //         if(row.status == "0"){
+                        //             return `<a href="javascript:void(0)" onclick="hapusData(` + (row
+                        //             .id) + `)">
+                        //                 <i style="font-size: 1.5rem;" class="text-danger bi bi-trash"></i>
+                        //             </a>`
+                        //         } else {
+                        //             return `-`
+                        //         }
+                                
+                        //     }
+                        // },
                 ]
             })
         }
@@ -439,9 +595,38 @@
                 modal.find('#program_studi').val(cokData[0].program_studi)
                 modal.find('#jenis_penelitian').val(cokData[0].jenis_penelitian)
                 modal.find('#jenis_pelaksanaan').val(cokData[0].jenis_pelaksanaan)
+                modal.find('#jenis_usulan').val(cokData[0].jenis_usulan)
                 modal.find('#sub_topik').val(cokData[0].sub_topik)
                 modal.find('#status').val(cokData[0].status)
                 modal.find('#token_akses').val(cokData[0].token_akses)
+            }
+        })
+
+        $('#modal2').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var recipient = button.data('bs-id') // Extract info from data-* attributes
+            var cok = $("#myTable2").DataTable().rows().data().toArray()
+
+            let cokData = cok.filter((dt) => {
+                return dt.id == recipient;
+            })
+
+            document.getElementById("form").reset();
+            document.getElementById('id').value = ''
+            $('.error').empty();
+
+            if (recipient) {
+                var modal = $(this)
+                modal.find('#id2').val(cokData[0].id)
+                modal.find('#judul_penelitian2').val(cokData[0].judul_penelitian)
+                modal.find('#nama_ketua2').val(cokData[0].nama_ketua)
+                modal.find('#program_studi2').val(cokData[0].program_studi)
+                modal.find('#jenis_penelitian2').val(cokData[0].jenis_penelitian)
+                modal.find('#jenis_pelaksanaan2').val(cokData[0].jenis_pelaksanaan)
+                modal.find('#jenis_usulan2').val(cokData[0].jenis_usulan)
+                modal.find('#sub_topik2').val(cokData[0].sub_topik)
+                modal.find('#status2').val(cokData[0].status)
+                modal.find('#token_akses2').val(cokData[0].token_akses)
             }
         })
 
@@ -494,6 +679,54 @@
                     console.log(res);
                 });
         }
+
+        form2.onsubmit = (e) => {
+
+let formData2 = new FormData(form2);
+
+e.preventDefault();
+
+document.getElementById("tombol_kirim2").disabled = true;
+
+axios({
+        method: 'post',
+        url: formData2.get('id') == '' ? '/store-usulan-judul' : '/update-usulan-judul',
+        data: formData2,
+    })
+    .then(function(res) {
+        //handle success         
+        if (res.data.responCode == 1) {
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Sukses',
+                text: res.data.respon,
+                timer: 3000,
+                showConfirmButton: false
+            })
+
+            // $("#modal").modal("hide");
+            // $('#myTable').DataTable().clear().destroy();
+            // getData()
+
+            setTimeout(() => {
+                location.reload(res.data.respon);
+            }, 1500);
+
+        } else {
+            //error validation
+            document.getElementById('judul_penelitian2_alert').innerHTML = res.data.respon.judul_penelitian ?? ''
+         
+        }
+
+        document.getElementById("tombol_kirim2").disabled = false;
+    })
+    .catch(function(res) {
+        document.getElementById("tombol_kirim2").disabled = false;
+        //handle error
+        console.log(res);
+    });
+}
 
         hapusData = (id) => {
             Swal.fire({

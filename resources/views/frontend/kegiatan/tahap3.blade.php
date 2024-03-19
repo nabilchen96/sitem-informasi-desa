@@ -65,8 +65,8 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-4">
-                        <label class="form-label">Link Video <sup class="text-danger">*</sup></label>
-                        <input type="text" name="link_video" id="link_video" class="form-control border" placeholder="Link Video" required>
+                        <label class="form-label">Link Video </label>
+                        <input type="text" name="link_video" id="link_video" class="form-control border" placeholder="Link Video">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Anggota <sup class="text-danger">*</sup></label>
