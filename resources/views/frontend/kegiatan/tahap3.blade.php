@@ -8,10 +8,15 @@
                     ->where('token_akses', Request('token_akses'))
                     ->first();
 
-                $judul = DB::table('usulan_juduls')
-                            ->where('token_akses', @$data->token_akses)
-                            ->latest()
-                            ->first();
+                $judul = DB::table('usulan_juduls as uj')
+                            ->join('jadwals as j', 'j.id', '=', 'uj.jadwal_id')
+                            ->join('kegiatans as k', 'k.id', '=', 'j.kegiatan_id')
+                            ->where('uj.token_akses', @$data->token_akses)
+                            ->where('k.status', '1')
+                            ->select(
+                                'uj.*'
+                            )
+                            ->get();
 
                             // dd($judul);
                 ?>
@@ -41,10 +46,13 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-4">
-                        <label class="form-label">Judul Penelitian <sup class="text-danger">*</sup></label>
-                        <input type="hidden" name="usulan_judul_id" id="usulan_judul_id" value="{{ @$judul->id }}">
-                        <input type="text" name="judul_penelitian" id="judul_penelitian" value="{{ @$judul->judul_penelitian }}"
-                            class="form-control border" placeholder="Judul Penelitian" required readonly>
+                        <label class="form-label">Judul Penelitian atau PKM <sup class="text-danger">*</sup></label>
+                            <select name="usulan_judul_id" class="form-control border" id="usulan_judul_id">
+                                <option value="">PILIH JUDUL PENELITIAN ATAU PKM</option>
+                                @foreach ($judul as $item)
+                                    <option value="{{ $item->id }}">{{ $item->judul_penelitian }}</option>
+                                @endforeach
+                            </select>
                     </div>
                     <div class="mb-4">
                         <label class="form-label">File Proposal <sup class="text-danger">*</sup></label>
