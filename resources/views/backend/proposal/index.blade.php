@@ -862,7 +862,7 @@
             }).then((result) => {
 
                 if (result.value) {
-                    axios.post('/delete-dosen', {
+                    axios.post('/delete-usulan-proposal', {
                             id
                         })
                         .then((response) => {
