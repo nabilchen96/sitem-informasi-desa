@@ -398,9 +398,6 @@ function sendWANotif($message, $list_nomor)
             'target' => $noWA,
             'message' => "" . $message . ".
 
-Silahkan cek informasi pada : 
-https://sipp.poltekbangplg.ac.id/front/kegiatan
-
 Salam Hormat 
 *- Admin PUSPPM -*",
             'delay' => '10', //nilai jgan diubah
