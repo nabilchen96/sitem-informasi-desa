@@ -79,6 +79,8 @@ Route::post('/loginProses', 'App\Http\Controllers\AuthController@loginProses');
 //BACKEND
 Route::group(['middleware' => 'auth'], function () {
 
+    Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
+    
     Route::get('/cetak-nilai-proposal/{usulan_proposal_id}', 'App\Http\Controllers\PenilaianProposalController@cetakNilai');
     
     //DASHBOARD

@@ -85,7 +85,7 @@
                         // data: "judul_penelitian"
                         render: function(data, type, row, meta) {
                             return `<span style="
-                            width: 205px !important;
+                            width: 305px !important;
                             white-space: normal;
                             display: inline-block !important;
                             ">

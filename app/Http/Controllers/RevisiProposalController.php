@@ -27,7 +27,7 @@ class RevisiProposalController extends Controller
                     'rp.file_proposal_revisi', 
                     'rp.tgl_upload',
                     'd.nama_dosen', 
-                    'uj.judul_penelitian', 
+                    'rp.judul_penelitian', 
                     'uj.nama_ketua', 
                     'rp.created_at'
                 )
@@ -55,15 +55,21 @@ class RevisiProposalController extends Controller
                 'respon' => $validator->errors()
             ];
         } else {
-            $data = RevisiProposal::create([
+            $data = RevisiProposal::updateOrCreate(
+            [
+                'token_akses'           => $request->token_akses,
+                'judul_penelitian'      => $request->judul_penelitian,
+            ],
+            [
                 'jadwal_id'             => $request->jadwal_id,
                 'file_proposal_revisi'  => $nama_file_proposal_revisi,
                 'token_akses'           => $request->token_akses,
+                'judul_penelitian'      => $request->judul_penelitian,
                 'status'                => '0',
-                'tgl_upload'        => date('Y-m-d'),
+                'tgl_upload'            => date('Y-m-d'),
             ]);
 
-            sendWAAjuan("Revisi Proposal");
+            // sendWAAjuan("Revisi Proposal");
 
             $data = [
                 'responCode' => 1,
