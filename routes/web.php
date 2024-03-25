@@ -136,6 +136,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/penilaian-proposal', 'App\Http\Controllers\UsulanProposalController@index');
     Route::post('/update-penilaian-proposal', 'App\Http\Controllers\PenilaianProposalController@store');
     Route::get('/data-usulan-proposal', 'App\Http\Controllers\UsulanProposalController@data');
+    Route::post('/delete-usulan-proposal', 'App\Http\Controllers\UsulanProposalController@delete');
     
     Route::get('/data-usulan-proposal-acc', 'App\Http\Controllers\UsulanProposalController@dataAcc');
     Route::get('/data-usulan-proposal-tolak', 'App\Http\Controllers\UsulanProposalController@dataTolak');

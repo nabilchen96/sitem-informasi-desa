@@ -216,4 +216,17 @@ class UsulanProposalController extends Controller
 
         return response()->json($data);
     }
+
+    public function delete(Request $request)
+    {
+
+        $data = UsulanProposal::find($request->id)->delete();
+
+        $data = [
+            'responCode' => 1,
+            'respon' => 'Data Sukses Dihapus'
+        ];
+
+        return response()->json($data);
+    }
 }
