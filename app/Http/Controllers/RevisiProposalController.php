@@ -69,7 +69,7 @@ class RevisiProposalController extends Controller
                 'tgl_upload'            => date('Y-m-d'),
             ]);
 
-            // sendWAAjuan("Revisi Proposal");
+            sendWAAjuan("Revisi Proposal");
 
             $data = [
                 'responCode' => 1,
