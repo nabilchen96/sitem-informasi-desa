@@ -156,6 +156,7 @@ Route::group(['middleware' => 'auth'], function () {
     //SEMINAR ANTARA
     Route::get('/seminar-antara', 'App\Http\Controllers\SeminarAntaraController@index');
     Route::get('/data-seminar-antara', 'App\Http\Controllers\SeminarAntaraController@data');
+    Route::post('/delete-seminar-antara', 'App\Http\Controllers\SeminarAntaraController@delete');
 
     //LUARAN PENELITIAN
     Route::get('/luaran-penelitian', 'App\Http\Controllers\LuaranPenelitianController@index');

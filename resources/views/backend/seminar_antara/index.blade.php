@@ -117,5 +117,48 @@
                 ]
             })
         }
+
+        hapusData = (id) => {
+            Swal.fire({
+                title: "Yakin hapus data?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'Ya',
+                cancelButtonColor: '#3085d6',
+                cancelButtonText: "Batal"
+
+            }).then((result) => {
+
+                if (result.value) {
+                    axios.post('/delete-seminar-antara', {
+                            id
+                        })
+                        .then((response) => {
+                            if (response.data.responCode == 1) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Berhasil',
+                                    timer: 2000,
+                                    showConfirmButton: false
+                                })
+
+                                $('#myTable').DataTable().clear().destroy();
+                                getData();
+
+                            } else {
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Gagal...',
+                                    text: response.data.respon,
+                                })
+                            }
+                        }, (error) => {
+                            console.log(error);
+                        });
+                }
+
+            });
+        }
     </script>
 @endpush

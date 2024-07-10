@@ -4,21 +4,18 @@
             <div class="row">
                 <?php
                 
-                $data = DB::table('dosens')
-                    ->where('token_akses', Request('token_akses'))
-                    ->first();
-
+                $data = DB::table('dosens')->where('token_akses', Request('token_akses'))->first();
+                
                 $judul = DB::table('usulan_juduls as uj')
-                            ->join('jadwals as j', 'j.id', '=', 'uj.jadwal_id')
-                            ->join('kegiatans as k', 'k.id', '=', 'j.kegiatan_id')
-                            ->where('uj.token_akses', @$data->token_akses)
-                            ->where('k.status', '1')
-                            ->select(
-                                'uj.*'
-                            )
-                            ->get();
-
-                            // dd($judul);
+                    ->join('jadwals as j', 'j.id', '=', 'uj.jadwal_id')
+                    ->join('kegiatans as k', 'k.id', '=', 'j.kegiatan_id')
+                    ->where('uj.token_akses', @$data->token_akses)
+                    ->where('k.status', '1')
+                    ->select('uj.*')
+                    ->get();
+                
+                // dd($judul);
+                
                 ?>
                 <div class="col-lg-6">
                     <form action="{{ url('front/kegiatan') }}" method="GET">
@@ -47,16 +44,17 @@
                 <div class="col-lg-6">
                     <div class="mb-4">
                         <label class="form-label">Judul Penelitian atau PKM <sup class="text-danger">*</sup></label>
-                            <select name="usulan_judul_id" class="form-control border" id="usulan_judul_id">
-                                <option value="">PILIH JUDUL PENELITIAN ATAU PKM</option>
-                                @foreach ($judul as $item)
-                                    <option value="{{ $item->id }}">{{ $item->judul_penelitian }}</option>
-                                @endforeach
-                            </select>
+                        <select name="usulan_judul_id" class="form-control border" id="usulan_judul_id" required>
+                            <option value="">PILIH JUDUL PENELITIAN ATAU PKM</option>
+                            @foreach ($judul as $item)
+                                <option value="{{ $item->id }}">{{ $item->judul_penelitian }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="mb-4">
                         <label class="form-label">File Proposal <sup class="text-danger">*</sup></label>
-                        <input type="file" name="file_proposal" id="file_proposal" class="form-control border"required>
+                        <input type="file" name="file_proposal" id="file_proposal"
+                            class="form-control border"required>
                     </div>
                     <div class="mb-4">
                         <label class="form-label">File RAB <sup class="text-danger">*</sup></label>
@@ -66,11 +64,13 @@
                 <div class="col-lg-6">
                     <div class="mb-4">
                         <label class="form-label">Link Video/Presentasi PPT </label>
-                        <input type="text" name="link_video" id="link_video" class="form-control border" placeholder="Link Video/Presentasi PPT">
+                        <input type="text" name="link_video" id="link_video" class="form-control border"
+                            placeholder="Link Video/Presentasi PPT">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Anggota <sup class="text-danger">*</sup></label>
-                        <textarea name="anggota" id="anggota" placeholder="Sebutkan Anggota Penelitian, pisahkan dengan koma" class="form-control border" required rows="5"></textarea>
+                        <textarea name="anggota" id="anggota" placeholder="Sebutkan Anggota Penelitian, pisahkan dengan koma"
+                            class="form-control border" required rows="5"></textarea>
                     </div>
                 </div>
                 <div class="col-lg-12">

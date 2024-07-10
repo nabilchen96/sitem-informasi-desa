@@ -21,12 +21,12 @@ class SeminarAntaraController extends Controller
     public function data()
     {
         $data = DB::table('seminar_antaras as sa')
-            ->join('dosens as d', 'd.token_akses', '=', 'sa.token_akses')
-            ->join('usulan_juduls as uj', 'uj.token_akses', '=', 'd.token_akses')
+            ->leftjoin('dosens as d', 'd.token_akses', '=', 'sa.token_akses')
+            ->join('usulan_juduls as uj', 'uj.id', '=', 'sa.usulan_judul_id')
             ->select(
-                'sa.*', 
-                'd.nama_dosen', 
-                'judul_penelitian'
+                'sa.*',
+                'd.nama_dosen',
+                'uj.judul_penelitian'
             )
             ->get();
 
@@ -35,6 +35,9 @@ class SeminarAntaraController extends Controller
 
     public function store(Request $request)
     {
+
+        // dd($request->usulan_judul_id);
+
         //upload file seminar antara
         $file_seminar_antara = $request->file_seminar_antara;
         $nama_file_seminar_antara = '1' . date('YmdHis.') . $file_seminar_antara->extension();
@@ -52,13 +55,26 @@ class SeminarAntaraController extends Controller
             ]
         );
 
-        sendWAAjuan("Seminar Antara");
+        // sendWAAjuan("Seminar Antara");
 
         $data = [
             'responCode' => 1,
             'respon' => 'Data Sukses Ditambah'
         ];
 
+
+        return response()->json($data);
+    }
+
+    public function delete(Request $request)
+    {
+
+        $data = SeminarAntara::find($request->id)->delete();
+
+        $data = [
+            'responCode' => 1,
+            'respon' => 'Data Sukses Dihapus'
+        ];
 
         return response()->json($data);
     }
