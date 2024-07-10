@@ -13,6 +13,7 @@
                         untuk melihat history atau aktivitas penelitian anda</span>
                 </div>
                 <br>
+                
                 <ul class="d-none d-lg-block d-xl-block timeline">
                     <li @if (@getJadwalAktif()->tahap_ke == 1) style="background: red;" data-year="We Are Here!" @endif
                         data-text="1. Pengajuan Judul"></li>
@@ -133,9 +134,13 @@
                     'jadwal' => @getJadwalAktif(),
                 ])
             @elseif(@getJadwalAktif()->tahap_ke == 2)
-                @include('frontend.kegiatan.tahap2')
+                @include('frontend.kegiatan.tahap2',[
+                    'jadwal' => @getJadwalAktif(),
+                ])
             @elseif(@getJadwalAktif()->tahap_ke == 3)
-                @include('frontend.kegiatan.tahap3')
+                @include('frontend.kegiatan.tahap3', [
+                    'jadwal' => @getJadwalAktif(),
+                ])
             @elseif(@getJadwalAktif()->tahap_ke == 4 && @getJadwalAktif()->nama_jadwal == 'Revisi Proposal')
                 @include('frontend.kegiatan.tahap4_bagian1', [
                     'jadwal' => @getJadwalAktif(),
@@ -145,17 +150,29 @@
                     'jadwal' => @getJadwalAktif(),
                 ])
             @elseif(@getJadwalAktif()->tahap_ke == 5)
-                @include('frontend.kegiatan.tahap5')
+                @include('frontend.kegiatan.tahap5', [
+                    'jadwal' => @getJadwalAktif(),
+                ])
             @elseif(@getJadwalAktif()->tahap_ke == 6)
-                @include('frontend.kegiatan.tahap6')
+                @include('frontend.kegiatan.tahap6', [
+                    'jadwal' => @getJadwalAktif(),
+                ])
             @elseif(@getJadwalAktif()->tahap_ke == 7)
-                @include('frontend.kegiatan.tahap7')
+                @include('frontend.kegiatan.tahap7', [
+                    'jadwal' => @getJadwalAktif(),
+                ])
             @elseif(@getJadwalAktif()->tahap_ke == 8)
-                @include('frontend.kegiatan.tahap8')
+                @include('frontend.kegiatan.tahap8', [
+                    'jadwal' => @getJadwalAktif(),
+                ])
             @elseif(@getJadwalAktif()->tahap_ke == 9)
-                @include('frontend.kegiatan.tahap9')
+                @include('frontend.kegiatan.tahap9', [
+                    'jadwal' => @getJadwalAktif(),
+                ])
             @elseif(@getJadwalAktif()->tahap_ke == 10)
-                @include('frontend.kegiatan.tahap10')
+                @include('frontend.kegiatan.tahap10', [
+                    'jadwal' => @getJadwalAktif(),
+                ])
             @endif
         </div>
     </div>

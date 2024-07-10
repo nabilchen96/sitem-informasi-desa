@@ -240,7 +240,7 @@ periode *$tglawal* s/d *$tglakhir*.
 $komen
 
 =============================
-Silahkan cek informasi jadwal pada 
+Silahkan *upload file / cek informasi jadwal* pada 
 https://sipp.poltekbangplg.ac.id/front/kegiatan
 =============================
 
@@ -340,7 +340,7 @@ function sendUpdateUsulanProposal($noWA, $namaDosen, $judul, $status, $jk, $kete
 
     $pesan = "$greet $nick $namaDosen usulan Proposal *$judul* *$ubah*.
 Keterangan : *$ket*.
-Silahkan cek informasi pada https://sipp.poltekbangplg.ac.id/front/history
+Silahkan cek histori pada https://sipp.poltekbangplg.ac.id/front/history
 
 Salam Hormat
 *- Admin PUSPPM -*  ";
