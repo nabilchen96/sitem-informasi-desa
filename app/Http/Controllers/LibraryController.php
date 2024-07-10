@@ -109,7 +109,9 @@ class LibraryController extends Controller
     public function frontLibrary(Request $request){
 
         // $data = Library::orderBy('created_at','DESC');
-        $data = DB::table('libraries')->get()->orderBy('created_at','DESC');
+        $data = DB::table('libraries')
+        ->orderBy('created_at', 'desc')
+        ->get();
 
         return view('frontend.library', [
             'data'  => $data
