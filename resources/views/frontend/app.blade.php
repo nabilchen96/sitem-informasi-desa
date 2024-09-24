@@ -209,6 +209,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" style="white-space: nowrap;" href="{{ url('front/haki') }}">
+                                📁 Dokumen HAKI
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" style="white-space: nowrap;" href="{{ url('front/kegiatan') }}">
                                 👷 Kegiatan PusPPM
                             </a>

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('nilai/{id}',[PenilaianProposalController::class,'cetakNilai']);
+Route::get('nilai/{id}', [PenilaianProposalController::class, 'cetakNilai']);
 
 //LANDING
 Route::get('/', function () {
@@ -33,6 +33,7 @@ Route::get('/front/pengumuman', function () {
 
 //LIBRARY
 Route::get('/front/library', 'App\Http\Controllers\LibraryController@frontLibrary');
+Route::get('/front/haki', 'App\Http\Controllers\HakiController@frontHAKI');
 
 //PENGUMUMAN
 Route::get('/front/pengumuman', 'App\Http\Controllers\PengumumanController@frontPengumuman');
@@ -80,9 +81,9 @@ Route::post('/loginProses', 'App\Http\Controllers\AuthController@loginProses');
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
-    
+
     Route::get('/cetak-nilai-proposal/{usulan_proposal_id}', 'App\Http\Controllers\PenilaianProposalController@cetakNilai');
-    
+
     //DASHBOARD
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index');
 
@@ -137,7 +138,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/update-penilaian-proposal', 'App\Http\Controllers\PenilaianProposalController@store');
     Route::get('/data-usulan-proposal', 'App\Http\Controllers\UsulanProposalController@data');
     Route::post('/delete-usulan-proposal', 'App\Http\Controllers\UsulanProposalController@delete');
-    
+
     Route::get('/data-usulan-proposal-acc', 'App\Http\Controllers\UsulanProposalController@dataAcc');
     Route::get('/data-usulan-proposal-tolak', 'App\Http\Controllers\UsulanProposalController@dataTolak');
     Route::post('/update-status-usulan-proposal', 'App\Http\Controllers\UsulanProposalController@updateStatus');
@@ -183,6 +184,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/update-library', 'App\Http\Controllers\LibraryController@update');
     Route::post('/delete-library', 'App\Http\Controllers\LibraryController@delete');
 
+    //HAKI
+    Route::get('/haki', 'App\Http\Controllers\HakiController@index');
+    Route::get('/data-haki', 'App\Http\Controllers\HakiController@data');
+    Route::post('/store-haki', 'App\Http\Controllers\HakiController@store');
+    Route::post('/update-haki', 'App\Http\Controllers\HakiController@update');
+    Route::post('/delete-haki', 'App\Http\Controllers\HakiController@delete');
+
     //PENGUMUMAN
     Route::get('/pengumuman', 'App\Http\Controllers\PengumumanController@index');
     Route::get('/data-pengumuman', 'App\Http\Controllers\PengumumanController@data');
@@ -196,7 +204,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/store-kontrak', 'App\Http\Controllers\KontrakController@store');
     Route::post('/update-kontrak', 'App\Http\Controllers\KontrakController@update');
     Route::post('/delete-kontrak', 'App\Http\Controllers\KontrakController@delete');
-
 });
 
 //LOGOUT

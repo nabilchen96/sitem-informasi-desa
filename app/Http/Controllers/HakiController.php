@@ -2,32 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Haki;
 use DB;
-use App\Models\Library;
-use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class LibraryController extends Controller
+class HakiController extends Controller
 {
     public function index()
     {
-        return view('backend.library.index');
+        return view('backend.haki.index');
     }
 
     public function data()
     {
 
-        $library = DB::table('libraries');
-        $library = $library->get();
+        $haki = DB::table('hakis');
+        $haki = $haki->get();
 
-        return response()->json(['data' => $library]);
+        return response()->json(['data' => $haki]);
     }
 
     public function dataHAKI()
     {
 
-        $haki = DB::table('libraries');
+        $haki = DB::table('hakis');
         $haki = $haki->get();
 
         return response()->json(['data' => $haki]);
@@ -42,7 +41,7 @@ class LibraryController extends Controller
 
         $file = $request->file;
         $nama_file = '1' . date('YmdHis.') . $file->extension();
-        $file->move('file_library', $nama_file);
+        $file->move('file_haki', $nama_file);
 
         if ($validator->fails()) {
 
@@ -52,7 +51,7 @@ class LibraryController extends Controller
             ];
 
         } else {
-            $data = Library::create([
+            $data = Haki::create([
                 'judul' => $request->judul,
                 'file' => $nama_file,
             ]);
@@ -77,7 +76,7 @@ class LibraryController extends Controller
         if($request->file){
             $file = $request->file;
             $nama_file = '1' . date('YmdHis.') . $file->extension();
-            $file->move('file_library', $nama_file);
+            $file->move('file_haki', $nama_file);
         }
 
         if ($validator->fails()) {
@@ -87,10 +86,10 @@ class LibraryController extends Controller
             ];
         } else {
 
-            $library = Library::find($request->id);
-            $data = $library->update([
+            $haki = Haki::find($request->id);
+            $data = $haki->update([
                 'judul' => $request->judul, 
-                'file'  => $nama_file ?? $library->file
+                'file'  => $nama_file ?? $haki->file
             ]);
 
             $data = [
@@ -105,7 +104,7 @@ class LibraryController extends Controller
     public function delete(Request $request)
     {
 
-        $data = Library::find($request->id)->delete();
+        $data = Haki::find($request->id)->delete();
 
         $data = [
             'responCode' => 1,
@@ -118,11 +117,11 @@ class LibraryController extends Controller
     public function frontLibrary(Request $request){
 
         // $data = Library::orderBy('created_at','DESC');
-        $data = DB::table('libraries')
+        $data = DB::table('hakis')
         ->orderBy('created_at', 'desc')
         ->get();
 
-        return view('frontend.library', [
+        return view('frontend.haki', [
             'data'  => $data
         ]);
     }
@@ -130,7 +129,7 @@ class LibraryController extends Controller
     public function frontHAKI(Request $request){
 
         // $data = Library::orderBy('created_at','DESC');
-        $data = DB::table('libraries')
+        $data = DB::table('hakis')
         ->orderBy('created_at', 'desc')
         ->get();
 

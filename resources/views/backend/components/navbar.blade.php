@@ -130,6 +130,13 @@
 
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{ url('haki') }}">
+                    <i class="bi bi-journals menu-icon"></i>
+                    <span class="menu-title">Dokumen HAKI</span>
+                </a>
+
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{ url('pengumuman') }}">
                     <i class="bi bi-megaphone menu-icon"></i>
                     <span class="menu-title">Pengumuman</span>
