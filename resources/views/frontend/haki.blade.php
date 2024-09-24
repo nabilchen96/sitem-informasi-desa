@@ -18,7 +18,7 @@
                             <table id="myTable" class="table table-striped mt-4" width="100%">
                                 <thead>
                                     <tr>
-                                        <th class="bg-info text-white">Template</th>
+                                        <th class="bg-info text-white">Dokumen</th>
                                         <th width="5%" class="bg-info text-white"></th>
                                     </tr>
                                 </thead>
