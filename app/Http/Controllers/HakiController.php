@@ -37,6 +37,7 @@ class HakiController extends Controller
 
         $validator = Validator::make($request->all(), [
             'judul' => 'required',
+            'file_haki' => 'mimes:pdf'
         ]);
 
         $file = $request->file;
@@ -70,7 +71,8 @@ class HakiController extends Controller
 
         $validator = Validator::make($request->all(), [
             'id'    => 'required',
-            'judul' => 'required'
+            'judul' => 'required',
+            'file_haki' => 'mimes:pdf'
         ]);
 
         if($request->file){

@@ -223,6 +223,12 @@
                                 😼 Kebutuhan Dosen
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" style="white-space: nowrap;" href="{{ url('login') }}">
+                                 Login
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
