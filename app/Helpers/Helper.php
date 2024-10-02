@@ -109,7 +109,7 @@ Salam Hormat
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
-            'Authorization: 8E5mWEQXUHoTFYk1yGzf' //change TOKEN to your actual token
+            'Authorization: 7+qnvcbxi_dRrrEfHdJ@' //change TOKEN to your actual token
         ),
     ));
 
@@ -149,7 +149,7 @@ Salam Hormat
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
-            'Authorization: 8E5mWEQXUHoTFYk1yGzf' //change TOKEN to your actual token
+            'Authorization: 7+qnvcbxi_dRrrEfHdJ@' //change TOKEN to your actual token
         ),
     ));
 
@@ -194,7 +194,7 @@ Salam Hormat
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
-            'Authorization: 8E5mWEQXUHoTFYk1yGzf' //change TOKEN to your actual token
+            'Authorization: 7+qnvcbxi_dRrrEfHdJ@' //change TOKEN to your actual token
         ),
     ));
 
@@ -250,7 +250,7 @@ Salam Hormat
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
-            'Authorization: 8E5mWEQXUHoTFYk1yGzf' //change TOKEN to your actual token
+            'Authorization: 7+qnvcbxi_dRrrEfHdJ@' //change TOKEN to your actual token
         ),
     ));
 
@@ -301,7 +301,7 @@ function sendUpdateUsulanJudul($noWA, $namaDosen, $judul, $status, $jk)
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
-            'Authorization: 8E5mWEQXUHoTFYk1yGzf' //change TOKEN to your actual token
+            'Authorization: 7+qnvcbxi_dRrrEfHdJ@' //change TOKEN to your actual token
         ),
     ));
 
@@ -363,7 +363,7 @@ Salam Hormat
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
-            'Authorization: 8E5mWEQXUHoTFYk1yGzf' //change TOKEN to your actual token
+            'Authorization: 7+qnvcbxi_dRrrEfHdJ@' //change TOKEN to your actual token
         ),
     ));
 
@@ -404,7 +404,7 @@ Salam Hormat
             'countryCode' => '62', //optional
         ),
         CURLOPT_HTTPHEADER => array(
-            'Authorization: 8E5mWEQXUHoTFYk1yGzf' //change TOKEN to your actual token
+            'Authorization: 7+qnvcbxi_dRrrEfHdJ@' //change TOKEN to your actual token
         ),
     ));
 
