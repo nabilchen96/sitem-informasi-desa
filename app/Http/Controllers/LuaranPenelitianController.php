@@ -20,8 +20,8 @@ class LuaranPenelitianController extends Controller
     public function data()
     {
         $data = DB::table('luaran_penelitians as sa')
-            ->join('dosens as d', 'd.token_akses', '=', 'sa.token_akses')
-            ->join('usulan_juduls as uj', 'uj.token_akses', '=', 'd.token_akses')
+            ->leftjoin('dosens as d', 'd.token_akses', '=', 'sa.token_akses')
+            ->join('usulan_juduls as uj', 'uj.id', '=', 'sa.usulan_judul_id')
             ->select(
                 'sa.*',
                 'd.nama_dosen',
