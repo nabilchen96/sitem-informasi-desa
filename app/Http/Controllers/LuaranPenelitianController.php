@@ -39,17 +39,38 @@ class LuaranPenelitianController extends Controller
         $nama_file_luaran = '1' . date('YmdHis.') . $file_luaran->extension();
         $file_luaran->move('file_luaran_library', $nama_file_luaran);
 
-        $data = LuaranPenelitian::create(
-            [
-                'usulan_judul_id' => $request->usulan_judul_id,
-                'file_luaran' => $nama_file_luaran,
-                'token_akses' => $request->token_akses,
-                'jenis_publikasi' => $request->jenis_publikasi,
-                'kategori' => $request->kategori
-            ]
-        );
+        $cekLuaran = DB::table('luaran_penelitians')->where('token_akses', $request->token_akses)->where('usulan_judul_id', $request->usulan_judul_id)->where('jenis_publikasi', $request->jenis_publikasi)->where('kategori', $request->kategori)->first();
 
-        sendWAAjuan("Luaran Penelitian");
+        if ($cekLuaran) {
+            
+            $luaran = LuaranPenelitian::where('token_akses', $request->token_akses)->where('usulan_judul_id', $request->usulan_judul_id)->where('jenis_publikasi', $request->jenis_publikasi)->where('kategori', $request->kategori);
+
+            $data = $luaran->update(
+                [
+                    'usulan_judul_id' => $request->usulan_judul_id,
+                    'file_luaran' => $nama_file_luaran,
+                    'token_akses' => $request->token_akses,
+                    'jenis_publikasi' => $request->jenis_publikasi,
+                    'kategori' => $request->kategori,
+                    'link_artikel' => $request->link_artikel,
+                ]
+            );
+        } else {
+            $data = LuaranPenelitian::create(
+                [
+                    'usulan_judul_id' => $request->usulan_judul_id,
+                    'file_luaran' => $nama_file_luaran,
+                    'token_akses' => $request->token_akses,
+                    'jenis_publikasi' => $request->jenis_publikasi,
+                    'kategori' => $request->kategori,
+                    'link_artikel' => $request->link_artikel,
+                ]
+            );
+        }
+
+        
+
+        // sendWAAjuan("Luaran Penelitian");
 
         $data = [
             'responCode' => 1,

@@ -69,7 +69,7 @@ $judul = DB::table('usulan_juduls as uj')
                 <div class="col-lg-6">
                     <div class="mb-4">
                         <label class="form-label">Judul Penelitian <sup class="text-danger">*</sup></label>
-                        <select name="usulan_judul_id" class="form-control border" id="usulan_judul_id">
+                        <select name="usulan_judul_id" class="form-control border" id="usulan_judul_id" required>
                             <option value="">PILIH JUDUL PENELITIAN ATAU PKM</option>
                             @foreach ($judul as $item)
                                 <option value="{{ $item->id }}">{{ $item->judul_penelitian }}</option>
@@ -100,6 +100,12 @@ $judul = DB::table('usulan_juduls as uj')
                     <div class="mb-4">
                         <label class="form-label">File Luaran <sup class="text-danger">*</sup></label>
                         <input type="file" name="file_luaran" id="file_luaran" class="form-control border" required>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="mb-4">
+                        <label class="form-label">Link Artikel</label>
+                        <input type="text" name="link_artikel" id="link_artikel" class="form-control border">
                     </div>
                 </div>
                 <div class="col-lg-12">

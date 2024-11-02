@@ -47,6 +47,7 @@
                                     <th>Kategori</th>
                                     <th>Jenis Publikasi</th>
                                     <th>File Luaran</th>
+                                    <th>Link Artikel</th>
                                     <th>Tanggal Unggah</th>
                                     <th width="5%"></th>
                                 </tr>
@@ -108,6 +109,14 @@
                         render: function(data, type, row, meta) {
                             return `<a href="/file_luaran_library/${row.file_luaran}">
                                 <i style="font-size: 1rem;" class="bi bi-cloud-arrow-down"></i> File Luaran Penelitian
+                            </a>`
+                        }
+                    },
+                    {
+                        // data: "anggota"
+                        render: function(data, type, row, meta) {
+                            return `<a href="${row.link_artikel}" target="_blank">
+                                <i style="font-size: 1rem;" class="bi bi-eye"></i> Lihat Artikel
                             </a>`
                         }
                     },
