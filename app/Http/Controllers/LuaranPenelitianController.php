@@ -70,7 +70,7 @@ class LuaranPenelitianController extends Controller
 
         
 
-        // sendWAAjuan("Luaran Penelitian");
+        sendWAAjuan("Luaran Penelitian");
 
         $data = [
             'responCode' => 1,
