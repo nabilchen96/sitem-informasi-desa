@@ -97,7 +97,7 @@
                     },
                     {
                         render: function(data, type, row, meta) {
-                            return `<a href="/file_seminar_hasil/${row.file_seminar_hasil}">
+                            return `<a target="_blank" href="/file_seminar_hasil_library/${row.file_seminar_hasil}">
                                 <i style="font-size: 1rem;" class="bi bi-cloud-arrow-down"></i> File Seminar Hasil
                             </a>`
                         }

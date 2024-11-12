@@ -4,28 +4,40 @@
             <legend class="w-auto px-2">Jadwal Kegiatan : {{ $jadwal->nama_jadwal }}</legend>
             <div class="form-group">
                 <label>Tgl Awal</label>
-                <input name="tgl_awal_upload" id="tgl_awal_upload" type="date" value="{{$jadwal->tanggal_awal}}" class="form-control" disabled>
-                
-              </div>
+                <input name="tgl_awal_upload" id="tgl_awal_upload" type="date" value="{{$jadwal->tanggal_awal}}"
+                    class="form-control" disabled>
 
-              <div class="form-group">
+            </div>
+
+            <div class="form-group">
                 <label>Tgl Akhir</label>
-                <input name="tgl_akhir_upload" id="tgl_akhir_upload" type="date" value="{{$jadwal->tanggal_akhir}}" class="form-control" disabled>
+                <input name="tgl_akhir_upload" id="tgl_akhir_upload" type="date" value="{{$jadwal->tanggal_akhir}}"
+                    class="form-control" disabled>
                 <span class="text-danger error" style="font-size: 12px;" id="tgl_akhir_upload_alert"></span>
-              </div>
+            </div>
         </fieldset>
         <form id="form">
             <div class="row">
                 <?php
-                
-                $data = DB::table('dosens')
-                    ->where('token_akses', Request('token_akses'))
-                    ->first();
-                
-                $judul = DB::table('usulan_juduls')
-                    ->where('token_akses', @$data->token_akses)
-                    ->latest()
-                    ->first();
+
+// $data = DB::table('dosens')
+//     ->where('token_akses', Request('token_akses'))
+//     ->first();
+
+// $judul = DB::table('usulan_juduls')
+//     ->where('token_akses', @$data->token_akses)
+//     ->latest()
+//     ->first();
+
+$data = DB::table('dosens')->where('token_akses', Request('token_akses'))->first();
+
+$judul = DB::table('usulan_juduls as uj')
+    ->join('jadwals as j', 'j.id', '=', 'uj.jadwal_id')
+    ->join('kegiatans as k', 'k.id', '=', 'j.kegiatan_id')
+    ->where('uj.token_akses', @$data->token_akses)
+    ->where('k.status', '1')
+    ->select('uj.*')
+    ->get();
                 
                 ?>
                 <div class="col-lg-6">
@@ -55,16 +67,19 @@
                 <div class="col-lg-6">
                     <div class="mb-4">
                         <label class="form-label">Judul Penelitian <sup class="text-danger">*</sup></label>
-                        <input type="hidden" name="usulan_judul_id" id="usulan_judul_id" value="{{ @$judul->id }}">
-                        <input type="text" name="judul_penelitian" id="judul_penelitian"
-                            value="{{ @$judul->judul_penelitian }}" class="form-control border"
-                            placeholder="Judul Penelitian" required readonly>
+                        <select name="usulan_judul_id" class="form-control border" id="usulan_judul_id" required>
+                            <option value="">PILIH JUDUL PENELITIAN ATAU PKM</option>
+                            @foreach ($judul as $item)
+                                <option value="{{ $item->id }}">{{ $item->judul_penelitian }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-4">
                         <label class="form-label">File Seminar Hasil<sup class="text-danger">*</sup></label>
-                        <input type="file" name="file_seminar_hasil" id="file_seminar_hasil" class="form-control border"required>
+                        <input type="file" name="file_seminar_hasil" id="file_seminar_hasil" class="form-control border"
+                            required>
                     </div>
                 </div>
                 <div class="col-lg-12">
@@ -94,11 +109,11 @@
             })
 
             axios({
-                    method: 'post',
-                    url: '/store-seminar-hasil',
-                    data: formData,
-                })
-                .then(function(res) {
+                method: 'post',
+                url: '/store-seminar-hasil',
+                data: formData,
+            })
+                .then(function (res) {
                     //handle success         
                     if (res.data.responCode == 1) {
 
@@ -119,7 +134,7 @@
 
                     document.getElementById("tombol_kirim").disabled = false;
                 })
-                .catch(function(res) {
+                .catch(function (res) {
                     document.getElementById("tombol_kirim").disabled = false;
                     //handle error
                     console.log(res);

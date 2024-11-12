@@ -20,13 +20,23 @@ class SeminarHasilController extends Controller
     {
         $data = DB::table('seminar_hasils as sa')
             ->join('dosens as d', 'd.token_akses', '=', 'sa.token_akses')
-            ->join('usulan_juduls as uj', 'uj.token_akses', '=', 'd.token_akses')
+            ->join('usulan_juduls as uj', 'uj.id', '=', 'sa.usulan_judul_id')
             ->select(
-                'sa.*', 
-                'd.nama_dosen', 
+                'sa.*',
+                'd.nama_dosen',
                 'judul_penelitian'
             )
             ->get();
+
+        // $data = DB::table('luaran_penelitians as sa')
+        //     ->leftjoin('dosens as d', 'd.token_akses', '=', 'sa.token_akses')
+        //     ->join('usulan_juduls as uj', 'uj.id', '=', 'sa.usulan_judul_id')
+        //     ->select(
+        //         'sa.*',
+        //         'd.nama_dosen',
+        //         'judul_penelitian'
+        //     )
+        //     ->get();
 
         return response()->json(['data' => $data]);
     }
