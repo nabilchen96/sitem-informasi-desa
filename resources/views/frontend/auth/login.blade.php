@@ -16,7 +16,7 @@
     <!-- Style -->
     <link rel="stylesheet" href="login-form-02/css/style.css">
 
-    <title>SIPP</title>
+    <title>ASNBKL</title>
   </head>
   <body>
   
@@ -28,16 +28,16 @@
       <div class="container">
         <div class="row align-items-center justify-content-center">
           <div class="col-md-7">
-            <h3>Login to <br><strong>SIPP</strong></h3>
+            <h3>Login to <br><strong>APLIKASI ASNBKL</strong></h3>
             <br>
             <form id="formLogin">
               <div class="form-group first">
-                <label for="username">Email</label>
-                <input type="text" class="form-control" placeholder="your-email@gmail.com" id="email" name="email">
+                <label>NIP atau Email</label>
+                <input type="text" class="form-control" placeholder="NIP atau Email" id="nip_email" name="nip_email" required>
               </div>
               <div class="form-group last mb-3">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" name="password" placeholder="Your Password" id="password">
+                <input type="password" class="form-control" name="password" placeholder="Your Password" id="password" required>
               </div>
               
               <div class="d-flex mb-5 align-items-center">

@@ -2,342 +2,340 @@
 <html lang="en">
 
 <head>
-    <title>Sistem Informasi Penelitian dan Pengabdian</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset('frontend/vendors/owl-carousel/css/owl.carousel.min.css') }} ">
-    <link rel="stylesheet" href="{{ asset('frontend/vendors/owl-carousel/css/owl.theme.default.css') }} ">
-    <link rel="stylesheet" href="{{ asset('frontend/vendors/mdi/css/materialdesignicons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/vendors/aos/css/aos.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/css/style.min.css') }}">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <link rel="shortcut icon" href="https://poltekbangplg.ac.id/wp-content/uploads/2020/06/favicon.ico"
-        type="image/x-icon" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    @stack('style')
-    <style>
-        .contact-us .contact-us-bgimage {
-            padding: 20px !important;
-            border-radius: 15px;
-        }
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Index - iLanding Bootstrap Template</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
 
-        .card.card-body {
-            padding: 0;
-        }
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-        .features-overview .content-header {
-            padding: 0;
-        }
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
 
-        .navbar {
-            padding: 18px 0;
-        }
+  <!-- Vendor CSS Files -->
+  <link href="{{ url('ilanding/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ url('ilanding/assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+  <link href="{{ url('ilanding/assets/vendor/aos/aos.css') }}" rel="stylesheet">
+  <link href="{{ url('ilanding/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+  <link href="{{ url('ilanding/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
-        .font-weight-semibold {
-            padding-top: 50px;
-        }
+  <!-- Main CSS File -->
+  <link href="{{ url('ilanding/assets/css/main.css') }}" rel="stylesheet">
 
-        .img-proporsional {
-            float: center;
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            transition: all 0.3s ease;
-        }
+  <style>
+    .stat-item {
+      text-align: center;
+      /* Pusatkan konten */
+    }
 
-        .img-proporsional:hover,
-        .img-proporsional:focus {
-            transform: scale(1.1);
-        }
+    .stat-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
 
-        @media only screen and (max-width: 800px) {
-            .card .card-body {
-                padding: 0 0 43px 0;
-            }
+    .stat-content {
+      margin-top: 10px;
+    }
 
-            .sika-map {
-                margin-bottom: 30px;
-            }
+    /* Media Query untuk perangkat dengan lebar layar di bawah 768px */
+    @media (max-width: 768px) {
+      .stat-item {
+        display: flex;
+        flex-direction: column;
+        /* Ubah arah menjadi vertikal */
+        align-items: center;
+      }
 
-            .sika-map iframe {
-                height: 320px;
-            }
-
-            .sika-description h1 {
-                font-size: 25px;
-            }
-
-            .web-title {
-                display: none;
-            }
-
-            .btn-contact-us {
-                margin-left: 0 !important;
-            }
-
-            .close-icon {
-                margin-right: 20px;
-            }
-
-            .kuesioner img {
-                display: none;
-            }
-
-            .card-kuesioner {
-                margin: 20px;
-            }
-
-            .detail-news-image {
-                height: 250px !important;
-            }
-        }
-    </style>
-    <style>
-        .timeline {
-            /* width: 800px; */
-            height: 20px;
-            list-style: none;
-            text-align: justify;
-            margin: 80px auto;
-            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(45%, rgba(255, 255, 255, 0)), color-stop(51%, rgba(191, 128, 11, 1)), color-stop(57%, rgba(255, 255, 255, 0)), color-stop(100%, rgba(255, 255, 255, 0)));
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 45%, rgba(191, 128, 11, 1) 51%, rgba(255, 255, 255, 0) 57%, rgba(255, 255, 255, 0) 100%);
-        }
-
-        .timeline:after {
-            display: inline-block;
-            content: "";
-            width: 100%;
-        }
-
-        .timeline li {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            background: #F2BB13;
-            text-align: center;
-            line-height: 1.2;
-            position: relative;
-            border-radius: 50%;
-        }
-
-        .timeline li:before {
-            display: inline-block;
-            content: attr(data-year);
-            font-size: 14px;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            white-space: nowrap;
-        }
-
-        .timeline li:nth-child(odd):before {
-            top: -40px;
-        }
-
-        .timeline li:nth-child(even):before {
-            bottom: -40px;
-        }
-
-        .timeline li:after {
-            display: inline-block;
-            content: attr(data-text);
-            font-size: 11px;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .timeline li:nth-child(odd):after {
-            bottom: 0;
-            margin-bottom: -10px;
-            transform: translate(-50%, 100%);
-        }
-
-        .timeline li:nth-child(even):after {
-            top: 0;
-            margin-top: -10px;
-            transform: translate(-50%, -100%);
-        }
-    </style>
+      .stat-icon {
+        margin-bottom: 10px;
+      }
+    }
+  </style>
 </head>
 
-<body id="body" data-spy="scroll" data-target=".navbar" data-offset="100">
-    <header id="header-section">
-        <nav class="navbar navbar-expand-lg pl-3 pl-sm-0" id="navbar">
-            <div class="container" data-aos="fade-down">
-                <div class="navbar-brand-wrapper d-flex w-100">
-                    <a href="{{ url('/') }}">
-                        <img class="icon-image d-none d-lg-block" src="{{ asset('sipp.png') }}"
-                            style="margin-top: -5px; width: 20%;" alt="">
-                        <img class="icon-image d-lg-none" src="{{ asset('sipp.png') }}"
-                            style="margin-top: -5px; width: 25%;" alt="">
-                    </a>
-                    <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="mdi mdi-menu navbar-toggler-icon"></span>
-                    </button>
-                </div>
-                <div class="collapse navbar-collapse navbar-menu-wrapper" id="navbarSupportedContent">
-                    <ul class="navbar-nav align-items-lg-center align-items-start ml-auto right">
-                        <li class="d-flex align-items-center justify-content-between pl-4 pl-lg-0">
-                            <div class="navbar-collapse-logo">
-                                {{-- <img src="{{ asset('frontend/images/Group2.svg') }}" alt=""> --}}
-                                <img src="{{ asset('frontend/images/logo.png') }}" style="width: 50%;" alt="">
-                            </div>
-                            <button class="navbar-toggler close-button" type="button" data-toggle="collapse"
-                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="close-icon toggle-icon mdi mdi-close navbar-toggler-icon pl-5"></span>
-                            </button>
-                        </li>
-                        {{-- <li class="nav-item">
-                            <a class="nav-link" style="white-space: nowrap;" href="{{ url('front/jadwal') }}">
-                                📅 Jadwal
-                            </a>
-                        </li> --}}
-                        <li class="nav-item">
-                            <a class="nav-link" style="white-space: nowrap;" href="{{ url('front/pengumuman') }}">
-                                🎺 Pengumuman
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" style="white-space: nowrap;" href="{{ url('front/library') }}">
-                                📁 Library
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" style="white-space: nowrap;" href="{{ url('front/haki') }}">
-                                📁 Dokumen HAKI
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" style="white-space: nowrap;" href="{{ url('front/kegiatan') }}">
-                                👷 Kegiatan PusPPM
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" style="white-space: nowrap;" href="{{ url('front/kebutuhan_dosen') }}">
-                                😼 Kebutuhan Dosen
-                            </a>
-                        </li>
+<body class="index-page">
 
-                        <li class="nav-item">
-                            <a class="nav-link" style="white-space: nowrap;" href="{{ url('login') }}">
-                                 Login
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div style="border-radius: 0px !important;"
+      class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-    @yield('content')
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1 class="sitename">
+          <img src="{{ url('ilanding/logo.png') }}" alt="">
+          ASNBKL
+        </h1>
+      </a>
 
-    <iframe class="embed-responsive"
-        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15938.708954153537!2d104.6991992!3d-2.9089414!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x5e411b86b9a1b4e9!2sPoliteknik%20Penerbangan%20Palembang!5e0!3m2!1sid!2sid!4v1613966893900!5m2!1sid!2sid"
-        height="420" title="poltekbangplg" style="border:0" allowfullscreen>
-    </iframe>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active">Home</a></li>
+          <!-- <li><a href="#about">About</a></li> -->
+          <li><a href="{{ url('login') }}">Login</a></li>
+          <li><a href="{{ url('register') }}">Register</a></li>
+          <!-- <li><a href="#pricing">Pricing</a></li>
+          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#">Dropdown 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">Deep Dropdown 1</a></li>
+                  <li><a href="#">Deep Dropdown 2</a></li>
+                  <li><a href="#">Deep Dropdown 3</a></li>
+                  <li><a href="#">Deep Dropdown 4</a></li>
+                  <li><a href="#">Deep Dropdown 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Dropdown 2</a></li>
+              <li><a href="#">Dropdown 3</a></li>
+              <li><a href="#">Dropdown 4</a></li>
+            </ul>
+          </li>
+          <li><a href="#contact">Contact</a></li> -->
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
 
-    <div class="container">
-        <section class="contact-details" id="contact-details-section">
-            <div class="row text-center text-md-left mt-5">
-                <div class="col-12 col-md-6 col-lg-3 grid-margin">
-                    <img src="{{ asset('frontend/images/logo.png') }}" width="30%" alt="" class="pb-2">
-                    <div class="pt-2">
-                        <p class="text-muted m-0">Jl. Adi Sucipto No.3012, Sukodadi, Kec. Sukarami, Palembang, Sumatera
-                            Selatan, 30961</p>
-                        <p class="text-muted m-0">Email: pusbangkar@poltekbangplg.ac.id</p>
-                        <p class="text-muted m-0">Telpon: 0711-410930</p>
-                        <p class="text-muted m-0">Fax: 0711-420385</p>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-3 grid-margin">
-                    <h5 class="pb-2">Sosial Media</h5>
-                    <div class="d-flex justify-content-center justify-content-md-start">
-                        <a target="_blank" href="https://www.facebook.com/poltekbangplg/"><span
-                                class="mdi mdi-facebook"></span></a>
-                        <a target="_blank" href="https://twitter.com"><span class="mdi mdi-twitter"></span></a>
-                        <a target="_blank" href="https://www.instagram.com/poltekbangplg/"><span
-                                class="mdi mdi-instagram"></span></a>
-                        <a target="_blank" href="https://www.youtube.com/channel/UC_AW0-niVg52RtQB5NeG34g"><span
-                                class="mdi mdi-youtube-play"></span></a>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-3 grid-margin">
-                    <h5 class="pb-2">Akses Akademik</h5>
-                    <a target="_blank" href="https://siakad.poltekbangplg.ac.id">
-                        <p class="m-0 pt-1 pb-2">Sistem Informasi Akademik</p>
-                    </a>
-                    <a target="_blank" href="https://feedeer.poltekbangplg.ac.id:8082">
-                        <p class="m-0 pt-1 pb-2">Feeder Dikti</p>
-                    </a>
-                    <a target="_blank" href="http://sister.poltekbangplg.ac.id/auth/login">
-                        <p class="m-0 pt-1 pb-2">Sister Dikti</p>
-                    </a>
-                    <a target="_blank" href="https://e-learning.poltekbangplg.ac.id/">
-                        <p class="m-0 pt-1 pb-2">Learning Management System</p>
-                    </a>
-                    <a target="_blank" href="https://library.poltekbangplg.ac.id/">
-                        <p class="m-0 pt-1">Library Management System</p>
-                    </a>
-                </div>
-                <div class="col-12 col-md-6 col-lg-3 grid-margin">
-                    <h5 class="pb-2">Akses Aplikasi Lain</h5>
-                    <a target="_blank" href="https://sik.dephub.go.id/">
-                        <p class="m-0 pt-1 pb-2">Sistem Informasi Kepegawaian</p>
-                    </a>
-                    <a target="_blank" href="https://esurat.dephub.go.id/site/login">
-                        <p class="m-0 pt-1 pb-2">E-persuratan</p>
-                    </a>
-                    <a target="_blank" href="https://skemaraja.dephub.go.id/">
-                        <p class="m-0 pt-1 pb-2">Skemaraja</p>
-                    </a>
-                    <a target="_blank" href="https://marketing.poltekbangplg.ac.id">
-                        <p class="m-0 pt-1 pb-2">E-marketing</p>
-                    </a>
-                    <a target="_blank" href="https://e-spm.poltekbangplg.ac.id/">
-                        <p class="m-0 pt-1">Sistem Penjamin Mutu Internal</p>
-                    </a>
-                </div>
-            </div>
-        </section>
-        <footer class="border-top">
-            <p class="text-center text-muted pt-4">Copyright © <?php echo date('Y'); ?> BAAK Politeknik Penerbangan
-                Palembang.
-                Developed by<a target="_blank" href="https://www.mustechs.com/" class="px-1">Mustechs</a>All rights
-                reserved.</p>
-        </footer>
+      <!-- <a class="btn-getstarted" href="index.html#about">Get Started</a> -->
+
     </div>
+  </header>
 
-    <script src="{{ asset('frontend/vendors/jquery/jquery.min.js') }}"></script>
-    {{-- <script src="{{ asset('frontend/vendors/bootstrap/bootstrap.min.js') }}"></script> --}}
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
-    </script>
-    <script src="{{ asset('frontend/vendors/owl-carousel/js/owl.carousel.min.js') }}"></script>
-    {{-- <script src="{{ asset('frontend/vendors/aos/js/aos.js') }}"></script> --}}
-    <script src="{{ asset('frontend/js/landingpage.js') }}"></script>
-    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js "></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init();
+  <main class="main">
 
-        $("#myTable").DataTable({
-            "ordering": false,
-            "pageLength": 4
-        })
-    </script>
-    <script src="https://unpkg.com/axios@0.27.2/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.7/dist/sweetalert2.all.min.js"></script>
-    @stack('script')
+    <!-- Hero Section -->
+    <section id="hero" class="hero section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <div class="hero-content" data-aos="fade-up" data-aos-delay="200">
+              <!-- <div class="company-badge mb-4">
+                <i class="bi bi-gear-fill me-2"></i>
+                Panduan Aplikasi
+              </div> -->
+              <h2>Aplikasi</h2>
+              <h1 class="mb-4">
+                Pendataan ASN<br>
+                <span class="accent-text">Bengkulu Utara</span>
+              </h1>
+
+              <p class="mb-4 mb-md-5">
+                Aplikasi pengumpulan dokumen dan kelengkapan data ASN Bengkulu Utara.
+                Segera Lengkapi Data Diri Anda dan Jadikan Aplikasi ini Menjadi Alat Bantu Yang Baik
+              </p>
+
+              <div class="hero-buttons">
+                <a href="{{ url('login') }}" class="btn btn-primary me-0 me-sm-2 mx-1">Login</a>
+                <a href="{{ url('register') }}" class="btn btn-link mt-2 mt-sm-0 glightbox">
+                  <i class="bi bi-play-circle me-1"></i>
+                  Registrasi
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="hero-image" data-aos="zoom-out" data-aos-delay="300">
+              <img src="{{ url('ilanding/assets/img/illustration-1.webp') }}" alt="Hero Image" class="img-fluid">
+
+              <!-- <div class="customers-badge">
+                <div class="customer-avatars">
+                  <img src="assets/img/avatar-1.webp" alt="Customer 1" class="avatar">
+                  <img src="assets/img/avatar-2.webp" alt="Customer 2" class="avatar">
+                  <img src="assets/img/avatar-3.webp" alt="Customer 3" class="avatar">
+                  <img src="assets/img/avatar-4.webp" alt="Customer 4" class="avatar">
+                  <img src="assets/img/avatar-5.webp" alt="Customer 5" class="avatar">
+                  <span class="avatar more">12+</span>
+                </div>
+                <p class="mb-0 mt-2">12,000+ lorem ipsum dolor sit amet consectetur adipiscing elit</p>
+              </div> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="d-none d-sm-block">
+          <div class="row stats-row mb-5 gy-4 mt-5">
+            <div class="col-lg-3 col-6 col-md-6">
+              <div class="stat-item">
+                <div class="stat-icon">
+                  <i class="bi bi-trophy"></i>
+                </div>
+                <div class="stat-content">
+                  <h4>SK CPNS</h4>
+                  <p class="mb-0">17 Dokumen</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-6 col-md-6">
+              <div class="stat-item">
+                <div class="stat-icon">
+                  <i class="bi bi-briefcase"></i>
+                </div>
+                <div class="stat-content">
+                  <h4>SK PNS</h4>
+                  <p class="mb-0">20 Dokumen</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-6 col-md-6">
+              <div class="stat-item">
+                <div class="stat-icon">
+                  <i class="bi bi-graph-up"></i>
+                </div>
+                <div class="stat-content">
+                  <h4>SK P3K</h4>
+                  <p class="mb-0">30 Dokumen</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-6 col-md-6">
+              <div class="stat-item">
+                <div class="stat-icon">
+                  <i class="bi bi-award"></i>
+                </div>
+                <div class="stat-content">
+                  <h4>USER APP</h4>
+                  <p class="mb-0">67 User Aktif</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /Hero Section -->
+
+    <!-- Features Cards Section -->
+
+    <!-- /Features Cards Section -->
+
+    <!-- Contact Section -->
+    <!-- <section > -->
+
+    <!-- Section Title -->
+    <!-- <div class="container section-title" data-aos="fade-up">
+        <h2>Contact</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div> -->
+    <!-- End Section Title -->
+
+    <!-- <div class="container" data-aos="fade-up" data-aos-delay="100">
+      </div> -->
+
+    <!-- <iframe class="contact" data-aos="fade-up" data-aos-delay="300"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.6424613861236!2d102.19920717501995!3d-3.436870196537618!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e315b9e7801b9b1%3A0x300cd9e67330acf3!2sKantor%20Bupati%20Bengkulu%20Utara!5e0!3m2!1sid!2sid!4v1732679905033!5m2!1sid!2sid"
+      width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+
+    <!-- </section> -->
+    <!-- /Contact Section -->
+
+  </main>
+
+  <footer id="footer" class="footer">
+
+    <!-- <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename">iLanding</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>A108 Adam Street</p>
+            <p>New York, NY 535022</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
+            <p><strong>Email:</strong> <span>info@example.com</span></p>
+          </div>
+          <div class="social-links d-flex mt-4">
+            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Terms of service</a></li>
+            <li><a href="#">Privacy policy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Product Management</a></li>
+            <li><a href="#">Marketing</a></li>
+            <li><a href="#">Graphic Design</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Hic solutasetp</h4>
+          <ul>
+            <li><a href="#">Molestiae accusamus iure</a></li>
+            <li><a href="#">Excepturi dignissimos</a></li>
+            <li><a href="#">Suscipit distinctio</a></li>
+            <li><a href="#">Dilecta</a></li>
+            <li><a href="#">Sit quas consectetur</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Nobis illum</h4>
+          <ul>
+            <li><a href="#">Ipsam</a></li>
+            <li><a href="#">Laudantium dolorum</a></li>
+            <li><a href="#">Dinera</a></li>
+            <li><a href="#">Trodelas</a></li>
+            <li><a href="#">Flexo</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div> -->
+
+    <!-- <div class="container text-center mt-4 mb-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">iLanding</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed By <a
+          href="https://themewagon.com">ThemeWagon</a>
+      </div>
+    </div> -->
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{{ url('ilanding/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url('ilanding/assets/vendor/php-email-form/validate.js') }}"></script>
+  <script src="{{ url('ilanding/assets/vendor/aos/aos.js') }}"></script>
+  <script src="{{ url('ilanding/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+  <script src="{{ url('ilanding/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+  <script src="{{ url('ilanding/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+
+  <!-- Main JS File -->
+  <script src="{{ url('ilanding/assets/js/main.js') }}"></script>
+
 </body>
 
 </html>

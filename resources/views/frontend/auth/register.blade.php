@@ -1,25 +1,27 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="login-form-02/https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="login-form-02/fonts/icomoon/style.css">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="login-form-02/https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="login-form-02/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="login-form-02/fonts/icomoon/style.css">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="login-form-02/css/bootstrap.min.css">
-    
-    <!-- Style -->
-    <link rel="stylesheet" href="login-form-02/css/style.css">
+  <link rel="stylesheet" href="login-form-02/css/owl.carousel.min.css">
 
-    <title>Smart Material Test</title>
-  </head>
-  <body>
-  
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="login-form-02/css/bootstrap.min.css">
+
+  <!-- Style -->
+  <link rel="stylesheet" href="login-form-02/css/style.css">
+
+  <title>ASNBKL</title>
+</head>
+
+<body>
+
 
   <div class="d-lg-flex half">
     <div class="bg order-1 order-md-2" style="background-image: url('natural.png');"></div>
@@ -28,106 +30,171 @@
       <div class="container">
         <div class="row align-items-center justify-content-center">
           <div class="col-md-7">
-            <h3>Register to <br><strong>Smart Material Test</strong></h3>
+            <h3>Register to <br><strong>APLIKASI ASNBKL</strong></h3>
             <br>
-            <form id="formLogin">
-              <div class="form-group first">
-                <label for="username">Email</label>
-                <input type="text" class="form-control" placeholder="Your active email" id="email" name="email">
+            <form id="formRegister">
+              <div class="form-group">
+                <label>No Whatsapp</label>
+                <div class="input-group mb-3">
+                  <input type="number" class="form-control" id="no_wa" placeholder="No Whatsapp" name="no_wa">
+                  <button class="input-group-text" id="btnSendOtp">🚀 Send</a>
+                </div>
               </div>
               <div class="form-group">
-                <label for="">Name</label>
-                <input type="text" name="name" class="form-control form-control-lg" id="name"
-                    placeholder="Name">
-            </div>
-              <div class="form-group last mb-3">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" name="password" placeholder="Your Password" id="password">
+                <label>Kode OTP</label>
+                <input type="text" name="otp" class="form-control" id="otp" placeholder="OTP">
               </div>
-              
-              <div class="d-flex mb-5 align-items-center">
-                <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
-                  <input type="checkbox" checked="checked"/>
-                  <div class="control__indicator"></div>
-                </label>
-                {{-- <span class="ml-auto"><a href="login-form-02/#" class="forgot-pass">Forgot Password</a></span>  --}}
-              </div>
-
               <div class="d-grid">
                 <button type="submit" id="btnLogin" class="btn btn-primary btn-lg btn-block">Sign Up</button>
 
                 <button style="display: none; background: #0d6efd;" id="btnLoginLoading"
-                    class="btn btn-info btn-moodle text-white btn-lg btn-block" type="button" disabled>
-                    <span class="spinner-border spinner-border-sm" role="status"
-                        aria-hidden="true"></span>
+                  class="btn btn-info btn-moodle text-white btn-lg btn-block" type="button" disabled>
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
 
                 </button>
-            </div>
-            <br>
-            Have an account? <a href="{{ url('login') }}" class="text-primary">Login</a>
+              </div>
+              <br>
+              Have an account? <a href="{{ url('login') }}" class="text-primary">Login</a>
             </form>
           </div>
         </div>
       </div>
     </div>
 
-    
+
   </div>
-    
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.7/dist/sweetalert2.all.min.js"></script>
 
   <script>
-    formLogin.onsubmit = (e) => {
+    formRegister.onsubmit = (e) => {
 
-        e.preventDefault();
+      e.preventDefault();
 
-        const formData = new FormData(formLogin);
-        // document.getElementById(`btnLogin`).style.display = "disable";
-        // document.getElementById(`btnLoginLoading`).style.display = "block";
+      const formData = new FormData(formRegister);
 
-        axios({
-                method: 'post',
-                url: '/registerProses',
-                data: formData,
+      axios({
+        method: 'post',
+        url: '/registerOtpCek',
+        data: formData,
+      })
+        .then(function (res) {
+          //handle success
+          if (res.data.responCode == 1) {
+
+            Swal.fire({
+              icon: 'success',
+              title: 'Kode OTP Ditemukan',
+              text: 'Anda akan diarahkan untuk menlengkapi data profil',
+              timer: 1000,
             })
-            .then(function(res) {
-                //handle success
-                if (res.data.responCode == 1) {
 
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Berhasil Mendaftar',
-                        timer: 1000,
-                        showConfirmButton: false,
-                        // text: res.data.respon
-                    })
+            setTimeout(() => {
+              window.location.href = '/register2';
+            }, 1000);
 
-                    setTimeout(() => {
-                        window.location.href = '/dashboard';
-                    }, 1000);
+          } else {
 
-                } else {
-
-                    Swal.fire({
-                        icon: 'warning',
-                        title: 'Ada kesalahan',
-                        text: `${res.data.respon}`,
-                    })
-                }
+            Swal.fire({
+              icon: 'warning',
+              title: 'Kode OTP Salah',
+              text: `Kode OTP yang dimasukan salah, silahkan ulangi kembali!.`,
             })
-            .catch(function(res) {
-                //handle error
-                console.log(res);
-            }).then(function() {
-                // always executed              
-                document.getElementById(`btnLogin`).style.display = "block";
-                document.getElementById(`btnLoginLoading`).style.display = "none";
+          }
+        })
+        .catch(function (res) {
+          //handle error
+          console.log(res);
+        }).then(function () {
+          // always executed              
+          document.getElementById(`btnLogin`).style.display = "block";
+          document.getElementById(`btnLoginLoading`).style.display = "none";
 
-            });
+        });
 
     }
-</script>
-    
-  </body>
+
+  </script>
+
+
+  <script>
+    document.getElementById('btnSendOtp').addEventListener('click', function (e) {
+      e.preventDefault();
+
+      // Ambil nilai no_wa dari input
+      const noWa = document.getElementById('no_wa').value;
+
+      // Validasi input kosong
+      if (!noWa) {
+        Swal.fire({
+          icon: 'warning',
+          title: 'No Whatsapp wajib diisi',
+          text: 'Harap mengisi nomor whatsapp terlebih dahulu',
+          showConfirmButton: true,
+        });
+        return;
+      }
+
+      // Kirim request ke server
+      axios.post('/registerOtp', { no_wa: noWa })
+        .then(function (response) {
+          // Handle sukses
+          if (response.data.status == 'success') {
+            Swal.fire({
+              icon: 'success',
+              title: 'Kode OTP berhasil dikirim',
+              text: 'kode OTP hanya berlaku selama satu menit',
+              showConfirmButton: true,
+            });
+
+            // Jalankan countdown 60 detik
+            startCountdown();
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Gagal mengirim OTP',
+              text: response.data.respon,
+              showConfirmButton: true,
+            });
+          }
+        })
+        .catch(function (error) {
+          // Handle error
+          console.error(error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Terjadi kesalahan',
+            text: 'Tidak dapat mengirim OTP.',
+            showConfirmButton: true,
+          });
+        });
+    });
+
+    // Fungsi untuk mengatur countdown
+    function startCountdown() {
+      const btnSendOtp = document.getElementById('btnSendOtp');
+      let countdown = 60; // Durasi countdown dalam detik
+
+      // Nonaktifkan tombol
+      btnSendOtp.disabled = true;
+
+      // Timer interval
+      const timer = setInterval(() => {
+        btnSendOtp.textContent = `⏳ ${countdown} detik`;
+        countdown--;
+
+        // Jika countdown selesai
+        if (countdown < 0) {
+          clearInterval(timer); // Hentikan timer
+          btnSendOtp.textContent = "🚀 Send"; // Kembalikan teks tombol
+          btnSendOtp.disabled = false; // Aktifkan tombol
+        }
+      }, 1000); // Interval per detik
+    }
+  </script>
+
+
+</body>
+
 </html>

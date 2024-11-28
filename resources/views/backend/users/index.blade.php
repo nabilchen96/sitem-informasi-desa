@@ -19,97 +19,95 @@
     </style>
 @endpush
 @section('content')
-    <div class="row" style="margin-top: -200px;">
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-12 col-xl-8 mb-xl-0">
-                    <h3 class="font-weight-bold text-white">Data User</h3>
+<div class="row" style="margin-top: -200px;">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-12 col-xl-8 mb-xl-0">
+                <h3 class="font-weight-bold">Data User</h3>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 mt-4">
+        <div class="card w-100">
+            <div class="card-body">
+                <button type="button" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#modal">
+                    Tambah
+                </button>
+                <div class="table-responsive">
+                    <table id="myTable" class="table table-striped" style="width: 100%;">
+                        <thead class="bg-info text-white">
+                            <tr>
+                                <th width="5%">No</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>No. WA</th>
+                                <th width="5%"></th>
+                                <th width="5%"></th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12 mt-4">
-            <div class="card w-100">
-                <div class="card-body">
-                    {{-- @if (Auth::user()->role == 'Admin')                         --}}
-                        <button type="button" class="btn btn-primary btn-sm mb-4" data-toggle="modal" data-target="#modal">
-                            Tambah
-                        </button>
-                    {{-- @endif --}}
-                    <div class="table-responsive">
-                        <table id="myTable" class="table table-striped" style="width: 100%;">
-                            <thead class="bg-info text-white">
-                                <tr>
-                                    <th width="5%">No</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
-                                    <th>No. WA</th>
-                                    <th width="5%"></th>
-                                    <th width="5%"></th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="form">
+                <div class="modal-header p-3">
+                    <h5 class="modal-title m-2" id="exampleModalLabel">User Form</h5>
                 </div>
-            </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="id">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input name="email" id="email" type="email" placeholder="email"
+                            class="form-control form-control-sm" aria-describedby="emailHelp" required>
+                        <span class="text-danger error" style="font-size: 12px;" id="email_alert"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Nama Lengkap</label>
+                        <input name="name" id="name" type="text" placeholder="Nama Lengkap"
+                            class="form-control form-control-sm" aria-describedby="emailHelp" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input name="password" id="password" type="password" placeholder="Password"
+                            class="form-control form-control-sm" required>
+                        <span class="text-danger error" style="font-size: 12px;" id="password_alert"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Role</label>
+                        <select name="role" class="form-control" id="role" required>
+                            <option value="Admin">Admin</option>
+                            <option value="Reviewer">Pegawai</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="no_wa">No Whatsapp</label>
+                        <input name="no_wa" id="no_wa" type="text" placeholder="082777120"
+                            class="form-control form-control-sm" aria-describedby="emailHelp" required>
+                    </div>
+
+                </div>
+                <div class="modal-footer p-3">
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+                    <button id="tombol_kirim" class="btn btn-primary btn-sm">Submit</button>
+                </div>
+            </form>
         </div>
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form id="form">
-                    <div class="modal-header p-3">
-                        <h5 class="modal-title m-2" id="exampleModalLabel">User Form</h5>
-                    </div>
-                    <div class="modal-body">
-                        <input type="hidden" name="id" id="id">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input name="email" id="email" type="email" placeholder="email"
-                                class="form-control form-control-sm" aria-describedby="emailHelp" required>
-                            <span class="text-danger error" style="font-size: 12px;" id="email_alert"></span>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Nama Lengkap</label>
-                            <input name="name" id="name" type="text" placeholder="Nama Lengkap"
-                                class="form-control form-control-sm" aria-describedby="emailHelp" required>
-                        </div>
-                    
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input name="password" id="password" type="password" placeholder="Password"
-                                class="form-control form-control-sm" required>
-                            <span class="text-danger error" style="font-size: 12px;" id="password_alert"></span>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Role</label>
-                            <select name="role" class="form-control" id="role" required>
-                                <option value="Admin">Admin</option>
-                                <option value="Reviewer">Reviewer</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="no_wa">Nama Lengkap</label>
-                            <input name="no_wa" id="no_wa" type="text" placeholder="082777120"
-                                class="form-control form-control-sm" aria-describedby="emailHelp" required>
-                        </div>
-                        
-                    </div>
-                    <div class="modal-footer p-3">
-                        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
-                        <button id="tombol_kirim" class="btn btn-primary btn-sm">Submit</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+</div>
 @endsection
 @push('script')
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             getData()
         })
 
@@ -123,50 +121,44 @@
                     'processing': 'Loading...'
                 },
                 columns: [{
-                        render: function(data, type, row, meta) {
-                            return meta.row + meta.settings._iDisplayStart + 1;
-                        }
-                    },
-                    {
-                        data: "name"
-                    },
-                    {
-                        data: "email"
-                    },
-                    {
-                        render: function(data, type, row, meta) {
-                            if (row.role == "Admin") {
-                                return `<span class="badge badge-success">${row.role}</span>`
-                            } else if (row.role == "Reviewer") {
-                                return `<span class="badge badge-danger">${row.role}</span>`
-                            }
-                        }
-                    },
-                    {
-                        data: "no_wa"
-                    },
-                    
-                    {
-                        render: function(data, type, row, meta) {
-                            return `<a data-toggle="modal" data-target="#modal"
-                                    data-bs-id=` + (row.id) + ` href="javascript:void(0)">
-                                    <i style="font-size: 1.5rem;" class="text-success bi bi-grid"></i>
-                                </a>`
-                        }
-                    },
-                    {
-                        render: function(data, type, row, meta) {
-                            return `<a href="javascript:void(0)" onclick="hapusData(` + (row
-                                .id) + `)">
-                                    <i style="font-size: 1.5rem;" class="text-danger bi bi-trash"></i>
-                                </a>`
-                        }
-                    },
+                    render: function (data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
+                },
+                {
+                    data: "name"
+                },
+                {
+                    data: "email"
+                },
+                {
+                    data: 'role'
+                },
+                {
+                    data: "no_wa"
+                },
+
+                {
+                    render: function (data, type, row, meta) {
+                        return `<a data-toggle="modal" data-target="#modal"
+                                        data-bs-id=` + (row.id) + ` href="javascript:void(0)">
+                                        <i style="font-size: 1.5rem;" class="text-success bi bi-grid"></i>
+                                    </a>`
+                    }
+                },
+                {
+                    render: function (data, type, row, meta) {
+                        return `<a href="javascript:void(0)" onclick="hapusData(` + (row
+                            .id) + `)">
+                                        <i style="font-size: 1.5rem;" class="text-danger bi bi-trash"></i>
+                                    </a>`
+                    }
+                },
                 ]
             })
         }
 
-        $('#modal').on('show.bs.modal', function(event) {
+        $('#modal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget) // Button that triggered the modal
             var recipient = button.data('bs-id') // Extract info from data-* attributes
             var cok = $("#myTable").DataTable().rows().data().toArray()
@@ -198,11 +190,11 @@
             document.getElementById("tombol_kirim").disabled = true;
 
             axios({
-                    method: 'post',
-                    url: formData.get('id') == '' ? '/store-user' : '/update-user',
-                    data: formData,
-                })
-                .then(function(res) {
+                method: 'post',
+                url: formData.get('id') == '' ? '/store-user' : '/update-user',
+                data: formData,
+            })
+                .then(function (res) {
                     //handle success         
                     if (res.data.responCode == 1) {
 
@@ -227,7 +219,7 @@
 
                     document.getElementById("tombol_kirim").disabled = false;
                 })
-                .catch(function(res) {
+                .catch(function (res) {
                     document.getElementById("tombol_kirim").disabled = false;
                     //handle error
                     console.log(res);
@@ -248,8 +240,8 @@
 
                 if (result.value) {
                     axios.post('/delete-user', {
-                            id
-                        })
+                        id
+                    })
                         .then((response) => {
                             if (response.data.responCode == 1) {
                                 Swal.fire({

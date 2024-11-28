@@ -13,7 +13,7 @@
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                     <h3 class="font-weight-bold">Dashboard</h3>
                     <h6 class="font-weight-normal mb-0">Hi, {{ Auth::user()->name }}. 
-                        Welcome back to Sistem Informasi Penelitian dan Pengabdian</h6>
+                        Welcome back to Aplikasi ASNBKL</h6>
                 </div>
 
             </div>
