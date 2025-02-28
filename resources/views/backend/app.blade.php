@@ -18,7 +18,7 @@
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('skydash/css/vertical-layout-light/style.css') }}">
-    
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.2.0/dist/select2-bootstrap-5-theme.min.css" />
@@ -126,11 +126,16 @@
                 style="box-shadow: 0px 5px 21px -5px #CDD1E1;">
                 <a class="navbar-brand brand-logo mr-5" style="font-size: 16px; margin-left: 20px;"
                     href="{{ url('/') }}">
-                    <h3><b> <img src="{{ url('ilanding/logo.png') }}" alt="">  </b></h3>
+                    <h3><b>
+                            <!-- <img src="{{ url('ilanding/logo.png') }}" alt=""> -->
+                             🖥️
+                        </b>
+                    </h3>
                 </a>
                 <a class="navbar-brand brand-logo-mini" href="{{ url('/') }}">
                     <!-- <h4><b>🚀</b></h4> -->
-                    <img src="{{ url('ilanding/logo.png') }}" alt="">
+                    <!-- <img src="{{ url('ilanding/logo.png') }}" alt=""> -->
+                    🖥️
                 </a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">

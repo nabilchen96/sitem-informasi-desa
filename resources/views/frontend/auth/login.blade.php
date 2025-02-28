@@ -34,7 +34,7 @@
       }
     }
   </style>
-  <title>APLIKASI PENDATAAN NON ASN</title>
+  <title>Sistem Informasi Desa</title>
 </head>
 
 <body>
@@ -45,23 +45,15 @@
       <div id="map"></div>
     </div>
     <div class="contents order-2 order-md-1">
-      @php
-      $cek = DB::table('informasis')->where('status', 'Aktif')->first();
-      @endphp
-      @if ($cek)
-        <marquee behavior="scroll" direction="left" class="bg-info text-white pt-2 pb-1">
-          <h6>📢📢 {{ $cek->informasi }}</h6>
-        </marquee>
-      @endif
       <div class="container">
         <div class="row align-items-center justify-content-center" style="margin-top: -50px !important;">
           <div class="col-md-7">
-            <h3>Login to <br><strong>APLIKASI PENDATAAN MANDIRI TENAGA NON ASN</strong></h3>
+            <h3>Login to <br><strong>Sistem Informasi Desa </strong></h3>
             <br>
             <form id="formLogin">
               <div class="form-group first">
-                <label>NIP atau Email</label>
-                <input type="text" class="form-control" placeholder="NIP atau Email" id="nip_email" name="nip_email"
+                <label>Email</label>
+                <input type="text" class="form-control" placeholder="Email" id="nip_email" name="nip_email"
                   required>
               </div>
               <div class="form-group last mb-3">
@@ -88,8 +80,7 @@
                 </button>
               </div>
               <br>
-              Dont Have an account? <a href="{{ url('register') }}" class="text-primary">Register</a> <br>
-              Forget Password? <a href="{{ url('reset-password') }}" class="text-primary">Reset Password</a>
+              
             </form>
           </div>
         </div>

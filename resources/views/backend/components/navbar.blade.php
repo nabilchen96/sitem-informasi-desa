@@ -7,7 +7,50 @@
             </a>
 
         </li>
-        @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'SKPD')
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('user') }}">
+                <i class="bi bi-people menu-icon"></i>
+                <span class="menu-title">User</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('desa') }}">
+                <i class="bi bi-map menu-icon"></i>
+                <span class="menu-title">Data Desa</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('penduduk') }}">
+                <i class="bi bi-people menu-icon"></i>
+                <span class="menu-title">Data Penduduk</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('berita') }}">
+                <i class="bi bi-newspaper menu-icon"></i>
+                <span class="menu-title">Berita</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('laporan') }}">
+                <i class="bi bi-chat-right-dots menu-icon"></i>
+                <span class="menu-title">Laporan</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('pengajuan-surat') }}">
+                <i class="bi bi-envelope menu-icon"></i>
+                <span class="menu-title">Pengajuan Surat</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('program') }}">
+                <i class="bi bi-calendar menu-icon"></i>
+                <span class="menu-title">Program & Agenda</span>
+            </a>
+        </li>
+        <!-- @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'SKPD')
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                     <i class="icon-layout menu-icon"></i>
@@ -16,97 +59,12 @@
                 </a>
                 <div class="collapse" id="ui-basic">
                     <ul class="nav flex-column sub-menu">
-                        @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'SKPD')
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('user') }}">User</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('jenis-dokumen') }}">Jenis Dokumen</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('district') }}">Daerah</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('skpd') }}">SKPD</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('unit-kerja') }}">Unit Kerja</a>
-                            </li>
-                        @endif
-                        @if (Auth::user()->role == 'Admin')
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('instansi') }}">Instansi</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('informasi') }}">Informasi</a>
-                            </li>
-                        @endif
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('user') }}">User</a>
+                        </li>
                     </ul>
                 </div>
             </li>
-        @else
-        @endif
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#tahap1" aria-expanded="false" aria-controls="ui-basic">
-                <i class="bi bi-file-earmark menu-icon"></i>
-                <span class="menu-title">Dokumen</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="tahap1">
-                <ul class="nav flex-column sub-menu">
-                    @php
-                        // Ambil data profil user
-                        $profil = DB::table('users')
-                            ->leftjoin('profils', 'profils.id_user', '=', 'users.id')
-                            ->where('users.id', Auth::id())
-                            ->first();
-
-                        // Ambil jenis dokumen yang sesuai
-                        $jenis_dokumen = DB::table('jenis_dokumens')
-                            ->where('status', 'Aktif')
-                            ->where(function ($query) use ($profil) {
-                                if (Auth::user()->role == "Admin") {
-                                    $query;
-                                } elseif ($profil->status_pegawai == 'PNS') {
-                                    $query->where('jenis_pegawai', 'like', '%PNS%')
-                                        ->orWhere('jenis_pegawai', 'Semua');
-                                } elseif ($profil->status_pegawai == 'P3K') {
-                                    $query->where('jenis_pegawai', 'like', '%P3K%')
-                                        ->orWhere('jenis_pegawai', 'Semua');
-                                } elseif ($profil->status_pegawai == 'Honorer') {
-                                    $query->where('jenis_pegawai', 'like', '%Honorer%')
-                                        ->orWhere('jenis_pegawai', 'Semua');
-                                }
-                            })
-                            ->get();
-                    @endphp
-
-                    @if($profil->status_pegawai || Auth::user()->role == 'Admin' || Auth::user()->role == 'SKPD')
-                        @foreach ($jenis_dokumen as $i)
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('file-dokumen') }}?jenis_dokumen={{ $i->id }}">
-                                    {{ $i->jenis_dokumen }}
-                                </a>
-                            </li>
-                        @endforeach
-                    @endif
-                </ul>
-
-            </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url('kenaikan-gaji') }}">
-                <i class="bi bi-coin menu-icon"></i>
-                <span class="menu-title">Kenaikan Gaji</span>
-            </a>
-
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url('profil') }}">
-                <i class="bi bi-person menu-icon"></i>
-                <span class="menu-title">Profil Pegawai</span>
-            </a>
-
-        </li>
+        @endif -->
     </ul>
 </nav>

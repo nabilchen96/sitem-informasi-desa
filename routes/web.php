@@ -26,26 +26,27 @@ Route::get('/login', 'App\Http\Controllers\AuthController@login')->name('login')
 Route::post('/loginProses', 'App\Http\Controllers\AuthController@loginProses');
 Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
 
+Route::get('/program-desa', function(){
+    return view('frontend.program_desa');
+});
+
+Route::get('/daftar-laporan', function(){
+    return view('frontend.laporan_desa');
+});
+
+Route::get('/daftar-berita', function(){
+    return view('frontend.berita_desa');
+});
+
+Route::get('/detail-berita', function(){
+    return view('frontend.detail_berita');
+});
+
+
 //REGISTER
 Route::get('/register', 'App\Http\Controllers\AuthController@register')->name('register');
-Route::post('/registerOtp', 'App\Http\Controllers\AuthController@registerOtp');
-Route::post('/registerOtpCek', 'App\Http\Controllers\AuthController@registerOtpCek');
-Route::get('/register2', 'App\Http\Controllers\AuthController@register2');
-Route::post('/registerProses', 'App\Http\Controllers\AuthController@registerProses');
 
-//PENCARIAN DAERAH
-Route::get('/search-district', 'App\Http\Controllers\DistrictController@searchDistrict');
-
-//RESET PASSWORD
-Route::get('/reset-password', function () {
-    return view('frontend.auth.reset_password');
-});
-Route::post('/resetOtp', 'App\Http\Controllers\AuthController@resetOtp');
-Route::post('/reset-password-proses', 'App\Http\Controllers\AuthController@resetPasswordProses');
-
-//PETA SEBARAN PEGAWAI
-Route::get('/data-peta', 'App\Http\Controllers\DashboardController@dataPeta');
-
+Route::post('/store-front-laporan', 'App\Http\Controllers\LaporanController@storeFront');
 
 //BACKEND
 Route::group(['middleware' => 'auth'], function () {
@@ -59,144 +60,50 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/store-user', 'App\Http\Controllers\UserController@store');
     Route::post('/update-user', 'App\Http\Controllers\UserController@update');
     Route::post('/delete-user', 'App\Http\Controllers\UserController@delete');
-    Route::get('/export-excel-user', 'App\Http\Controllers\UserController@exportExcel');
-    Route::post('/import-excel-user', 'App\Http\Controllers\UserController@importExcel');
+    // Route::get('/export-excel-user', 'App\Http\Controllers\UserController@exportExcel');
+    // Route::post('/import-excel-user', 'App\Http\Controllers\UserController@importExcel');
 
-    //JENIS DOKUMEN
-    Route::get('/jenis-dokumen', 'App\Http\Controllers\JenisDokumenController@index');
-    Route::get('/data-jenis-dokumen', 'App\Http\Controllers\JenisDokumenController@data');
-    Route::post('/store-jenis-dokumen', 'App\Http\Controllers\JenisDokumenController@store');
-    Route::post('/update-jenis-dokumen', 'App\Http\Controllers\JenisDokumenController@update');
-    Route::post('/delete-jenis-dokumen', 'App\Http\Controllers\JenisDokumenController@delete');
+    //DESA
+    Route::get('/desa', 'App\Http\Controllers\DesaController@index');
+    Route::get('/data-desa', 'App\Http\Controllers\DesaController@data');
+    Route::post('/store-desa', 'App\Http\Controllers\DesaController@store');
+    Route::post('/update-desa', 'App\Http\Controllers\DesaController@update');
+    Route::post('/delete-desa', 'App\Http\Controllers\DesaController@delete');
 
-    //DISTRICT
-    Route::get('/district', 'App\Http\Controllers\DistrictController@index');
-    Route::get('/data-district', 'App\Http\Controllers\DistrictController@data');
-    Route::post('/store-district', 'App\Http\Controllers\DistrictController@store');
-    Route::post('/update-district', 'App\Http\Controllers\DistrictController@update');
-    Route::post('/delete-district', 'App\Http\Controllers\DistrictController@delete');
+    //DESA
+    Route::get('/program', 'App\Http\Controllers\ProgramController@index');
+    Route::get('/data-program', 'App\Http\Controllers\ProgramController@data');
+    Route::post('/store-program', 'App\Http\Controllers\ProgramController@store');
+    Route::post('/update-program', 'App\Http\Controllers\ProgramController@update');
+    Route::post('/delete-program', 'App\Http\Controllers\ProgramController@delete');
 
-    //SKPD
-    Route::get('/skpd', 'App\Http\Controllers\SkpdController@index');
-    Route::get('/data-skpd', 'App\Http\Controllers\SkpdController@data');
-    Route::post('/store-skpd', 'App\Http\Controllers\SkpdController@store');
-    Route::post('/update-skpd', 'App\Http\Controllers\SkpdController@update');
-    Route::post('/delete-skpd', 'App\Http\Controllers\SkpdController@delete');
-    Route::get('/export-excel-skpd', 'App\Http\Controllers\SkpdController@exportExcel');
-    Route::post('/import-excel-skpd', 'App\Http\Controllers\SkpdController@importExcel');
+    //PENDUDUK
+    Route::get('/penduduk', 'App\Http\Controllers\PendudukController@index');
+    Route::get('/data-penduduk', 'App\Http\Controllers\PendudukController@data');
+    Route::post('/store-penduduk', 'App\Http\Controllers\PendudukController@store');
+    Route::post('/update-penduduk', 'App\Http\Controllers\PendudukController@update');
+    Route::post('/delete-penduduk', 'App\Http\Controllers\PendudukController@delete');
 
-    //UNIT KERJA
-    Route::get('/unit-kerja', 'App\Http\Controllers\UnitKerjaController@index');
-    Route::get('/data-unit-kerja', 'App\Http\Controllers\UnitKerjaController@data');
-    Route::get('/data-unit-kerja/{id}', 'App\Http\Controllers\UnitKerjaController@getUnitKerjaBySkpd');
-    Route::post('/store-unit-kerja', 'App\Http\Controllers\UnitKerjaController@store');
-    Route::post('/update-unit-kerja', 'App\Http\Controllers\UnitKerjaController@update');
-    Route::post('/delete-unit-kerja', 'App\Http\Controllers\UnitKerjaController@delete');
-    Route::get('/export-template-unit-kerja', 'App\Http\Controllers\UnitKerjaController@exportTemplate');
-    Route::get('/export-excel-unit-kerja', 'App\Http\Controllers\UnitKerjaController@exportExcel');
-    Route::post('/import-excel-unit-kerja', 'App\Http\Controllers\UnitKerjaController@importExcel');
+    //BERITA
+    Route::get('/berita', 'App\Http\Controllers\BeritaController@index');
+    Route::get('/data-berita', 'App\Http\Controllers\BeritaController@data');
+    Route::post('/store-berita', 'App\Http\Controllers\BeritaController@store');
+    Route::post('/update-berita', 'App\Http\Controllers\BeritaController@update');
+    Route::post('/delete-berita', 'App\Http\Controllers\BeritaController@delete');
 
-    //INSTANSI
-    Route::get('/instansi', 'App\Http\Controllers\InstansiController@index');
-    Route::get('/data-instansi', 'App\Http\Controllers\InstansiController@data');
-    Route::post('/store-instansi', 'App\Http\Controllers\InstansiController@store');
-    Route::post('/update-instansi', 'App\Http\Controllers\InstansiController@update');
-    Route::post('/delete-instansi', 'App\Http\Controllers\InstansiController@delete');
+    //LAPORAN
+    Route::get('/laporan', 'App\Http\Controllers\LaporanController@index');
+    Route::get('/data-laporan', 'App\Http\Controllers\LaporanController@data');
+    Route::post('/store-laporan', 'App\Http\Controllers\LaporanController@store');
+    Route::post('/update-laporan', 'App\Http\Controllers\LaporanController@update');
+    Route::post('/delete-laporan', 'App\Http\Controllers\LaporanController@delete');
 
-    //Informasi
-    Route::get('/informasi', 'App\Http\Controllers\InformasiController@index');
-    Route::get('/data-informasi', 'App\Http\Controllers\InformasiController@data');
-    Route::post('/store-informasi', 'App\Http\Controllers\InformasiController@store');
-    Route::post('/update-informasi', 'App\Http\Controllers\InformasiController@update');
-    Route::post('/delete-informasi', 'App\Http\Controllers\InformasiController@delete');
-
-    //DOKUMEN
-    Route::get('/file-dokumen', 'App\Http\Controllers\DokumenController@index');
-    Route::get('/data-file-dokumen', 'App\Http\Controllers\DokumenController@data');
-    Route::post('/store-file-dokumen', 'App\Http\Controllers\DokumenController@store');
-    Route::post('/update-file-dokumen', 'App\Http\Controllers\DokumenController@update');
-    Route::post('/update-status-dokumen', 'App\Http\Controllers\DokumenController@updateStatusDokumen');
-    Route::post('/delete-file-dokumen', 'App\Http\Controllers\DokumenController@delete');
-
-    Route::get('/convert-to-pdf/{filename}', function ($filename) {
-        $filePath = public_path('dokumen/' . $filename);
-
-        // Cek apakah file ada
-        if (!file_exists($filePath)) {
-            abort(404, 'File not found.');
-        }
-
-        // Cek apakah file sudah PDF
-        $extension = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
-
-        if ($extension === 'pdf') {
-            // Jika file sudah PDF, langsung tampilkan
-            return response()->file($filePath, [
-                'Content-Type' => 'application/pdf',
-            ]);
-        } else {
-            // Jika file adalah gambar, konversi ke PDF
-            $imageData = base64_encode(file_get_contents($filePath));
-
-            // Buat HTML untuk menampilkan gambar dalam ukuran A4
-            $html = '<!DOCTYPE html>
-            <html>
-            <head>
-                <style>
-                    body {
-                        margin: 0;
-                        padding: 0;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        height: 100vh; /* Tinggi penuh layar */
-                        width: 100vw; /* Lebar penuh layar */
-                        overflow: hidden; /* Sembunyikan bagian yang keluar */
-                    }
-    
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                    }
-                </style>
-            </head>
-            <body>
-                <img src="data:image/png;base64,' . $imageData . '" />
-            </body>
-            </html>';
-
-            // Generate PDF dengan ukuran A4 dan orientasi portrait
-            $pdf = PDF::loadHTML($html)->setPaper('a4', 'portrait');
-
-            // Tampilkan PDF di browser
-            return $pdf->stream($filename . '.pdf');
-        }
-    });
-
-    //KENAIKAN GAJI
-    // Route::get('/kenaikan-gaji', 'App\Http\Controllers\KenaikanGajiController@index');
-    Route::get('/kenaikan-gaji-2', function () {
-        return view('backend.kenaikan_gaji_old.index');
-    });
-    // Route::get('/kenaikan-gaji2', function(){
-    //     return view('backend.kenaikan_gaji.index2');
-    // });
-
-    Route::get('/kenaikan-gaji', 'App\Http\Controllers\KenaikanGajiController@index');
-    Route::get('/data-kenaikan-gaji', 'App\Http\Controllers\KenaikanGajiController@data');
-    Route::post('/store-kenaikan-gaji', 'App\Http\Controllers\KenaikanGajiController@store');
-    Route::get('/edit-kenaikan-gaji', 'App\Http\Controllers\KenaikanGajiController@edit')->name('edit-kenaikan-gaji');
-    Route::post('/update-kenaikan-gaji', 'App\Http\Controllers\KenaikanGajiController@update');
-    Route::post('/delete-kenaikan-gaji', 'App\Http\Controllers\KenaikanGajiController@delete');
-    Route::get('/export-kenaikan-gaji', 'App\Http\Controllers\KenaikanGajiController@export');
-
-    //USER
-    Route::get('/profil', 'App\Http\Controllers\ProfilController@index');
-    Route::get('/data-profil', 'App\Http\Controllers\ProfilController@data');
-    Route::post('/store-profil', 'App\Http\Controllers\ProfilController@store');
-    Route::post('/update-profil', 'App\Http\Controllers\ProfilController@update');
-    Route::post('/delete-profil', 'App\Http\Controllers\ProfilController@delete');
+    //PENGAJUAN SURAT
+    Route::get('/pengajuan-surat', 'App\Http\Controllers\PengajuanSuratController@index');
+    Route::get('/data-pengajuan-surat', 'App\Http\Controllers\PengajuanSuratController@data');
+    Route::post('/store-pengajuan-surat', 'App\Http\Controllers\PengajuanSuratController@store');
+    Route::post('/update-pengajuan-surat', 'App\Http\Controllers\PengajuanSuratController@update');
+    Route::post('/delete-pengajuan-surat', 'App\Http\Controllers\PengajuanSuratController@delete');
 
 });
 

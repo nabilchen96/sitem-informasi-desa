@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>APLIKASI PENDATAAN NON ASN</title>
+  <title>Sistem Informasi Desa</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -70,8 +70,8 @@
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1 class="sitename">
-          <img src="{{ url('ilanding/logo.png') }}" alt="">
-          
+          <!-- <img src="{{ url('ilanding/logo.png') }}" alt=""> -->
+          🖥️
         </h1>
       </a>
 
@@ -79,27 +79,11 @@
         <ul>
           <li><a href="{{ url('/') }}" class="active">Home</a></li>
           <!-- <li><a href="#about">About</a></li> -->
+          <li><a href="{{ url('/daftar-berita') }}">Berita</a></li>
+          <li><a href="{{ url('/program-desa') }}">Program</a></li>
+          <li><a href="{{ url('/daftar-laporan') }}">Laporan</a></li>
+          <li><a href="{{ url('/') }}#peta">Lokasi</a></li>
           <li><a href="{{ url('login') }}">Login</a></li>
-          <li><a href="{{ url('register') }}">Register</a></li>
-          <!-- <li><a href="#pricing">Pricing</a></li>
-          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="#">Dropdown 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                <ul>
-                  <li><a href="#">Deep Dropdown 1</a></li>
-                  <li><a href="#">Deep Dropdown 2</a></li>
-                  <li><a href="#">Deep Dropdown 3</a></li>
-                  <li><a href="#">Deep Dropdown 4</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Dropdown 2</a></li>
-              <li><a href="#">Dropdown 3</a></li>
-              <li><a href="#">Dropdown 4</a></li>
-            </ul>
-          </li>
-          <li><a href="#contact">Contact</a></li> -->
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -114,202 +98,155 @@
     <!-- Hero Section -->
     <section id="hero" class="hero section">
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <div class="container">
 
         <div class="row align-items-center">
           <div class="col-lg-6">
-            <div class="hero-content" data-aos="fade-up" data-aos-delay="200">
-              <!-- <div class="company-badge mb-4">
-                <i class="bi bi-gear-fill me-2"></i>
-                Panduan Aplikasi
-              </div> -->
-              <h2>Aplikasi</h2>
+            <div class="hero-content">
+
+              <h2>🖥️ Portal</h2>
               <h1 class="mb-4">
-                Pendataan Mandiri <br> Tenaga Non ASN<br>
-                <span class="accent-text">Bengkulu Utara</span>
+                Sistem Informasi <br> Desa
+                <span class="accent-text">{{ DB::table('desas')->value('desa') }}</span>
               </h1>
 
               <p class="mb-4 mb-md-5">
-                Aplikasi pengumpulan dokumen dan kelengkapan mandiri data non ASN Bengkulu Utara.
-                Segera Lengkapi Data Diri Anda dan Jadikan Aplikasi ini Menjadi Alat Bantu Yang Baik
+                Portal sistem informasi pengelolaan data kependudukan desa, layanan desa, agenda desa,
+                program desa, berita dan informasi desa, pengajuan surat masyarakat, dan laporan atau keluhan masyarakat
+                desa
               </p>
 
               <div class="hero-buttons">
                 <a href="{{ url('login') }}" class="btn btn-primary me-0 me-sm-2 mx-1">Login</a>
-                <a href="{{ url('register') }}" class="btn btn-link mt-2 mt-sm-0">
+                <a href="{{ url('/') }}#laporan" class="btn btn-link mt-2 mt-sm-0">
                   <i class="bi bi-play-circle me-1"></i>
-                  Registrasi
+                  Aduan Masyarakat
                 </a>
               </div>
             </div>
           </div>
 
           <div class="col-lg-6 mb-4">
-            <div class="hero-image" data-aos="zoom-out" data-aos-delay="300">
-              <img src="{{ url('ilanding/assets/img/illustration-1.webp') }}" alt="Hero Image" class="img-fluid">
-
-              <!-- <div class="customers-badge">
-                <div class="customer-avatars">
-                  <img src="assets/img/avatar-1.webp" alt="Customer 1" class="avatar">
-                  <img src="assets/img/avatar-2.webp" alt="Customer 2" class="avatar">
-                  <img src="assets/img/avatar-3.webp" alt="Customer 3" class="avatar">
-                  <img src="assets/img/avatar-4.webp" alt="Customer 4" class="avatar">
-                  <img src="assets/img/avatar-5.webp" alt="Customer 5" class="avatar">
-                  <span class="avatar more">12+</span>
-                </div>
-                <p class="mb-0 mt-2">12,000+ lorem ipsum dolor sit amet consectetur adipiscing elit</p>
-              </div> -->
+            <div class="hero-image">
+              <img src="{{ url('hero 2.png') }}" width="70%" alt="Hero Image" class="img-fluid">
             </div>
           </div>
         </div>
-
-        <div class="d-none d-sm-block mt-5">
-          <iframe class="contact" data-aos="fade-up" data-aos-delay="300"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.6424613861236!2d102.19920717501995!3d-3.436870196537618!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e315b9e7801b9b1%3A0x300cd9e67330acf3!2sKantor%20Bupati%20Bengkulu%20Utara!5e0!3m2!1sid!2sid!4v1732679905033!5m2!1sid!2sid"
-            width="100%" height="500" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
-          <!-- <div class="row stats-row mb-5 gy-4 mt-5"> -->
-            <!-- @php
-
-        $data = DB::table('dokumens')
-          ->join('jenis_dokumens', 'dokumens.id_dokumen', '=', 'jenis_dokumens.id')
-          ->select(
-          'jenis_dokumens.jenis_dokumen',
-          DB::raw('COUNT(dokumens.id) as total')
-          )
-          ->groupBy('jenis_dokumens.jenis_dokumen')
-          ->limit(4)
-          ->get();
-
-        @endphp
-
-            @foreach ($data as $d) -->
-
-
-            <!-- <div class="col-lg-3 col-6 col-md-6"> -->
-              <!-- <div class="stat-item">
-                <div class="stat-icon">
-                  <i class="bi bi-briefcase"></i>
-                </div>
-                <div class="stat-content">
-                  <h4>{{ $d->jenis_dokumen }}</h4>
-                  <p class="mb-0">{{ $d->total }} Dokumen</p>
-                </div>
-              </div> -->
-            <!-- </div> -->
-
-            <!-- @endforeach -->
-
-
-          <!-- </div> -->
-        </div>
       </div>
 
-    </section><!-- /Hero Section -->
+    </section>
 
-    <!-- Features Cards Section -->
+    <section>
+      <div class="container">
+        <div class="text-left">
+          <h1 id="berita">Berita</h1>
+          <a href="{{ url('daftar-berita') }}">Lihat Daftar Berita lainnya <i class="bi bi-arrow-right"></i> </a>
+        </div>
+        <div class="row mt-4">
+          @php
+      $berita = DB::table('beritas')->orderBy('created_at', 'DESC')->get();
+      @endphp
+          @foreach ($berita as $b)
+        <div class="col-lg-3 mb-4">
+          <div class="card h-100 d-flex flex-column">
+            <img src="storage/{{ $b->gambar_utama }}" style="object-fit: cover; height: 200px;" class="card-img-top"
+            alt="...">
+            <div class="card-body d-flex flex-column">
+            <p class="card-text flex-grow-1">{{ $b->judul }}</p>
+            <a href="{{ url('detail-berita') }}?id={{ $b->id }}" class="btn btn-primary mt-auto">Detail</a>
+            </div>
+          </div>
+        </div>
+      @endforeach
 
-    <!-- /Features Cards Section -->
+        </div>
+      </div>
+    </section>
 
-    <!-- Contact Section -->
-    <!-- <section > -->
+    <div class="container mb-4">
+      <div class="text-left mb-4">
+        <h1 id="programagenda">Program Desa</h1>
+        <a href="{{ url('/program-desa') }}">Lihat Program Desa lainnya <i class="bi bi-arrow-right"></i> </a>
+      </div>
+      <div style="padding-left: 13px; padding-right: 13px;">
+        <table style="font-size: 17px !important;" class="table table-striped table-bordered">
+          <thead class="table-dark">
+            <tr class="row">
+              <th class="col-lg-12">Program dan Agenda Desa</th>
+            </tr>
+          </thead>
+          <tbody>
+            @php
+        $agenda = DB::table('programs')->orderBy('created_at', 'DESC')->get();
+        @endphp
+            @foreach ($agenda as $a)
+        <tr class="row mt-3">
+          <td class="col-lg-3 table-info">
+          <b>Program: </b><br>
+          {{ $a->program }}
+          <br>
+          <div class="mb-3"></div>
 
-    <!-- Section Title -->
-    <!-- <div class="container section-title" data-aos="fade-up">
-        <h2>Contact</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-      </div> -->
-    <!-- End Section Title -->
+          <b>Status: </b><br>
+          <span class="bg-info badge">Masih Berlangsung</span>
+          </td>
+          <td class="col-lg-4">
+          <div class="row">
+            <div class="col-lg-12">
+            <b>Mulai: </b><br>
+            <div class="text-primary">
+              {{ date('d-m-Y H:i:s', strtotime($a->tgl_mulai)) }}
+            </div>
+            <div class="mb-3"></div>
+            <b> Selesai: </b><br>
+            <div class="text-primary">{{ date('d-m-Y H:i:s', strtotime($a->tgl_selesai)) }}</div><br>
+            <div class="mb-3"></div>
+            </div>
+            <div class="col-6">
 
-    <!-- <div class="container" data-aos="fade-up" data-aos-delay="100">
-      </div> -->
 
-    <!-- <iframe class="contact" data-aos="fade-up" data-aos-delay="300"
+            </div>
+          </div>
+          </td>
+          <!-- <td class="col-lg-1"></td> -->
+          <td class="col-lg-5">
+          <b>Lokasi: </b><br>
+          {{ $a->lokasi }}
+          <br>
+          <div class="mb-3"></div>
+          <b>Keterangan: </b><br>
+          <div style="width: 80%;">{{ $a->deskripsi }}</div>
+          </td>
+        </tr>
+      @endforeach
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+    <br>
+
+    <div class="container mt-5 mb-5">
+      <div class="text-left mb-2">
+        <h1 id="laporan">Laporan Warga</h1>
+        <a href="{{ url('/daftar-laporan') }}">Lihat Laporan Desa lainnya <i class="bi bi-arrow-right"></i> </a>
+      </div>
+      <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Buat Laporan
+      </button>
+      <div style="padding-left: 13px; padding-right: 13px;">
+        @include('backend.components.laporan')
+      </div>
+    </div>
+
+    <iframe id="peta" class="contact"
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.6424613861236!2d102.19920717501995!3d-3.436870196537618!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e315b9e7801b9b1%3A0x300cd9e67330acf3!2sKantor%20Bupati%20Bengkulu%20Utara!5e0!3m2!1sid!2sid!4v1732679905033!5m2!1sid!2sid"
-      width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"></iframe> -->
-
-    <!-- </section> -->
-    <!-- /Contact Section -->
-
+      width="100%" height="500" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
   </main>
 
   <footer id="footer" class="footer">
 
-    <!-- <div class="container footer-top">
-      <div class="row gy-4">
-        <div class="col-lg-4 col-md-6 footer-about">
-          <a href="index.html" class="logo d-flex align-items-center">
-            <span class="sitename">iLanding</span>
-          </a>
-          <div class="footer-contact pt-3">
-            <p>A108 Adam Street</p>
-            <p>New York, NY 535022</p>
-            <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-            <p><strong>Email:</strong> <span>info@example.com</span></p>
-          </div>
-          <div class="social-links d-flex mt-4">
-            <a href=""><i class="bi bi-twitter-x"></i></a>
-            <a href=""><i class="bi bi-facebook"></i></a>
-            <a href=""><i class="bi bi-instagram"></i></a>
-            <a href=""><i class="bi bi-linkedin"></i></a>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Terms of service</a></li>
-            <li><a href="#">Privacy policy</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Our Services</h4>
-          <ul>
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">Product Management</a></li>
-            <li><a href="#">Marketing</a></li>
-            <li><a href="#">Graphic Design</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Hic solutasetp</h4>
-          <ul>
-            <li><a href="#">Molestiae accusamus iure</a></li>
-            <li><a href="#">Excepturi dignissimos</a></li>
-            <li><a href="#">Suscipit distinctio</a></li>
-            <li><a href="#">Dilecta</a></li>
-            <li><a href="#">Sit quas consectetur</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Nobis illum</h4>
-          <ul>
-            <li><a href="#">Ipsam</a></li>
-            <li><a href="#">Laudantium dolorum</a></li>
-            <li><a href="#">Dinera</a></li>
-            <li><a href="#">Trodelas</a></li>
-            <li><a href="#">Flexo</a></li>
-          </ul>
-        </div>
-
-      </div>
-    </div> -->
-
-    <!-- <div class="container text-center mt-4 mb-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">iLanding</strong> <span>All Rights Reserved</span></p>
-      <div class="credits">
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed By <a
-          href="https://themewagon.com">ThemeWagon</a>
-      </div>
-    </div> -->
 
   </footer>
 
@@ -327,7 +264,54 @@
 
   <!-- Main JS File -->
   <script src="{{ url('ilanding/assets/js/main.js') }}"></script>
+  <script src="https://unpkg.com/axios@0.27.2/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.7/dist/sweetalert2.all.min.js"></script>
 
+  <script>
+    form.onsubmit = (e) => {
+      e.preventDefault();
+
+      // Ambil data dari Quill dan masukkan ke dalam formData
+      let formData = new FormData(form);
+
+      document.getElementById('respon_error').innerHTML = ``;
+      document.getElementById("tombol_kirim").disabled = true;
+
+      axios({
+        method: 'post',
+        url: '/store-front-laporan',
+        data: formData,
+      })
+        .then(function (res) {
+          if (res.data.responCode == 1) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Sukses',
+              text: res.data.respon,
+              timer: 3000,
+              showConfirmButton: false
+            });
+            location.reload()
+          } else {
+            // Handle error response
+            let respon_error = ``;
+            Object.entries(res.data.respon).forEach(([field, messages]) => {
+              messages.forEach(message => {
+                respon_error += `<li>${message}</li>`;
+              });
+            });
+
+            document.getElementById('respon_error').innerHTML = respon_error;
+          }
+
+          document.getElementById("tombol_kirim").disabled = false;
+        })
+        .catch(function (error) {
+          console.log(error);
+          document.getElementById("tombol_kirim").disabled = false;
+        });
+    };
+  </script>
 </body>
 
 </html>
